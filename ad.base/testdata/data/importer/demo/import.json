@@ -1,0 +1,20 @@
+{
+    "jobs":[
+     	{
+     	 	num : 1,
+        	type : "import",
+        	bannerdefinition : "banner01.xml"    
+        },
+        {
+            num : 2,
+            type : "update",
+            bannerdefinition : "banner02.xml"
+        },
+        {
+            num : 3,
+            type : "delete",
+            id : "1"
+        }
+        
+    ]
+}

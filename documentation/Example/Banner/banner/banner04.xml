@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="4">
+	<format name="LEADERBOARD"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>leaderboard_2.jpg</imageUrl>
+	<condition>
+		<days>
+			<day>1</day>
+			<day>3</day>
+			<day>5</day>
+		</days>
+	</condition>
+</banner>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="6">
+	<format name="MEDIUM_RECTANGLE"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>medium_rectangle_2.jpg</imageUrl>
+	<condition>
+		<days>
+			<day>2</day>
+			<day>4</day>
+		</days>
+	</condition>
+</banner>

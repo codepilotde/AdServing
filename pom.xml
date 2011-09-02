@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.mad.ads</groupId>
+	<artifactId>advertisement</artifactId>
+	<packaging>pom</packaging>
+
+	<version>1.0.1</version>
+
+	<licenses>
+		<license>
+			<name>GPLv3</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+		</license>
+	</licenses>
+
+	<modules>
+		<module>ad.base</module>
+		<module>ad.base.embedded</module>
+		<module>ad.db</module>
+		<module>ad.server</module>
+		<module>ad.import</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.mad.ads</groupId>
+				<artifactId>ad.base</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mad.ads</groupId>
+				<artifactId>ad.base.embedded</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mad.ads</groupId>
+				<artifactId>ad.db</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mad.ads</groupId>
+				<artifactId>ad.import</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>de.marx</groupId>
+				<artifactId>marx.common</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>de.marx</groupId>
+				<artifactId>marx.web.service</artifactId>
+				<version>1.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<profiles>
+		<profile>
+			<!-- Repository is active unless explicitly disabled e.g. -P!jboss-public-repository -->
+			<activation>
+				<property>
+					<name>jboss-public-repository</name>
+					<value>!false</value>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>jboss-public-repository-group</id>
+					<name>JBoss Public Maven Repository Group</name>
+					<url>http://repository.jboss.org/nexus/content/groups/public</url>
+					<layout>default</layout>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+						<updatePolicy>never</updatePolicy>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>jboss-public-repository-group</id>
+					<name>JBoss Public Maven Repository Group</name>
+					<url>http://repository.jboss.org/nexus/content/groups/public</url>
+					<layout>default</layout>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+	<repositories>
+		<repository>
+			<id>oracleReleases</id>
+			<name>Oracle Released Java Packages</name>
+			<url>http://download.oracle.com/maven</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+</project>

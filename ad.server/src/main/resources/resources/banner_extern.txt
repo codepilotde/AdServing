@@ -1,0 +1,9 @@
+if (banners.length > 0) {
+
+	var c_ad_date = new Date().getTime();
+	var c_ad_node = "c_ad_" + c_ad_date;
+	var style = "width:300px; heigth:250px; position:relative;";
+	document.write("<div id='" + c_ad_node + "' style='" + style + "'>");
+	document.write(banners[0].getExtContent());
+	document.write("</div>");
+}

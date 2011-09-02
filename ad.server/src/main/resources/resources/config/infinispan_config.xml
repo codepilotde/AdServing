@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ JBoss, Home of Professional Open Source ~ Copyright 2010 Red Hat Inc. 
+	and/or its affiliates and other ~ contributors as indicated by the @author 
+	tags. All rights reserved. ~ See the copyright.txt in the distribution for 
+	a full listing of ~ individual contributors. ~ ~ This is free software; you 
+	can redistribute it and/or modify it ~ under the terms of the GNU Lesser 
+	General Public License as ~ published by the Free Software Foundation; either 
+	version 2.1 of ~ the License, or (at your option) any later version. ~ ~ 
+	This software is distributed in the hope that it will be useful, ~ but WITHOUT 
+	ANY WARRANTY; without even the implied warranty of ~ MERCHANTABILITY or FITNESS 
+	FOR A PARTICULAR PURPOSE. See the GNU ~ Lesser General Public License for 
+	more details. ~ ~ You should have received a copy of the GNU Lesser General 
+	Public ~ License along with this software; if not, write to the Free ~ Software 
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA ~ 02110-1301 USA, 
+	or see the FSF site: http://www.fsf.org. -->
+
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:infinispan:config:5.0 http://www.infinispan.org/schemas/infinispan-config-5.0.xsd"
+	xmlns="urn:infinispan:config:5.0">
+
+	<!-- ****************************************************************************************************************** 
+		This is a sample Infinispan configuration XML file. Sensible defaults are 
+		always used if elements are left out. For example, have a look at "minimal.xml" 
+		which ships in this same distribution. This file considers some popular configurations, 
+		some commented out, with references to documentation and further reading. 
+		A summary of the format of this XML file and all available options can be 
+		see online: http://docs.jboss.org/infinispan/5.0/apidocs/config.html ****************************************************************************************************************** -->
+
+	<!-- ****************************************************************************************************************** 
+		System-wide global settings, which are shared across all caches managed by 
+		the same EmbeddedCacheManager ****************************************************************************************************************** -->
+
+	<global>
+
+
+
+		<!-- Enables collection of global JMX statistics, and allows you to customize 
+			the JMX domain name under which MBeans are registered. -->
+		<globalJmxStatistics enabled="true" jmxDomain="org.infinispan"
+			cacheManagerName="SampleCacheManager" />
+
+		<!-- If the transport is omitted, there is no way to create distributed 
+			or clustered caches. There is no added cost to defining a transport and not 
+			creating a cache that uses one, since the transport is created and initialized 
+			lazily. By default, the JGroupsTransport is used. Note that the JGroups transport 
+			uses sensible defaults if no configuration property is defined. See: http://community.jboss.org/wiki/ClusteredConfigurationQuickStart 
+			http://docs.jboss.org/infinispan/5.0/apidocs/org/infinispan/remoting/transport/jgroups/JGroupsTransport.html -->
+		<transport clusterName="infinispan-cluster" machineId="m1"
+			rackId="r1" nodeName="Node-A">
+			<!-- Use the property below to point to a specific JGroups configuration 
+				file on your classpath -->
+
+			<properties>
+				<property name="configurationFile" value="resources/config/jgroups-tcp.xml" />
+			</properties>
+
+		</transport>
+
+		<evictionScheduledExecutor
+			factory="org.infinispan.executors.DefaultScheduledExecutorFactory">
+			<properties>
+				<property name="threadNamePrefix" value="EvictionThread" />
+			</properties>
+		</evictionScheduledExecutor>
+
+	</global>
+
+	<!-- ****************************************************************************************************************** 
+		Default "template" settings, used to create the default cache as well as 
+		inherited by all other named caches ****************************************************************************************************************** -->
+
+	<default>
+		<!-- Tunes the locking and concurrency characteristics of the cache. See: 
+			http://community.jboss.org/wiki/LockingandConcurrency -->
+		<locking isolationLevel="READ_COMMITTED"
+			lockAcquisitionTimeout="20000" writeSkewCheck="false"
+			concurrencyLevel="5000" useLockStriping="false" />
+
+
+
+		<!-- Used to register JMX statistics in any available MBean server -->
+		<jmxStatistics enabled="true" />
+
+
+		<clustering mode="replication">
+
+			<!-- Defines whether to retrieve state on startup. This is only valud 
+				for 'replication' mode. -->
+			<stateRetrieval timeout="240000" fetchInMemoryState="false"
+				alwaysProvideInMemoryState="false" />
+
+			<!-- Network calls are synchronous. -->
+			<sync replTimeout="20000" />
+
+
+
+		</clustering>
+
+	</default>
+
+
+	<namedCache name="requestBanners">
+		<clustering mode="distribution">
+			<sync />
+			<hash numOwners="3" rehashWait="120000" rehashRpcTimeout="600000" />
+			<l1 enabled="true" lifespan="5000" />
+		</clustering>
+		<eviction strategy="FIFO"  wakeUpInterval="1000" maxEntries="1000000" />
+		<expiration lifespan="5000" maxIdle="2000" />
+	</namedCache>
+
+</infinispan>

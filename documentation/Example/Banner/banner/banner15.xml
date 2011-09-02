@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="EXPANDABLEIMAGE" id="15">
+	<format name="WIDE_BUTTON_3"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>expand_1_small.png</imageUrl>
+	<expandedImageUrl>expand_1_big.png</expandedImageUrl>
+	<expandedImageWidth>300</expandedImageWidth>
+	<expandedImageHeight>250</expandedImageHeight>
+	<condition>
+	</condition>
+</banner>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>AdServer</display-name>
+	<context-param>
+		<param-name>enviroment</param-name>
+		<param-value>development</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>AdServlet</servlet-name>
+		<servlet-class>net.mad.ads.server.servlet.AdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdServlet</servlet-name>
+		<url-pattern>/js/ads.js</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<display-name>AdClick</display-name>
+		<servlet-name>AdClick</servlet-name>
+		<servlet-class>net.mad.ads.server.servlet.AdClick</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdClick</servlet-name>
+		<url-pattern>/click</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>AdSelect</display-name>
+		<servlet-name>AdSelect</servlet-name>
+		<servlet-class>net.mad.ads.server.servlet.AdSelect</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdSelect</servlet-name>
+		<url-pattern>/js/select.js</url-pattern>
+	</servlet-mapping>
+
+	<!-- Der AdContextFilter erzeugt aus dem Request und den Cookies ein AdContext 
+		Objekt und stellt es über ein ThreadLocal Variable zur Verfügung. -->
+	<filter>
+		<filter-name>AdContextFilter</filter-name>
+		<filter-class>net.mad.ads.server.utils.http.listener.AdContextListener</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdContextFilter</filter-name>
+		<url-pattern>/js/ads.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AdContextFilter</filter-name>
+		<url-pattern>/js/select.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AdContextFilter</filter-name>
+		<url-pattern>/click</url-pattern>
+	</filter-mapping>
+
+	<!-- <filter> <filter-name>CompressionFilter</filter-name> <filter-class>de.marx.common.web.filter.compression.CompressionFilter</filter-class> 
+		<init-param> <param-name>compressType</param-name> <param-value>gzip_first</param-value> 
+		</init-param> </filter> <filter-mapping> <filter-name>CompressionFilter</filter-name> 
+		<url-pattern>/js/select.js</url-pattern> </filter-mapping> <filter-mapping> 
+		<filter-name>CompressionFilter</filter-name> <url-pattern>/js/ads.js</url-pattern> 
+		</filter-mapping> <filter> <filter-name>VaryHeaderFlter</filter-name> <filter-class>de.marx.common.web.filter.header.HttpHeaderFilter</filter-class> 
+		<init-param> <param-name>Vary</param-name> <param-value>&quot;Accept-Encoding&quot;</param-value> 
+		</init-param> </filter> <filter-mapping> <filter-name>VaryHeaderFlter</filter-name> 
+		<url-pattern>/js/ads.js</url-pattern> </filter-mapping> <filter> <filter-name>ExpiresHeaderFlter</filter-name> 
+		<filter-class>de.marx.common.web.filter.header.HttpHeaderFilter</filter-class> 
+		<init-param> <param-name>Expires</param-name> <param-value>(now.time + 1000 
+		* 60 * 60 * 24 * 7)</param-value> </init-param> </filter> <filter-mapping> 
+		<filter-name>ExpiresHeaderFlter</filter-name> <url-pattern>/js/ads.js</url-pattern> 
+		</filter-mapping> -->
+	<listener>
+		<listener-class>net.mad.ads.server.utils.listener.StartupPlugIn</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/error.html</location>
+	</error-page>
+
+	<!-- WebService -->
+	<!-- 
+	<servlet>
+		<servlet-name>XmlRpcServlet</servlet-name>
+		<servlet-class>de.marx.common.web.xmlrpc.servlet.MySimpleXmlRpcServlet</servlet-class>
+		<init-param>
+			<param-name>enabledForExtensions</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>XmlRpcServlet</servlet-name>
+		<url-pattern>/xmlrpc</url-pattern>
+	</servlet-mapping>
+	-->
+</web-app>

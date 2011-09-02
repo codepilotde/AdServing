@@ -1,0 +1,46 @@
+package test.ad.date;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.search.Collector;
+import org.apache.lucene.search.Scorer;
+
+public class MyCollector extends Collector {
+	private Scorer scorer;
+	private int docBase;
+
+	private List<Integer> hits = null;
+
+	public MyCollector() {
+		this.hits = new ArrayList<Integer>();
+	}
+
+	// simply print docId and score of every matching document
+	@Override
+	public void collect(int doc) throws IOException {
+		hits.add(doc);
+	}
+
+	public List<Integer> getHits() {
+		return this.hits;
+	}
+
+	@Override
+	public boolean acceptsDocsOutOfOrder() {
+		return true;
+	}
+
+	@Override
+	public void setNextReader(IndexReader reader, int docBase)
+			throws IOException {
+		this.docBase = docBase;
+	}
+
+	@Override
+	public void setScorer(Scorer scorer) throws IOException {
+		this.scorer = scorer;
+	}
+}

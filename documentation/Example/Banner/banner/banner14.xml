@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="FLASH" id="14">
+	<format name="FULL_BANNER"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<movieUrl>flash2_486x60.swf</movieUrl>
+	<fallbackImageUrl>flash2_fallback_486x60.png</fallbackImageUrl>
+	
+	<minFlashVersion>11</minFlashVersion>
+	<condition>
+	</condition>
+</banner>

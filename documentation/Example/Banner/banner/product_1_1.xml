@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="16">
+	<format name="SKYSCRAPER"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>produkt1_sky.jpg</imageUrl>
+	
+	<product>p1</product>
+	<condition>
+		<slots>
+			<slot>31-32-33</slot>
+		</slots>
+	</condition>
+</banner>

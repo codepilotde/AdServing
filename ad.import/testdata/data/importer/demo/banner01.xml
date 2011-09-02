@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="1">
+	<format name="FULL_BANNER"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>full_banner_1.jpg</imageUrl>
+	
+	<condition>
+	</condition>
+</banner>

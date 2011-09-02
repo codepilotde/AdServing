@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="8">
+	<format name="SKYSCRAPER"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>skyscraper_2.jpg</imageUrl>
+	
+	<condition>
+		<days>
+			<day>6</day>
+			<day>7</day>
+		</days>
+		<time>
+			<periods>
+				<period>
+					<from>0800</from>
+					<to>2000</to>
+				</period>
+			</periods>
+		</time>
+	</condition>
+</banner>

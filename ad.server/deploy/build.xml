@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project basedir="." default="compile">
+
+	<taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="lib/compiler.jar" />
+
+	<target name="compile">
+
+		<jscomp compilationLevel="simple" debug="false" output="../src/main/webapp/WEB-INF/content/templates/madapi_production.js">
+			<sources dir="../src/main/webapp/WEB-INF/content/templates">
+				<file name="madapi.js" />
+			</sources>
+		</jscomp>
+
+		<!--
+		<jscomp compilationLevel="simple" debug="false" output="../WebContent/WEB-INF/content/templates/ads_production.ftl">
+			<sources dir="../WebContent/WEB-INF/content/templates">
+				<file name="ads.ftl" />
+			</sources>
+		</jscomp>
+		-->
+	</target>
+
+</project>

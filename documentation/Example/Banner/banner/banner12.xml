@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="12">
+	<format name="WIDE_SKYSCRAPER"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>wide_skyscraper_2.jpg</imageUrl>
+	<condition>
+		<days>
+			<day>1</day>
+			<day>2</day>
+			<day>3</day>
+			<day>4</day>
+			<day>5</day>
+		</days>
+		<time>
+			<periods>
+				<period>
+					<from>0600</from>
+					<to>0900</to>
+				</period>
+			</periods>
+		</time>
+	</condition>
+</banner>

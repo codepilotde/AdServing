@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="1">
+	<format name="MEDIUM_RECTANGLE"/>
+	<targetUrl></targetUrl>
+	<imageUrl></imageUrl>
+	<condition>
+		<time>
+			<from>0600</from>
+			<to>1200</to>
+		</time>
+		<date>
+			<from>all</from>
+			<to>all</to>
+		</date>
+		<states>
+			<state>0</state>
+		</states>
+		<days>
+			<day>0</day>
+		</days>
+		<countries>
+			<country>all</country>
+		</countries>
+		<distance>
+			<latitude>0600</latitude>
+			<longitude>1200</longitude>
+			<radius>1200</radius>
+		</distance>
+		<expiration>
+			<clicks resolution="day">5</clicks>
+			<views resolution="week">35</views>
+		</expiration>
+	</condition>
+</banner>

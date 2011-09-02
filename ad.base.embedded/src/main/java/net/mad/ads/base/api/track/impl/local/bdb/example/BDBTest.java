@@ -1,0 +1,115 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package net.mad.ads.base.api.track.impl.local.bdb.example;
+
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+
+import net.mad.ads.base.api.BaseContext;
+import net.mad.ads.base.api.EmbeddedBaseContext;
+import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.track.TrackingService;
+import net.mad.ads.base.api.track.events.ClickTrackEvent;
+import net.mad.ads.base.api.track.events.EventAttribute;
+import net.mad.ads.base.api.track.events.ImpressionTrackEvent;
+import net.mad.ads.base.api.track.events.TrackEvent;
+import net.mad.ads.base.api.track.impl.local.bdb.BDBTrackingService;
+import net.mad.ads.base.api.utils.DateHelper;
+
+/**
+ *
+ * @author tmarx
+ */
+public class BDBTest {
+	public static void main (String [] args) throws Exception {
+                
+                BaseContext context = new EmbeddedBaseContext();
+                context.put(EmbeddedBaseContext.EMBEDDED_DB_DIR, "/tmp/bdb/track");
+                
+                TrackingService ts = new BDBTrackingService();
+                
+                ts.open(context);
+                
+                trackData(ts);
+                
+                Calendar from = Calendar.getInstance(Locale.GERMANY);
+                from.set(Calendar.MONTH, Calendar.JANUARY);
+                from.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                from.set(Calendar.HOUR_OF_DAY, 0);
+                from.set(Calendar.MINUTE, 0);
+                from.set(Calendar.SECOND, 0);
+                from.set(Calendar.MILLISECOND, 0);
+                
+                Calendar to = Calendar.getInstance(Locale.GERMANY);
+                to.set(Calendar.MONTH, Calendar.JANUARY);
+                to.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+//              to.set(Calendar.HOUR_OF_DAY, 23);
+//              to.set(Calendar.MINUTE, 59);
+//              to.set(Calendar.SECOND, 59);
+//              to.set(Calendar.MILLISECOND, 999);
+                to.set(Calendar.HOUR_OF_DAY, 0);
+                to.set(Calendar.MINUTE, 0);
+                to.set(Calendar.SECOND, 0);
+                to.set(Calendar.MILLISECOND, 0);
+                to.add(Calendar.DAY_OF_WEEK, 1);
+                
+//                System.out.println();
+//                System.out.println(DateHelper.format(from.getTime()));
+//                System.out.println(DateHelper.format(to.getTime()));
+//                System.out.println();
+                
+//              System.out.println(ts.countClicks("b1", from.getTime(), to.getTime()));
+//              System.out.println(ts.countImpressions("b1", from.getTime(), to.getTime()));
+                
+                List<TrackEvent> list = ts.list("demo Site", from.getTime(), to.getTime());
+                System.out.println(list.size());
+				
+				System.out.println (ts.countClicks ("b1", from.getTime(), to.getTime()));
+				System.out.println (ts.countImpressions ("b1", from.getTime(), to.getTime()));
+                
+                ts.close();
+        }
+        
+        
+        private static void trackData (TrackingService ts) throws ServiceException {
+                Calendar created = Calendar.getInstance(Locale.GERMANY);
+                created.set(Calendar.MONTH, Calendar.JANUARY);
+                created.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                
+                TrackEvent event = new ClickTrackEvent();
+                event.put(EventAttribute.TIME, DateHelper.format(created.getTime()));
+                event.setTime(created.getTime().getTime());
+//                System.out.println(DateHelper.format(created.getTime()));
+                event.setSite("demo Site");
+                event.put(EventAttribute.BANNER_ID, "b1");
+                event.setUser("user1");
+                ts.track(event);
+                
+                
+                created.add(Calendar.HOUR_OF_DAY, 1);
+                event = new ClickTrackEvent();
+                event.put(EventAttribute.TIME, DateHelper.format(created.getTime()));
+                event.setTime(created.getTime().getTime());
+//                System.out.println(DateHelper.format(created.getTime()));
+                event.setSite("demo Site");
+                event.put(EventAttribute.BANNER_ID, "b1");
+                event.setUser("user1");
+                ts.track(event);
+
+                created.add(Calendar.HOUR_OF_DAY, 1);
+                event = new ImpressionTrackEvent();
+                event.put(EventAttribute.TIME, DateHelper.format(created.getTime()));
+                event.setTime(created.getTime().getTime());
+//                System.out.println(DateHelper.format(created.getTime()));
+                event.setSite("demo Site");
+                event.put(EventAttribute.BANNER_ID, "b1");
+                event.setUser("user1");
+                ts.track(event);
+                event.setUser("user2");
+                ts.track(event);
+        }
+}

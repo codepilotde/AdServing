@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="FLASH" id="13">
+	<format name="FULL_BANNER"/>
+	<targetUrl>http://spartopia.de</targetUrl>
+	<movieUrl>flash_486x60.swf</movieUrl>
+	<minFlashVersion>10</minFlashVersion>
+	<condition>
+	</condition>
+</banner>

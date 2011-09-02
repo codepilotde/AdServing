@@ -1,0 +1,5 @@
+Conditions
+----------
+Wie die anderen Anbieter sollten noch Condition für 
+Browser/Betriebsystem/Verbindungsart/Sprache/Bandbreite/Provider
+implementiert werden.

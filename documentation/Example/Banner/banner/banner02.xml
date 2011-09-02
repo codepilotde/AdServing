@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="2">
+	<format name="FULL_BANNER"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>full_banner_2.jpg</imageUrl>
+	<condition>
+		<time>
+			<periods>
+				<period>
+					<from>0800</from>
+					<to>2000</to>
+				</period>
+			</periods>
+		</time>
+	</condition>
+</banner>

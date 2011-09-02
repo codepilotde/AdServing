@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="EXTERN" id="2">
+	<format name="MEDIUM_RECTANGLE"/>
+	<targetUrl></targetUrl>
+	<imageUrl></imageUrl>
+	<externContent>
+	<![CDATA[
+		hier ist der gesammte Inhalt
+	]]>
+	</externContent>
+	<condition>
+		<keywords>
+			<kw factor="">Esprit</kw>
+		</keywords>
+		<sites>
+			<site>test</site>
+		</sites>
+	</condition>
+</banner>

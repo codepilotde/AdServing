@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner type="IMAGE" id="10">
+	<format name="SQUARE"/>
+	<targetUrl>http://www.lagerverkauf-finden.de</targetUrl>
+	<imageUrl>square_2.jpg</imageUrl>
+	<condition>
+		<days>
+			<day>6</day>
+			<day>7</day>
+		</days>
+		<time>
+			<periods>
+				<period>
+					<from>2000</from>
+					<to>2400</to>
+				</period>
+			</periods>
+		</time>
+	</condition>
+</banner>
