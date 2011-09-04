@@ -17,6 +17,11 @@
 			<artifactId>lucene-core</artifactId>
 			<version>3.3.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers</artifactId>
+			<version>3.3.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>net.mad.ads</groupId>

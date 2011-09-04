@@ -23,6 +23,7 @@
 		<module>ad.db</module>
 		<module>ad.server</module>
 		<module>ad.import</module>
+		<module>ad.services</module>
 	</modules>
 
 	<dependencyManagement>
@@ -54,17 +55,15 @@
 			</dependency>
 
 			<dependency>
+				<groupId>net.mad.ads</groupId>
+				<artifactId>ad.services</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>1.6.1</version>
-			</dependency>
-
-			<!-- <dependency> <groupId>de.marx</groupId> <artifactId>marx.common</artifactId> 
-				<version>1.0</version> </dependency> -->
-			<dependency>
-				<groupId>de.marx</groupId>
-				<artifactId>marx.web.service</artifactId>
-				<version>1.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

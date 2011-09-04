@@ -17,6 +17,7 @@
  */
 package net.mad.ads.server.utils.context;
 
+
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -26,12 +27,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.mad.ads.common.util.Strings;
 import net.mad.ads.db.definition.AdSlot;
 import net.mad.ads.server.utils.AdServerConstants;
 import net.mad.ads.server.utils.RuntimeContext;
 import net.mad.ads.server.utils.http.CookieUtils;
 import net.mad.ads.server.utils.request.RequestHelper;
-import de.marx.common.tools.Strings;
+
 
 public class AdContextHelper {
 

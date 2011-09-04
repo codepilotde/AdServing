@@ -17,9 +17,12 @@
  */
 package net.mad.ads.server.utils.helper;
 
+
 import java.io.UnsupportedEncodingException;
 
-import de.marx.common.tools.Strings;
+import net.mad.ads.common.util.Strings;
+
+
 
 public class EncodeHelper {
 	public static final String ALLOWED_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.!~*'()";

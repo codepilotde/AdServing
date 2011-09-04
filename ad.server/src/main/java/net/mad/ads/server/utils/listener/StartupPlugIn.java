@@ -19,6 +19,7 @@ package net.mad.ads.server.utils.listener;
 
 
 
+
 import java.io.File;
 
 import java.io.FileFilter;
@@ -46,6 +47,9 @@ import net.mad.ads.base.api.importer.Importer;
 import net.mad.ads.base.api.importer.reader.*;
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.track.TrackingService;
+import net.mad.ads.common.template.TemplateManager;
+import net.mad.ads.common.template.impl.freemarker.FMTemplateManager;
+import net.mad.ads.common.util.Strings;
 import net.mad.ads.db.db.AdDB;
 import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.enums.BannerType;
@@ -54,11 +58,8 @@ import net.mad.ads.server.utils.RuntimeContext;
 import net.mad.ads.server.utils.listener.configuration.development.DevelopmentModule;
 import net.mad.ads.server.utils.listener.configuration.production.ProductionModule;
 import net.mad.ads.server.utils.runnable.AdDbUpdateTask;
-import de.marx.common.template.TemplateManager;
-import de.marx.common.template.impl.freemarker.FMTemplateManager;
-import de.marx.common.tools.Strings;
-import de.marx.services.geo.IPLocationDB;
-import de.marx.services.geo.MaxmindIpLocationDB;
+import net.mad.ads.services.geo.IPLocationDB;
+
 
 
 

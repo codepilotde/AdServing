@@ -19,6 +19,7 @@ package net.mad.ads.server.utils;
 
 
 
+
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -30,9 +31,10 @@ import net.mad.ads.base.api.render.BannerRenderer;
 import net.mad.ads.base.api.render.impl.freemarker.FreemarkerBannerRenderer;
 import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.utils.logging.LogWrapper;
+import net.mad.ads.common.template.TemplateManager;
 import net.mad.ads.db.db.AdDB;
-import de.marx.common.template.TemplateManager;
-import de.marx.services.geo.IPLocationDB;
+import net.mad.ads.services.geo.IPLocationDB;
+
 
 public class RuntimeContext {
 	private static HashMap<String, HashMap<String, Object>> configuration = new HashMap<String, HashMap<String,Object>>();

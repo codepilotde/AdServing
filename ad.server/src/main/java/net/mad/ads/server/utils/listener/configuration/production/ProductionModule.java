@@ -17,6 +17,7 @@
  */
 package net.mad.ads.server.utils.listener.configuration.production;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,8 +29,9 @@ import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.track.impl.local.bdb.BDBTrackingService;
 import net.mad.ads.server.utils.AdServerConstants;
 import net.mad.ads.server.utils.RuntimeContext;
-import de.marx.services.geo.IPLocationDB;
-import de.marx.services.geo.MaxmindIpLocationDB;
+import net.mad.ads.services.geo.IPLocationDB;
+import net.mad.ads.services.geo.MaxmindIpLocationDB;
+
 
 public class ProductionModule extends AbstractModule {
 

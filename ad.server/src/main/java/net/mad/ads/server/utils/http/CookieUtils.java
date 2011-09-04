@@ -17,10 +17,13 @@
  */
 package net.mad.ads.server.utils.http;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import de.marx.common.tools.Strings;
+import net.mad.ads.common.util.Strings;
+
+
 
 /**
  * Utilities zum arbeiten mit Cookies

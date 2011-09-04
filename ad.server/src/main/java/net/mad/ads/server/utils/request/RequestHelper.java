@@ -18,6 +18,7 @@
 package net.mad.ads.server.utils.request;
 
 
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,7 +38,7 @@ import net.mad.ads.db.utils.geo.GeoLocation;
 import net.mad.ads.server.utils.RuntimeContext;
 import net.mad.ads.server.utils.context.AdContext;
 import net.mad.ads.server.utils.http.KeywordUtils;
-import de.marx.services.geo.Location;
+import net.mad.ads.services.geo.Location;
 
 /**
  * Helper zum erzeugen des AdRequest aus dem HttpRequest

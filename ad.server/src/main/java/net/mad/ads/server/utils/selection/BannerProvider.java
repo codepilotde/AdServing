@@ -17,6 +17,7 @@
  */
 package net.mad.ads.server.utils.selection;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.google.common.collect.Collections2;
 
+import net.mad.ads.common.util.Strings;
 import net.mad.ads.db.db.request.AdRequest;
 import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.definition.impl.banner.flash.FlashBannerDefinition;
@@ -41,7 +43,7 @@ import net.mad.ads.server.utils.filter.ViewExpirationFilter;
 import net.mad.ads.server.utils.request.RequestHelper;
 import net.mad.ads.server.utils.selection.impl.ImpressionPercentageSingleBannerSelector;
 import net.mad.ads.server.utils.selection.impl.RandomSingleBannerSelector;
-import de.marx.common.tools.Strings;
+
 
 /**
  * Der BannerProvider führt die Suche nach Bannern aus und Filtert das Ergebnis nach bestimmten Kriterien

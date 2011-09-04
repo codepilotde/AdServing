@@ -17,6 +17,7 @@
  */
 package net.mad.ads.server.utils.http;
 
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -32,15 +33,17 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.lucene.analysis.TokenStream;
+
 import org.apache.lucene.analysis.de.GermanAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.mad.ads.common.util.Strings;
 import net.mad.ads.server.utils.helper.EncodeHelper;
 import net.mad.ads.server.utils.request.RequestHelper;
-import de.marx.common.tools.Strings;
+
 
 public class KeywordUtils {
 	
