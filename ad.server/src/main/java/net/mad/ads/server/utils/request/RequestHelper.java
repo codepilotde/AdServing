@@ -17,11 +17,10 @@
  */
 package net.mad.ads.server.utils.request;
 
-import java.sql.Timestamp;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
 
@@ -30,10 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import net.mad.ads.db.db.request.AdRequest;
-import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.enums.BannerFormat;
 import net.mad.ads.db.enums.BannerType;
 import net.mad.ads.db.enums.Day;
@@ -41,7 +37,6 @@ import net.mad.ads.db.utils.geo.GeoLocation;
 import net.mad.ads.server.utils.RuntimeContext;
 import net.mad.ads.server.utils.context.AdContext;
 import net.mad.ads.server.utils.http.KeywordUtils;
-import net.mad.ads.server.utils.renderer.impl.ImageBannerDefinitionRenderer;
 import de.marx.services.geo.Location;
 
 /**
