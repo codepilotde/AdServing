@@ -17,6 +17,7 @@
  */
 package net.mad.ads.db.utils;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,7 +29,6 @@ import net.mad.ads.db.condition.Condition;
 import net.mad.ads.db.condition.Filter;
 import net.mad.ads.db.db.request.AdRequest;
 import net.mad.ads.db.definition.BannerDefinition;
-import de.marx.common.tools.CollectionUtils;
 
 public class ConditionHelper {
 

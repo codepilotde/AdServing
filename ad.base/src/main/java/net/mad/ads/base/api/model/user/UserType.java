@@ -18,7 +18,9 @@
 
 package net.mad.ads.base.api.model.user;
 
-import de.marx.common.tools.Strings;
+import net.mad.ads.common.util.Strings;
+
+
 
 public enum UserType {
 	Publisher ("Publisher"),

@@ -17,6 +17,7 @@
  */
 package net.mad.ads.db.db;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,7 +65,6 @@ import net.mad.ads.db.enums.BannerType;
 import net.mad.ads.db.utils.ConditionHelper;
 import net.mad.ads.db.utils.DocumentHelper;
 import net.mad.ads.db.utils.QueryHelper;
-import de.marx.common.tools.Strings;
 
 /**
  * BDB - BannerDatenbank

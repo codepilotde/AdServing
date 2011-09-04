@@ -17,7 +17,9 @@
  */
 package net.mad.ads.db.enums;
 
-import de.marx.common.tools.Strings;
+import com.google.common.base.Strings;
+
+
 /**
  * Auflösung für Zeiten
  * 
@@ -41,7 +43,7 @@ public enum ExpirationResolution {
 	}
 	
 	public static ExpirationResolution forName (String name) {
-		if (Strings.isEmpty(name)) {
+		if (Strings.isNullOrEmpty(name)) {
 			return NONE;
 		}
 		

@@ -17,6 +17,7 @@
  */
 package net.mad.ads.db.db.store.impl;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Strings;
 import com.sleepycat.bind.serial.ClassCatalog;
 import com.sleepycat.bind.serial.SerialBinding;
 import com.sleepycat.bind.serial.StoredClassCatalog;
@@ -39,7 +41,7 @@ import com.sleepycat.je.EnvironmentConfig;
 import net.mad.ads.db.AdDBManager;
 import net.mad.ads.db.db.store.AdDBStore;
 import net.mad.ads.db.definition.BannerDefinition;
-import de.marx.common.tools.Strings;
+
 
 public class AdDBBDBStore implements AdDBStore {
 
@@ -53,7 +55,7 @@ public class AdDBBDBStore implements AdDBStore {
 	
 	@Override
 	public void open() throws IOException {
-		if (Strings.isEmpty(AdDBManager.getInstance().getContext().tempDir)) {
+		if (Strings.isNullOrEmpty(AdDBManager.getInstance().getContext().tempDir)) {
 			throw new IOException("temp directory can not be empty");
 		}
 		EnvironmentConfig envConfig = new EnvironmentConfig();

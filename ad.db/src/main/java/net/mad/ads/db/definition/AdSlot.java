@@ -17,8 +17,11 @@
  */
 package net.mad.ads.db.definition;
 
-import de.marx.common.tools.Strings;
-import de.marx.common.tools.code.Base16;
+import net.mad.ads.common.code.Base16;
+
+import com.google.common.base.Strings;
+
+
 
 
 
@@ -58,7 +61,7 @@ public class AdSlot {
 	}
 	
 	public static AdSlot fromString (String uuid) throws IllegalArgumentException{
-		if (Strings.isEmpty(uuid)) {
+		if (Strings.isNullOrEmpty(uuid)) {
             throw new IllegalArgumentException("Invalid AdUUID string: " + uuid);
         }
 		String[] components = uuid.split("-");

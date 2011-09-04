@@ -1,5 +1,6 @@
 /*
- * Mad-Advertisement Copyright (C) 2011 Thorsten Marx
+ * Mad-Advertisement 
+ * Copyright (C) 2011 Thorsten Marx
  * 
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -15,35 +16,27 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.mad.ads.base.api.model.user;
+package net.mad.ads.common.util;
 
-import net.mad.ads.common.util.Strings;
+import java.util.ArrayList;
+import java.util.Collection;
 
-
-
-public enum MessageType {
-	DEFAULT("Default");
+public class CollectionUtils {
+	public interface Predicate<T> { boolean apply(T type); }
 	
-	private String name;
-	private MessageType (String name) {
-		this.name = name;
-	}
-	
-	public String getName () {
-		return this.name;
-	}
-	
-	public static MessageType forName (String name) {
-		if (Strings.isEmpty(name)) {
-			return MessageType.DEFAULT;
+	public static <T> Collection<T> filter(Collection<T> target, Predicate<T> predicate) {
+		if (predicate == null) {
+			return target;
 		}
-		
-		for (MessageType m : values()) {
-			if (m.getName().equals(name)) {
-				return m;
-			}
+		if (target == null || target.isEmpty()) {
+			return target;
 		}
-		
-		return MessageType.DEFAULT;
+	    Collection<T> result = new ArrayList<T>();
+	    for (T element: target) {
+	        if (predicate.apply(element)) {
+	            result.add(element);
+	        }
+	    }
+	    return result;
 	}
 }

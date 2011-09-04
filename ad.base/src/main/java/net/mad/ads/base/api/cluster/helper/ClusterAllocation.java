@@ -16,7 +16,9 @@
  */
 package net.mad.ads.base.api.cluster.helper;
 
-import de.marx.common.tools.Strings;
+import net.mad.ads.common.util.Strings;
+
+
 
 /**
  * Verteilung von User auf ein Cluster

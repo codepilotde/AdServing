@@ -17,6 +17,8 @@
  */
 package net.mad.ads.base.api.track.impl.local;
 
+
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,8 +38,8 @@ import net.mad.ads.base.api.track.events.TrackEvent;
 import net.mad.ads.base.api.track.impl.local.helper.TrackKey;
 import net.mad.ads.base.api.track.impl.local.helper.TrackTree;
 import net.mad.ads.base.api.track.impl.local.helper.UUIDHelper;
+import net.mad.ads.common.util.CollectionUtils;
 import net.mad.ads.base.api.utils.DateHelper;
-import de.marx.common.tools.CollectionUtils;
 
 /**
  * Eine lokale Implementierung zum tracken von Events, es wird keine Datenbank benötigt 

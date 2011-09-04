@@ -17,6 +17,7 @@
  */
 package net.mad.ads.db.condition.impl;
 
+
 import java.util.List;
 
 import org.apache.lucene.document.Document;
@@ -27,6 +28,7 @@ import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.BooleanClause.Occur;
 
 import com.google.common.base.Predicate;
+import com.google.common.base.Strings;
 import com.javadocmd.simplelatlng.LatLng;
 import com.javadocmd.simplelatlng.LatLngTool;
 import com.javadocmd.simplelatlng.util.LengthUnit;
@@ -42,7 +44,7 @@ import net.mad.ads.db.definition.condition.ExcludeSiteConditionDefinition;
 import net.mad.ads.db.definition.condition.SiteConditionDefinition;
 import net.mad.ads.db.enums.ConditionDefinitions;
 import net.mad.ads.db.enums.Country;
-import de.marx.common.tools.Strings;
+
 
 /**
  * Unterdrückung von Bannern auf bestimmten Seiten
@@ -107,7 +109,7 @@ public class ExcludeSiteCondition implements Condition, Filter {
 					return true;
 				}
 				// keine Seite im Request, aber das Banner hat eine Seitenbeschränkung
-				if (Strings.isEmpty(request.getSite())) {
+				if (Strings.isNullOrEmpty(request.getSite())) {
 					return false;
 				}
 				

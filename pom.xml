@@ -17,6 +17,7 @@
 	</licenses>
 
 	<modules>
+		<module>ad.common</module>
 		<module>ad.base</module>
 		<module>ad.base.embedded</module>
 		<module>ad.db</module>
@@ -29,6 +30,11 @@
 			<dependency>
 				<groupId>net.mad.ads</groupId>
 				<artifactId>ad.base</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mad.ads</groupId>
+				<artifactId>ad.common</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -48,10 +54,13 @@
 			</dependency>
 
 			<dependency>
-				<groupId>de.marx</groupId>
-				<artifactId>marx.common</artifactId>
-				<version>1.0</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.1</version>
 			</dependency>
+
+			<!-- <dependency> <groupId>de.marx</groupId> <artifactId>marx.common</artifactId> 
+				<version>1.0</version> </dependency> -->
 			<dependency>
 				<groupId>de.marx</groupId>
 				<artifactId>marx.web.service</artifactId>

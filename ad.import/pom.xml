@@ -23,8 +23,8 @@
  			<artifactId>ad.base</artifactId>
  		</dependency>
 		<dependency>
-			<groupId>de.marx</groupId>
-			<artifactId>marx.common</artifactId>
+			<groupId>net.mad.ads</groupId>
+			<artifactId>ad.common</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>

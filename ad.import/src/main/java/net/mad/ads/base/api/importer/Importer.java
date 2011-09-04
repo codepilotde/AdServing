@@ -17,6 +17,7 @@
  */
 package net.mad.ads.base.api.importer;
 
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.lang.reflect.*;
@@ -40,9 +41,10 @@ import net.mad.ads.base.api.importer.job.jobs.DeleteJob;
 import net.mad.ads.base.api.importer.job.jobs.ImportJob;
 import net.mad.ads.base.api.importer.job.jobs.UpdateJob;
 import net.mad.ads.base.api.importer.reader.AdXmlReader;
+import net.mad.ads.common.util.Strings;
 import net.mad.ads.db.db.AdDB;
 import net.mad.ads.db.definition.BannerDefinition;
-import de.marx.common.tools.Strings;
+
 
 public class Importer {
 	

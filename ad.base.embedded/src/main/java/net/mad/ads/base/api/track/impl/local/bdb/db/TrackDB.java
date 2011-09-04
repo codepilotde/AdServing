@@ -18,6 +18,7 @@
 
 package net.mad.ads.base.api.track.impl.local.bdb.db;
 
+
 import com.sleepycat.bind.serial.ClassCatalog;
 import com.sleepycat.bind.serial.SerialSerialKeyCreator;
 import com.sleepycat.bind.serial.StoredClassCatalog;

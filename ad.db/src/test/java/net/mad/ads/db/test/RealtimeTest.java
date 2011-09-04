@@ -17,11 +17,13 @@
  */
 package net.mad.ads.db.test;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
+import net.mad.ads.common.benchmark.StopWatch;
 import net.mad.ads.db.db.AdDB;
 import net.mad.ads.db.db.request.AdRequest;
 import net.mad.ads.db.definition.BannerDefinition;
@@ -33,7 +35,7 @@ import net.mad.ads.db.enums.BannerType;
 import net.mad.ads.db.enums.ConditionDefinitions;
 import net.mad.ads.db.enums.Country;
 import net.mad.ads.db.enums.State;
-import de.marx.common.benchmark.StopWatch;
+
 
 import junit.framework.TestCase;
 

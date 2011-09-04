@@ -8,18 +8,22 @@
 		<version>1.0.1</version>
 	</parent>
 
-	
+
 	<artifactId>ad.base.embedded</artifactId>
 
 
 
 	<dependencies>
-	
+
+		<dependency>
+			<groupId>net.mad.ads</groupId>
+			<artifactId>ad.common</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>net.mad.ads</groupId>
 			<artifactId>ad.base</artifactId>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>com.sleepycat</groupId>
 			<artifactId>je</artifactId>
@@ -37,6 +41,15 @@
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r09</version>
 		</dependency>
 	</dependencies>
 
