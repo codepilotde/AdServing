@@ -135,6 +135,7 @@
 					<useTestClasspath>true</useTestClasspath>
 					<webAppConfig>
 						<contextPath>/AdServer</contextPath>
+						<overrideDescriptor>${basedir}/src/config/override-web.xml</overrideDescriptor>
 					</webAppConfig>
 				</configuration>
 			</plugin>
