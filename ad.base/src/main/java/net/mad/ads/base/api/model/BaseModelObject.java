@@ -19,6 +19,17 @@
 
 package net.mad.ads.base.api.model;
 
-public class BaseModelObject {
+public abstract class BaseModelObject {
 
+	private Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 }

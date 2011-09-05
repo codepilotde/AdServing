@@ -43,8 +43,8 @@ public class RuntimeContext {
 	 */
 	private static Properties properties = new Properties();
 	
-	public static LogWrapper clickLogger = new LogWrapper(RuntimeContext.class, "logger_clicks.properties");
-    public static LogWrapper impLogger = new LogWrapper(RuntimeContext.class, "logger_impression.properties");
+	public static LogWrapper clickLogger; // = new LogWrapper(RuntimeContext.class, "logger_clicks.properties");
+    public static LogWrapper impressionLogger; // = new LogWrapper(RuntimeContext.class, "logger_impression.properties");
 	
 	private static BannerRenderer bannerRenderer = new FreemarkerBannerRenderer();
 	

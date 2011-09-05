@@ -22,3 +22,6 @@
 /ad.server/.settings
 /ad.server/target
 /documentation/.project
+/ad.manager/target
+/ad.common/target
+/ad.services/target

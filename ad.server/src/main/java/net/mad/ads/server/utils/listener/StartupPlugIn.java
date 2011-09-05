@@ -47,6 +47,7 @@ import net.mad.ads.base.api.importer.Importer;
 import net.mad.ads.base.api.importer.reader.*;
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.track.TrackingService;
+import net.mad.ads.base.api.utils.logging.LogWrapper;
 import net.mad.ads.common.template.TemplateManager;
 import net.mad.ads.common.template.impl.freemarker.FMTemplateManager;
 import net.mad.ads.common.util.Strings;
@@ -88,8 +89,6 @@ public class StartupPlugIn implements ServletContextListener {
 			
 			
 			
-			System.getProperties();
-			
 			RuntimeContext.setEnviroment(enviroment);
 			String path = event.getServletContext().getRealPath("/");
 			RuntimeContext.setConfiguration(AdServerConstants.CONFIG.PATHES, AdServerConstants.PATHES.WEB, path);
@@ -100,6 +99,12 @@ public class StartupPlugIn implements ServletContextListener {
 			} else if (enviroment.equalsIgnoreCase("production")) {
 				injector = Guice.createInjector(new ProductionModule());
 			}
+			
+			// Init event logging
+			RuntimeContext.clickLogger = new LogWrapper();
+			RuntimeContext.clickLogger.init(RuntimeContext.class, new File(configDirectory + "logger_clicks.properties"));
+			RuntimeContext.impressionLogger = new LogWrapper();
+			RuntimeContext.impressionLogger.init(RuntimeContext.class, new File(configDirectory + "logger_impression.properties"));
 			
 			// Banner-Datenbank initialisieren
 			logger.info("init bannerDB");

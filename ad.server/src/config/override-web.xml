@@ -12,6 +12,9 @@
     <param-value>development</param-value>
   </context-param>
   
+  <!-- 
+  	This is the place where the AdServer can find the configuration
+   -->
   <context-param>
     <param-name>configDirectory</param-name>
     <param-value>d:/workspace1/advertisement/ad.server/src/config</param-value>

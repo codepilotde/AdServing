@@ -17,6 +17,10 @@
 
 package net.mad.ads.base.api.model.ads;
 
+import net.mad.ads.base.api.model.BaseModelObject;
+
+
+
 /**
  * Basis Klasse für die Werbung
  * hier werden alle Konfigurationen vorgenommen
@@ -27,7 +31,6 @@ package net.mad.ads.base.api.model.ads;
  * @author thorsten
  *
  */
-public abstract class Advertisement {
-	private String id;
+public class Advertisement extends BaseModelObject {
 	private String campaignId;
 }

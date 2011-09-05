@@ -47,7 +47,7 @@ public class TrackingHelper {
 			json.put("time", event.getTime());
 			json.put("type", event.getType().getName());
 			json.put("user", event.getUser());
-			RuntimeContext.impLogger.impression(json.toJSONString());
+			RuntimeContext.impressionLogger.impression(json.toJSONString());
 		} catch (Exception e) {
 			logger.error("", e);
 		}

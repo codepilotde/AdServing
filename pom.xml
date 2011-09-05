@@ -24,6 +24,7 @@
 		<module>ad.server</module>
 		<module>ad.import</module>
 		<module>ad.services</module>
+		<module>ad.manager</module>
 	</modules>
 
 	<dependencyManagement>
