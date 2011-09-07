@@ -25,3 +25,4 @@
 /ad.manager/target
 /ad.common/target
 /ad.services/target
+/ad.server/server_root/logs

@@ -34,6 +34,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 
+import org.apache.log4j.PropertyConfigurator;
 import org.infinispan.Cache;
 import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.manager.EmbeddedCacheManager;
@@ -50,7 +51,9 @@ import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.utils.logging.LogWrapper;
 import net.mad.ads.common.template.TemplateManager;
 import net.mad.ads.common.template.impl.freemarker.FMTemplateManager;
+import net.mad.ads.common.util.Properties2;
 import net.mad.ads.common.util.Strings;
+import net.mad.ads.common.util.XProperties;
 import net.mad.ads.db.db.AdDB;
 import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.enums.BannerType;
@@ -81,18 +84,35 @@ public class StartupPlugIn implements ServletContextListener {
 			// Konfiguration einlesen
 			String enviroment = event.getServletContext().getInitParameter("enviroment");
 			
-			String configDirectory = event.getServletContext().getInitParameter("configDirectory");
+			String configDirectory = new File(".").getAbsolutePath(); // event.getServletContext().getInitParameter("configDirectory");
+			
+			
+			if (System.getProperties().containsKey("mad_home")) {
+				configDirectory = System.getProperty("mad_home");
+			}
 			
 			if (!configDirectory.endsWith("/")) {
 				configDirectory += "/";
 			}
+			
+			System.setProperty("mad_home", configDirectory);
+			
+			
+			
+			configDirectory += "config/";
+			
+			
+			// configure log4j
+			
+			PropertyConfigurator.configure(Properties2.loadProperties(configDirectory + "log4j.properties"));
 			
 			
 			
 			RuntimeContext.setEnviroment(enviroment);
 			String path = event.getServletContext().getRealPath("/");
 			RuntimeContext.setConfiguration(AdServerConstants.CONFIG.PATHES, AdServerConstants.PATHES.WEB, path);
-			RuntimeContext.getProperties().load(new FileReader(configDirectory + "config.properties"));
+//			RuntimeContext.getProperties().load(new FileReader(configDirectory + "config.properties"));
+			RuntimeContext.setProperties(Properties2.loadProperties(configDirectory + "config.properties"));
 			
 			if (enviroment.equalsIgnoreCase("development")) {
 				injector = Guice.createInjector(new DevelopmentModule());
@@ -123,7 +143,7 @@ public class StartupPlugIn implements ServletContextListener {
 			
 			timer.scheduleAtFixedRate(new AdDbUpdateTask(), AdDbUpdateTask.delay, AdDbUpdateTask.period);
 			
-			RuntimeContext.cacheManager = new DefaultCacheManager("resources/config/infinispan_config.xml");
+			RuntimeContext.cacheManager = new DefaultCacheManager(configDirectory + "cluster/infinispan_config.xml");
 			RuntimeContext.requestBanners = RuntimeContext.cacheManager.getCache("requestBanners");
 			RuntimeContext.requestBanners.addListener(new CacheListener());
 			
