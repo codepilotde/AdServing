@@ -15,8 +15,6 @@ public class HomePage extends WebPage {
 				.getVersion()));
 		// TODO Add your page's components here
 
-		SessionFactory sessionFactory = new Configuration()
-        .configure() // configures settings from hibernate.cfg.xml
-        .buildSessionFactory();
+		
 	}
 }

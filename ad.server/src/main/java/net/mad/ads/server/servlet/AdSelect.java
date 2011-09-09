@@ -32,10 +32,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
 
 import net.mad.ads.base.api.track.events.ClickTrackEvent;
 import net.mad.ads.base.api.track.events.ImpressionTrackEvent;

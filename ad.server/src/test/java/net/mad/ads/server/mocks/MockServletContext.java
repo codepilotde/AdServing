@@ -48,8 +48,6 @@ import javax.servlet.SessionTrackingMode;
 import javax.servlet.descriptor.JspConfigDescriptor;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 
 public class MockServletContext implements ServletContext {
@@ -210,6 +208,8 @@ public class MockServletContext implements ServletContext {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 	

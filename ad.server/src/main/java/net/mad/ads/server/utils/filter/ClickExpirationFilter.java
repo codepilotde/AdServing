@@ -25,6 +25,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Predicate;
 
+
+
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.definition.condition.ViewExpirationConditionDefinition;

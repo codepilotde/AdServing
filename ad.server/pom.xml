@@ -109,11 +109,20 @@
 		</dependency>
 
 		<dependency>
-    		<groupId>javax.servlet</groupId>
-    		<artifactId>javax.servlet-api</artifactId>
-    		<version>3.0.1</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r09</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -144,13 +153,13 @@
 					<useTestClasspath>true</useTestClasspath>
 					<webAppConfig>
 						<contextPath>/AdServer</contextPath>
-<!-- 						<overrideDescriptor>${basedir}/src/config/override-web.xml</overrideDescriptor> -->
+						<!-- <overrideDescriptor>${basedir}/src/config/override-web.xml</overrideDescriptor> -->
 					</webAppConfig>
 					<systemProperties>
 						<systemProperty>
-              				<name>mad_home</name>
-               				<value>/workspace1/advertisement/ad.server/server_root</value>
-            				</systemProperty>
+							<name>mad_home</name>
+							<value>/workspace1/advertisement/ad.server/server_root</value>
+						</systemProperty>
 					</systemProperties>
 				</configuration>
 			</plugin>
