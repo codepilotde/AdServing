@@ -26,6 +26,7 @@
 /ad.common/target
 /ad.services/target
 /ad.server/server_root/logs
+/ad.manager/server_root/logs
 /ad.common/.settings
 /ad.common/.project
 /ad.common/.classpath
@@ -36,3 +37,4 @@
 /ad.services/.project
 /ad.services/.classpath
 /ad.common/.settings
+/ad.manager/server_root/logs
