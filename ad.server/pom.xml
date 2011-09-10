@@ -155,12 +155,12 @@
 						<contextPath>/AdServer</contextPath>
 						<!-- <overrideDescriptor>${basedir}/src/config/override-web.xml</overrideDescriptor> -->
 					</webAppConfig>
-					<systemProperties>
-						<systemProperty>
-							<name>mad_home</name>
-							<value>/workspace1/advertisement/ad.server/server_root</value>
-						</systemProperty>
-					</systemProperties>
+<!-- 					<systemProperties> -->
+<!-- 						<systemProperty> -->
+<!-- 							<name>mad.home</name> -->
+<!-- 							<value>/workspace1/advertisement/ad.server/server_root</value> -->
+<!-- 						</systemProperty> -->
+<!-- 					</systemProperties> -->
 				</configuration>
 			</plugin>
 

@@ -1,11 +1,9 @@
-package war;
+package net.mad.ads.manager.web;
 
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
