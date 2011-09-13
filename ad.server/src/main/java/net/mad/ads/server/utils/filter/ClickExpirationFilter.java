@@ -28,6 +28,7 @@ import com.google.common.base.Predicate;
 
 
 import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.track.Criterion;
 import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.definition.condition.ViewExpirationConditionDefinition;
 import net.mad.ads.db.enums.ConditionDefinitions;
@@ -85,7 +86,7 @@ public class ClickExpirationFilter implements Predicate<BannerDefinition> {
 				
 				
 				int maxviews = def.getViewExpirations().get(ExpirationResolution.MONTH);
-				int impressions = RuntimeContext.getTrackService().countClicks(banner.getId(), from.getTime(), to.getTime());
+				int impressions = RuntimeContext.getTrackService().countClicks(new Criterion(Criterion.Criteria.Banner, banner.getId()), from.getTime(), to.getTime());
 				
 				if (impressions <= maxviews) {
 					return true;
@@ -107,7 +108,7 @@ public class ClickExpirationFilter implements Predicate<BannerDefinition> {
 				to.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 				
 				int maxviews = def.getViewExpirations().get(ExpirationResolution.MONTH);
-				int impressions = RuntimeContext.getTrackService().countClicks(banner.getId(), from.getTime(), to.getTime());
+				int impressions = RuntimeContext.getTrackService().countClicks(new Criterion(Criterion.Criteria.Banner, banner.getId()), from.getTime(), to.getTime());
 				
 				if (impressions <= maxviews) {
 					return true;
@@ -132,7 +133,7 @@ public class ClickExpirationFilter implements Predicate<BannerDefinition> {
 				
 				
 				int maxviews = def.getViewExpirations().get(ExpirationResolution.MONTH);
-				int impressions = RuntimeContext.getTrackService().countClicks(banner.getId(), from.getTime(), to.getTime());
+				int impressions = RuntimeContext.getTrackService().countClicks(new Criterion(Criterion.Criteria.Banner, banner.getId()), from.getTime(), to.getTime());
 				
 				if (impressions <= maxviews) {
 					return true;

@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Collections2;
 
+import net.mad.ads.base.api.track.Criterion;
 import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.definition.condition.ViewExpirationConditionDefinition;
 import net.mad.ads.db.enums.ConditionDefinitions;
@@ -131,7 +132,7 @@ public class ImpressionPercentageSingleBannerSelector implements BannerSelector 
 	                to.add(Calendar.DAY_OF_WEEK, 1);
 					
 					int maxViewCount = def.getViewExpirations().get(ExpirationResolution.DAY);
-					int viewCount = RuntimeContext.getTrackService().countImpressions(o1.getId(), from.getTime(), to.getTime());
+					int viewCount = RuntimeContext.getTrackService().countImpressions(new Criterion(Criterion.Criteria.Banner, o1.getId()), from.getTime(), to.getTime());
 					
 					float percent = 0.0f;
 					if (maxViewCount > 0) {

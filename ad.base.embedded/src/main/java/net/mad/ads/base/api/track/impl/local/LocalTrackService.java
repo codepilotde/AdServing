@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.track.Criterion;
 import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.track.events.EventAttribute;
 import net.mad.ads.base.api.track.events.EventType;
@@ -85,51 +86,51 @@ public class LocalTrackService implements TrackingService {
 	}
 
 	@Override
-	public List<TrackEvent> list(String site, Date from, Date to)
+	public List<TrackEvent> list(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 
-		if (siteEvents.containsKey(site)) {
+		if (siteEvents.containsKey(criterion.value)) {
 			TrackKey key1 = new TrackKey(java.util.UUID.randomUUID().toString(), from.getTime());
 			TrackKey key2 = new TrackKey(java.util.UUID.randomUUID().toString(), to.getTime());
-			return siteEvents.get(site).list(key1, key2);
+			return siteEvents.get(criterion.value).list(key1, key2);
 		}
 
 		return null;
 	}
 
 	@Override
-	public int count(String site, Date from, Date to) throws ServiceException {
+	public int count(Criterion criterion, Date from, Date to) throws ServiceException {
 		
-		if (siteEvents.containsKey(site)) {
+		if (siteEvents.containsKey(criterion.value)) {
 			TrackKey key1 = new TrackKey(java.util.UUID.randomUUID().toString(), from.getTime());
 			TrackKey key2 = new TrackKey(java.util.UUID.randomUUID().toString(), to.getTime());
-			return siteEvents.get(site).count(key1, key2);
+			return siteEvents.get(criterion.value).count(key1, key2);
 		}
 		
 		return 0;
 	}
 
 	@Override
-	public void delete(String site, Date from, Date to) throws ServiceException {
+	public void delete(Criterion criterion, Date from, Date to) throws ServiceException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void clear(String site) throws ServiceException {
-		if (siteEvents.containsKey(site)) {
-			siteEvents.get(site).clear();
+	public void clear(Criterion criterion) throws ServiceException {
+		if (siteEvents.containsKey(criterion.value)) {
+			siteEvents.get(criterion.value).clear();
 		}
 	}
 
 	@Override
-	public int countClicks(String bannerId, Date from, Date to)
+	public int countClicks(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		
-		if (bannerEvents.containsKey(bannerId)) {
+		if (bannerEvents.containsKey(criterion.value)) {
 			TrackKey key1 = new TrackKey(java.util.UUID.randomUUID().toString(), from.getTime());
 			TrackKey key2 = new TrackKey(java.util.UUID.randomUUID().toString(), to.getTime());
-			List<TrackEvent> result = bannerEvents.get(bannerId).list(key1, key2);
+			List<TrackEvent> result = bannerEvents.get(criterion.value).list(key1, key2);
 			
 			result = (List<TrackEvent>) CollectionUtils.filter(result, new CollectionUtils.Predicate<TrackEvent>() {
 
@@ -148,13 +149,13 @@ public class LocalTrackService implements TrackingService {
 	}
 
 	@Override
-	public int countImpressions(String bannerId, Date from, Date to)
+	public int countImpressions(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		
-		if (bannerEvents.containsKey(bannerId)) {
+		if (bannerEvents.containsKey(criterion.value)) {
 			TrackKey key1 = new TrackKey(java.util.UUID.randomUUID().toString(), from.getTime());
 			TrackKey key2 = new TrackKey(java.util.UUID.randomUUID().toString(), to.getTime());
-			List<TrackEvent> result = bannerEvents.get(bannerId).list(key1, key2);
+			List<TrackEvent> result = bannerEvents.get(criterion.value).list(key1, key2);
 			
 			result = (List<TrackEvent>) CollectionUtils.filter(result, new CollectionUtils.Predicate<TrackEvent>() {
 
@@ -173,28 +174,28 @@ public class LocalTrackService implements TrackingService {
 	}
 
 	@Override
-	public void deleteImpressions(String bannerId, Date from, Date to)
+	public void deleteImpressions(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void deleteClicks(String bannerId, Date from, Date to)
+	public void deleteClicks(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public int countClicks(String user, String bannerId, Date from, Date to)
+	public int countClicks(String user, Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int countImpressions(String user, String bannerId, Date from, Date to)
+	public int countImpressions(String user, Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		// TODO Auto-generated method stub
 		return 0;

@@ -23,7 +23,9 @@ public enum EventAttribute {
 	TIME ("time"),
 	USER ("user"),
 	SITE ("site"),
+	CAMPAIGN ("campaign"),
 	BANNER_ID ("banner_id"),
+	IP ("ip"),
 	UNKNOWN ("unknown");
 	
 	private String name;

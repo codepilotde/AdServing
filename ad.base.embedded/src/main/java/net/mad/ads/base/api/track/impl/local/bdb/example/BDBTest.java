@@ -25,6 +25,7 @@ import java.util.Locale;
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.EmbeddedBaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.track.Criterion;
 import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.track.events.ClickTrackEvent;
 import net.mad.ads.base.api.track.events.EventAttribute;
@@ -42,6 +43,7 @@ public class BDBTest {
                 
                 BaseContext context = new EmbeddedBaseContext();
                 context.put(EmbeddedBaseContext.EMBEDDED_DB_DIR, "/tmp/bdb/track");
+                
                 
                 TrackingService ts = new BDBTrackingService();
                 
@@ -78,11 +80,11 @@ public class BDBTest {
 //              System.out.println(ts.countClicks("b1", from.getTime(), to.getTime()));
 //              System.out.println(ts.countImpressions("b1", from.getTime(), to.getTime()));
                 
-                List<TrackEvent> list = ts.list("demo Site", from.getTime(), to.getTime());
+                List<TrackEvent> list = ts.list(new Criterion(Criterion.Criteria.Site, "demo Site"), from.getTime(), to.getTime());
                 System.out.println(list.size());
 				
-				System.out.println (ts.countClicks ("b1", from.getTime(), to.getTime()));
-				System.out.println (ts.countImpressions ("b1", from.getTime(), to.getTime()));
+				System.out.println (ts.countClicks (new Criterion(Criterion.Criteria.Banner, "b1"), from.getTime(), to.getTime()));
+				System.out.println (ts.countImpressions (new Criterion(Criterion.Criteria.Banner, "b1"), from.getTime(), to.getTime()));
                 
                 ts.close();
         }

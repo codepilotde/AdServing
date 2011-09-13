@@ -31,6 +31,11 @@
 			<artifactId>lucene-core</artifactId>
 			<version>3.3.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.mad.ads</groupId>
+			<artifactId>ad.common</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

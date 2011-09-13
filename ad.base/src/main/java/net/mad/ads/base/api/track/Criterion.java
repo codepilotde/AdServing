@@ -15,26 +15,26 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.base.api;
+package net.mad.ads.base.api.track;
 
-
-
-
-public class EmbeddedBaseContext extends BaseContext {
-
-	public static final String EMBEDDED_DB_DIR = "embedded.db.dir";
-	public static final String EMBEDDED_TRACKING_DATASOURCE = "embedded.tracking.datasource";
-	public static final String EMBEDDED_TRACKING_DATASOURCE_MAX_CONNECTIONS = "embedded.tracking.datasource_max.connections";
-	
-	
-	
-	
-	
-	
-	public EmbeddedBaseContext () {
-		super();
+/**
+ * Criterion for loading Trackingdata
+ * 
+ * @author thmarx
+ *
+ */
+public class Criterion {
+	public enum Criteria {
+		Campaign,
+		Site,
+		Banner
 	}
 	
+	public final String value;
+	public final Criteria criterion;
 	
-	
+	public Criterion (Criteria criterion, String value) {
+		this.value = value;
+		this.criterion = criterion;
+	}
 }

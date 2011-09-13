@@ -47,11 +47,25 @@ public class TrackEvent extends EnumMap<EventAttribute, String> implements Seria
 		put(EventAttribute.SITE, site);
 	}
 	
+	public String getCampaign () {
+		return get(EventAttribute.CAMPAIGN);
+	}
+	public void setCampaign (String Campaign) {
+		put(EventAttribute.CAMPAIGN, Campaign);
+	}
+	
 	public String getId () {
 		return get(EventAttribute.ID);
 	}
 	public void setId (String id) {
 		put(EventAttribute.ID, id);
+	}
+	
+	public String getIp () {
+		return get(EventAttribute.IP);
+	}
+	public void setIp (String ip) {
+		put(EventAttribute.IP, ip);
 	}
 	
 	public String getUser () {

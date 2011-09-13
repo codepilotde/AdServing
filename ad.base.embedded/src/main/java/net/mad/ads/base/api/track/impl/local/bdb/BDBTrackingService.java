@@ -25,6 +25,7 @@ import java.util.SortedMap;
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.EmbeddedBaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.track.Criterion;
 import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.track.events.EventAttribute;
 import net.mad.ads.base.api.track.events.EventType;
@@ -74,7 +75,7 @@ public class BDBTrackingService implements TrackingService {
 	}
 
 	@Override
-	public List<TrackEvent> list(String site, Date from, Date to)
+	public List<TrackEvent> list(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		
 		TrackKey key1 = new TrackKey(java.util.UUID.randomUUID().toString(), from.getTime());
@@ -88,7 +89,7 @@ public class BDBTrackingService implements TrackingService {
 	}
 
 	@Override
-	public int count(String site, Date from, Date to) throws ServiceException {
+	public int count(Criterion criterion, Date from, Date to) throws ServiceException {
 		TrackKey key1 = new TrackKey(java.util.UUID.randomUUID().toString(), from.getTime());
 		TrackKey key2 = new TrackKey(java.util.UUID.randomUUID().toString(), to.getTime());
 		SortedMap<TrackKey, TrackEvent> matchMap = this.trackView.getTrackEventsMap ().subMap(key1, true, key2, true);
@@ -97,62 +98,62 @@ public class BDBTrackingService implements TrackingService {
 	}
 
 	@Override
-	public void delete(String site, Date from, Date to) throws ServiceException {
+	public void delete(Criterion criterion, Date from, Date to) throws ServiceException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void clear(String site) throws ServiceException {
+	public void clear(Criterion criterion) throws ServiceException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public int countClicks(String bannerId, Date from, Date to)
+	public int countClicks(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		
-		String key_from = bannerId + "_" + EventType.CLICK.getName () + "_" + from.getTime ();
-		String key_to = bannerId + "_" + EventType.CLICK.getName () + "_" + to.getTime ();
+		String key_from = criterion.value + "_" + EventType.CLICK.getName () + "_" + from.getTime ();
+		String key_to = criterion.value + "_" + EventType.CLICK.getName () + "_" + to.getTime ();
 		return trackView.getTrackEventsByBanneridMap ().subMap (key_from, true, key_to, true).size ();
 	}
 
 	@Override
-	public int countImpressions(String bannerId, Date from, Date to)
+	public int countImpressions(Criterion criterion, Date from, Date to)
 			throws ServiceException {
-		String key_from = bannerId + "_" + EventType.IMPRESSION.getName () + "_" + from.getTime ();
-		String key_to = bannerId + "_" + EventType.IMPRESSION.getName () + "_" + to.getTime ();
+		String key_from = criterion.value + "_" + EventType.IMPRESSION.getName () + "_" + from.getTime ();
+		String key_to = criterion.value + "_" + EventType.IMPRESSION.getName () + "_" + to.getTime ();
 		return trackView.getTrackEventsByBanneridMap ().subMap (key_from, true, key_to, true).size ();
 	}
 
 	@Override
-	public int countClicks(String user, String bannerId, Date from, Date to)
+	public int countClicks(String user, Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		
-		String key_from = user + "_" + bannerId + "_" + EventType.CLICK.getName () + "_" + from.getTime ();
-		String key_to = user + "_" + bannerId + "_" + EventType.CLICK.getName () + "_" + to.getTime ();
+		String key_from = user + "_" + criterion.value + "_" + EventType.CLICK.getName () + "_" + from.getTime ();
+		String key_to = user + "_" + criterion.value + "_" + EventType.CLICK.getName () + "_" + to.getTime ();
 		return trackView.getUserBannerMap().subMap (key_from, true, key_to, true).size ();
 	}
 
 	@Override
-	public int countImpressions(String user, String bannerId, Date from, Date to)
+	public int countImpressions(String user, Criterion criterion, Date from, Date to)
 			throws ServiceException {
-		String key_from = user + "_" + bannerId + "_" + EventType.IMPRESSION.getName () + "_" + from.getTime ();
-		String key_to = user + "_" + bannerId + "_" + EventType.IMPRESSION.getName () + "_" + to.getTime ();
+		String key_from = user + "_" + criterion.value + "_" + EventType.IMPRESSION.getName () + "_" + from.getTime ();
+		String key_to = user + "_" + criterion.value + "_" + EventType.IMPRESSION.getName () + "_" + to.getTime ();
 		return trackView.getUserBannerMap().subMap (key_from, true, key_to, true).size ();
 	}
 	
 	@Override
-	public void deleteImpressions(String bannerId, Date from, Date to)
+	public void deleteImpressions(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 //		trackView.getTrackEventsMap ().
 
 	}
 
 	@Override
-	public void deleteClicks(String bannerId, Date from, Date to)
+	public void deleteClicks(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		// TODO Auto-generated method stub
-
+		
 	}
 }

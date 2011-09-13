@@ -40,11 +40,18 @@ public class AdContext extends BaseObject {
 	private static final String USER_ID = "userid";
 	private static final String REQUEST_ID = "requestid";
 	private static final String SLOT = "slot";
+	private static final String IP = "ip";
 	
 	public AdContext () {
 		
 	}
 	
+	public String getIp () {
+		return get(AdContext.IP, String.class, null);
+	}
+	public void setIp (String ip) {
+		put(AdContext.IP, ip);
+	}
 	public String getUserid () {
 		return get(AdContext.USER_ID, String.class, null);
 	}

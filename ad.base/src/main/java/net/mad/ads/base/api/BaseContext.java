@@ -40,6 +40,10 @@ public class BaseContext extends HashMap<String, Object> {
 	public <T> T get(String key, Class<T> to, T defaultValue) {
 		Object value = get(key);
 		
+		if (value == null) {
+			return defaultValue;
+		}
+		
 		if (to.isAssignableFrom(value.getClass())) {
             return to.cast(value);
         }

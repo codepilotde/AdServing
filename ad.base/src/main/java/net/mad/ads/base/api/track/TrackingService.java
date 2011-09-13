@@ -50,7 +50,7 @@ public interface TrackingService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public List<TrackEvent> list (String site, Date from, Date to) throws ServiceException;
+	public List<TrackEvent> list (Criterion criterion, Date from, Date to) throws ServiceException;
 	/**
 	 * Liefert die Anzahl von TrackEvents f�r einen bestimmten Zeitraum
 	 * @param site
@@ -59,7 +59,7 @@ public interface TrackingService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public int count (String site, Date from, Date to) throws ServiceException;
+	public int count (Criterion criterion, Date from, Date to) throws ServiceException;
 	/**
 	 * Löscht die TackEvents in einem bestimmten Zeitraum
 	 * @param site
@@ -67,13 +67,13 @@ public interface TrackingService {
 	 * @param to
 	 * @throws ServiceException
 	 */
-	public void delete (String site, Date from, Date to) throws ServiceException;
+	public void delete (Criterion criterion, Date from, Date to) throws ServiceException;
 	/**
 	 * Löscht alle TrackEvents für eine Seite
 	 * @param site
 	 * @throws ServiceException
 	 */
-	public void clear (String site) throws ServiceException;
+	public void clear (Criterion criterion) throws ServiceException;
 	/**
 	 * Liefert die Clicks für eine Banner
 	 * @param bannerId
@@ -82,8 +82,8 @@ public interface TrackingService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public int countClicks (String bannerId, Date from, Date to) throws ServiceException;
-	public int countClicks (String user, String bannerId, Date from, Date to) throws ServiceException;
+	public int countClicks (Criterion criterion, Date from, Date to) throws ServiceException;
+	public int countClicks (String user, Criterion criterion, Date from, Date to) throws ServiceException;
 	/**
 	 * Liefert die Impressionen für ein Banner
 	 * @param bannerId
@@ -92,8 +92,8 @@ public interface TrackingService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public int countImpressions (String bannerId, Date from, Date to) throws ServiceException;
-	public int countImpressions (String user, String bannerId, Date from, Date to) throws ServiceException;
+	public int countImpressions (Criterion criterion, Date from, Date to) throws ServiceException;
+	public int countImpressions (String user, Criterion criterion, Date from, Date to) throws ServiceException;
 	/**
 	 * Löscht die Impressions für ein Banner
 	 * @param bannerId
@@ -101,7 +101,7 @@ public interface TrackingService {
 	 * @param to
 	 * @throws ServiceException
 	 */
-	public void deleteImpressions(String bannerId, Date from, Date to) throws ServiceException;
+	public void deleteImpressions(Criterion criterion, Date from, Date to) throws ServiceException;
 	/**
 	 * Löscht die Clicks für ein Banner
 	 * @param bannerId
@@ -109,5 +109,5 @@ public interface TrackingService {
 	 * @param to
 	 * @throws ServiceException
 	 */
-	public void deleteClicks(String bannerId, Date from, Date to) throws ServiceException;
+	public void deleteClicks(Criterion criterion, Date from, Date to) throws ServiceException;
 }

@@ -65,11 +65,14 @@ public class TrackDB {
 		EnvironmentConfig envConfig = new EnvironmentConfig();
 		envConfig.setTransactional(true);
 		envConfig.setAllowCreate(true);
+		
+		
 		env = new Environment(new File(homeDirectory), envConfig);
 
 		DatabaseConfig dbConfig = new DatabaseConfig();
 		dbConfig.setTransactional(true);
 		dbConfig.setAllowCreate(true);
+		
 
 		Database catalogDb = env.openDatabase(null, CLASS_CATALOG, dbConfig);
 		javaCatalog = new StoredClassCatalog(catalogDb);
@@ -80,11 +83,13 @@ public class TrackDB {
 		secConfig.setTransactional(true);
 		secConfig.setAllowCreate(true);
 		secConfig.setSortedDuplicates(true);
+		
 
 		secConfig.setKeyCreator(new TrackEventByTypeKeyCreator(javaCatalog,
 				TrackKey.class, TrackEvent.class, String.class));
 		typeDb = env
 				.openSecondaryDatabase(null, TYPE_INDEX, trackDb, secConfig);
+		
 
 		secConfig.setKeyCreator(new TrackEventByBanneridKeyCreator(javaCatalog,
 				TrackKey.class, TrackEvent.class, String.class));

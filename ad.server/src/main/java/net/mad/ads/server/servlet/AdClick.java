@@ -86,6 +86,7 @@ public class AdClick extends HttpServlet {
 			trackEvent.setUser(context.getUserid());
 			trackEvent.setId(UUID.randomUUID().toString());
 			trackEvent.setTime(System.currentTimeMillis());
+			trackEvent.setIp(context.getIp());
 			
 //			RuntimeContext.getTrackService().track(trackEvent);
 //			RuntimeContext.clickLogger.click(banner.getId(), context.getUserid(), ""+trackEvent.getTime());
