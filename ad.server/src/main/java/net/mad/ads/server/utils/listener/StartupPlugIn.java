@@ -59,8 +59,7 @@ import net.mad.ads.db.definition.BannerDefinition;
 import net.mad.ads.db.enums.BannerType;
 import net.mad.ads.server.utils.AdServerConstants;
 import net.mad.ads.server.utils.RuntimeContext;
-import net.mad.ads.server.utils.listener.configuration.development.DevelopmentModule;
-import net.mad.ads.server.utils.listener.configuration.production.ProductionModule;
+import net.mad.ads.server.utils.listener.configuration.AdServerModule;
 import net.mad.ads.server.utils.runnable.AdDbUpdateTask;
 import net.mad.ads.services.geo.IPLocationDB;
 
@@ -114,11 +113,7 @@ public class StartupPlugIn implements ServletContextListener {
 //			RuntimeContext.getProperties().load(new FileReader(configDirectory + "config.properties"));
 			RuntimeContext.setProperties(Properties2.loadProperties(configDirectory + "config.properties"));
 			
-			if (enviroment.equalsIgnoreCase("development")) {
-				injector = Guice.createInjector(new DevelopmentModule());
-			} else if (enviroment.equalsIgnoreCase("production")) {
-				injector = Guice.createInjector(new ProductionModule());
-			}
+			injector = Guice.createInjector(new AdServerModule());
 			
 			// Init event logging
 			RuntimeContext.clickLogger = new LogWrapper();

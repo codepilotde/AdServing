@@ -43,6 +43,9 @@ public abstract class AdServerConstants {
 			public static final String SERVICES_TRACKING_CASSANDRA_CLUSTER = "services.tracking.cassandra.cluster";			
 			
 			public static final String COOKIE_DOMAIN = "cookie.domain";
+			
+			public static final String TRACKINGSERVICE_CLASS = "tracking.service.class";
+			public static final String IPLOCATIONSERVICE_CLASS = "iplocation.service.class";
 		}
 	}
 	

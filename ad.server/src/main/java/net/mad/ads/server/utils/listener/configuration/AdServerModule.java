@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.server.utils.listener.configuration.production;
+package net.mad.ads.server.utils.listener.configuration;
 
 
 import org.slf4j.Logger;
@@ -27,15 +27,16 @@ import net.mad.ads.base.api.EmbeddedBaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.track.impl.local.bdb.BDBTrackingService;
+import net.mad.ads.common.util.Strings;
 import net.mad.ads.server.utils.AdServerConstants;
 import net.mad.ads.server.utils.RuntimeContext;
 import net.mad.ads.services.geo.IPLocationDB;
 import net.mad.ads.services.geo.MaxmindIpLocationDB;
 
 
-public class ProductionModule extends AbstractModule {
+public class AdServerModule extends AbstractModule {
 
-	private static final Logger logger = LoggerFactory.getLogger(ProductionModule.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdServerModule.class);
 	
 	@Override
 	protected void configure() {
@@ -51,13 +52,32 @@ public class ProductionModule extends AbstractModule {
 			EmbeddedBaseContext baseContext = new EmbeddedBaseContext();
 			baseContext.put(EmbeddedBaseContext.EMBEDDED_DB_DIR, RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.TRACK_DIR));
 			
-			TrackingService trackService = new BDBTrackingService();
+			String classname = RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.TRACKINGSERVICE_CLASS, "");
+//			if (Strings.isEmpty(classname)) {
+//				classname = "net.mad.ads.base.api.track.impl.local.bdb.BDBTrackingService";
+//			}
+			TrackingService trackService = (TrackingService) Class.forName(classname).newInstance();
 			trackService.open(baseContext);
 			
-			bind(TrackingService.class).toInstance(trackService);
-			bind(IPLocationDB.class).toInstance(new MaxmindIpLocationDB());
-		} catch (ServiceException se) {
+			classname = RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.IPLOCATIONSERVICE_CLASS, "");
+//			if (Strings.isEmpty(classname)) {
+//				classname = "net.mad.ads.services.geo.MaxmindIpLocationDB";
+//			}
+			IPLocationDB iplocDB = (IPLocationDB) Class.forName(classname).newInstance();
 			
+			bind(TrackingService.class).toInstance(trackService);
+//			bind(IPLocationDB.class).toInstance(new MaxmindIpLocationDB());
+			bind(IPLocationDB.class).toInstance(iplocDB);
+		} catch (ServiceException se) {
+			logger.error("", se);
+		} catch (ClassCastException cce) {
+			logger.error("", cce);
+		} catch (InstantiationException e) {
+			logger.error("", e);
+		} catch (IllegalAccessException e) {
+			logger.error("", e);
+		} catch (ClassNotFoundException e) {
+			// logger.error("", e);
 		}
 	}
 
