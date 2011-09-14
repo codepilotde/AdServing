@@ -22,6 +22,7 @@ import java.util.List;
 
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.track.events.EventType;
 import net.mad.ads.base.api.track.events.TrackEvent;
 
 public interface TrackingService {
@@ -50,16 +51,16 @@ public interface TrackingService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public List<TrackEvent> list (Criterion criterion, Date from, Date to) throws ServiceException;
+	public List<TrackEvent> list (Criterion criterion, EventType type, Date from, Date to) throws ServiceException;
 	/**
-	 * Liefert die Anzahl von TrackEvents f�r einen bestimmten Zeitraum
+	 * Liefert die Anzahl von TrackEvents für einen bestimmten Zeitraum
 	 * @param site
 	 * @param from
 	 * @param to
 	 * @return
 	 * @throws ServiceException
 	 */
-	public int count (Criterion criterion, Date from, Date to) throws ServiceException;
+	public long count (Criterion criterion, EventType type, Date from, Date to) throws ServiceException;
 	/**
 	 * Löscht die TackEvents in einem bestimmten Zeitraum
 	 * @param site
@@ -74,40 +75,4 @@ public interface TrackingService {
 	 * @throws ServiceException
 	 */
 	public void clear (Criterion criterion) throws ServiceException;
-	/**
-	 * Liefert die Clicks für eine Banner
-	 * @param bannerId
-	 * @param from
-	 * @param to
-	 * @return
-	 * @throws ServiceException
-	 */
-	public int countClicks (Criterion criterion, Date from, Date to) throws ServiceException;
-	public int countClicks (String user, Criterion criterion, Date from, Date to) throws ServiceException;
-	/**
-	 * Liefert die Impressionen für ein Banner
-	 * @param bannerId
-	 * @param from
-	 * @param to
-	 * @return
-	 * @throws ServiceException
-	 */
-	public int countImpressions (Criterion criterion, Date from, Date to) throws ServiceException;
-	public int countImpressions (String user, Criterion criterion, Date from, Date to) throws ServiceException;
-	/**
-	 * Löscht die Impressions für ein Banner
-	 * @param bannerId
-	 * @param from
-	 * @param to
-	 * @throws ServiceException
-	 */
-	public void deleteImpressions(Criterion criterion, Date from, Date to) throws ServiceException;
-	/**
-	 * Löscht die Clicks für ein Banner
-	 * @param bannerId
-	 * @param from
-	 * @param to
-	 * @throws ServiceException
-	 */
-	public void deleteClicks(Criterion criterion, Date from, Date to) throws ServiceException;
 }

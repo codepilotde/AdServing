@@ -1,3 +1,20 @@
+/*
+ * Mad-Advertisement 
+ * Copyright (C) 2011 Thorsten Marx
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.mad.ads.base.api.track.impl.local.h2;
 
 import java.sql.Connection;
@@ -6,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -85,72 +103,165 @@ public class H2TrackingService extends SQLService implements TrackingService {
 		
 	}
 
-	@Override
-	public List<TrackEvent> list(Criterion criterion, Date from, Date to)
+	
+	public List<TrackEvent> list(Criterion criterion, EventType type, Date from, Date to)
 			throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		List<TrackEvent> result = new ArrayList<TrackEvent>();
+		
+		PreparedStatement  statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			String query = getQuery(criterion, type, from, to, false);
+			
+			statement = connection.prepareStatement(query);
+			
+			statement.setTimestamp(1, new Timestamp(from.getTime()));
+			statement.setTimestamp(2, new Timestamp(to.getTime()));
+			if (criterion != null) {
+				statement.setString(3, criterion.value);
+			}
+			if (type != null) {
+				statement.setString(4, type.getName());
+			}
+			
+			
+			
+			ResultSet res = statement.executeQuery();
+			
+			while (res.next()) {
+				TrackEvent event = getEvent(res);
+				
+				result.add(event);
+			}
+			
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		} finally {
+			closeBoth(connection, statement);
+		}
+		
+		return result;
 	}
 
+	
+
+
 	@Override
-	public int count(Criterion criterion, Date from, Date to) throws ServiceException {
-		// TODO Auto-generated method stub
+	public long count(Criterion criterion, EventType type, Date from, Date to) throws ServiceException {
+		PreparedStatement  statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			String query = getQuery(criterion, type, from, to, true);
+			
+			statement = connection.prepareStatement(query);
+			
+			statement.setTimestamp(1, new Timestamp(from.getTime()));
+			statement.setTimestamp(2, new Timestamp(to.getTime()));
+			if (criterion != null) {
+				statement.setString(3, criterion.value);
+			}
+			if (type != null) {
+				statement.setString(4, type.getName());
+			}
+			
+			
+			
+			
+			ResultSet res = statement.executeQuery();
+			
+			while (res.next()) {
+				int anzahl = res.getInt("eventCount");
+				return new Long(anzahl);
+			}
+			
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		} finally {
+			closeBoth(connection, statement);
+		}
+		
 		return 0;
 	}
 
 	@Override
 	public void delete(Criterion criterion, Date from, Date to) throws ServiceException {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement  statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			
+			String query = "DELETE FROM trackevent WHERE created BETWEEN ? AND  ? ";
+			
+			if (criterion != null) {
+				switch (criterion.criterion) {
+				case Banner:
+					query += " AND bannerid = ? ";
+					break;
+				case Campaign:
+					query += " AND campaign = ? ";
+					break;
+				case Site:
+					query += " AND site = ? ";
+					break;
+				}
+			}
+			
+			statement = connection.prepareStatement(query);
+			
+			statement.setTimestamp(1, new Timestamp(from.getTime()));
+			statement.setTimestamp(2, new Timestamp(to.getTime()));
+			if (criterion != null) {
+				statement.setString(3, criterion.value);
+			}
+			
+			statement.execute();
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		} finally {
+			closeBoth(connection, statement);
+		}
 	}
 
 	@Override
 	public void clear(Criterion criterion) throws ServiceException {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement  statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			
+			String query = "DELETE FROM trackevent WHERE ";
+			
+			if (criterion != null) {
+				switch (criterion.criterion) {
+				case Banner:
+					query += " bannerid = ? ";
+					break;
+				case Campaign:
+					query += " campaign = ? ";
+					break;
+				case Site:
+					query += " site = ? ";
+					break;
+				}
+			}
+			
+			statement = connection.prepareStatement(query);
+			
+			if (criterion != null) {
+				statement.setString(1, criterion.value);
+			}
+			
+			statement.execute();
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		} finally {
+			closeBoth(connection, statement);
+		}
 	}
 
-	@Override
-	public int countClicks(Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int countClicks(String user, Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int countImpressions(Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int countImpressions(String user, Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void deleteImpressions(Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteClicks(Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	private TrackEvent getEvent (ResultSet rs) throws SQLException {
 		String type = rs.getString("type");
@@ -226,5 +337,43 @@ public class H2TrackingService extends SQLService implements TrackingService {
 		} finally {
 			closeBoth(connection, statement);
 		}
+	}
+	
+	private String getQuery(Criterion criterion, EventType type, Date from,
+			Date to, boolean countQuery) {
+		String query = "SELECT ";
+		if (countQuery) {
+			query += " count (id) as eventCount ";
+		} else {
+			query += " * ";
+		}
+		query += " FROM trackevent WHERE created BETWEEN ? AND  ? ";
+		
+		if (criterion != null) {
+			switch (criterion.criterion) {
+			case Banner:
+				query += " AND bannerid = ? ";
+				break;
+			case Campaign:
+				query += " AND campaign = ? ";
+				break;
+			case Site:
+				query += " AND site = ? ";
+				break;
+			}
+		}
+		
+		if (type != null) {
+			switch (type) {
+				case CLICK:
+					query += " AND type = ? ";
+					break;
+				case IMPRESSION:
+					query += " AND type = ? ";
+					break;
+			}
+		}
+		
+		return query;
 	}
 }

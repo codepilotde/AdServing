@@ -15,11 +15,13 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.base.api.track.impl.local.bdb.example;
+package net.mad.ads.base.api.track.impl.local.h2.example;
 
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import org.h2.jdbcx.JdbcDataSource;
 
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.EmbeddedBaseContext;
@@ -32,19 +34,25 @@ import net.mad.ads.base.api.track.events.EventType;
 import net.mad.ads.base.api.track.events.ImpressionTrackEvent;
 import net.mad.ads.base.api.track.events.TrackEvent;
 import net.mad.ads.base.api.track.impl.local.bdb.BDBTrackingService;
+import net.mad.ads.base.api.track.impl.local.h2.H2TrackingService;
 import net.mad.ads.base.api.utils.DateHelper;
 
 /**
  * 
  * @author tmarx
  */
-public class BDBTest {
+public class H2Test {
 	public static void main(String[] args) throws Exception {
 
-		BaseContext context = new EmbeddedBaseContext();
-		context.put(EmbeddedBaseContext.EMBEDDED_DB_DIR, "/tmp/bdb/track");
+		JdbcDataSource ds = new JdbcDataSource();
+		ds.setURL("jdbc:h2:mem:test");
+		ds.setUser("sa");
+		ds.setPassword("sa");
 
-		TrackingService ts = new BDBTrackingService();
+		EmbeddedBaseContext context = new EmbeddedBaseContext();
+		context.put(EmbeddedBaseContext.EMBEDDED_TRACKING_DATASOURCE, ds);
+
+		TrackingService ts = new H2TrackingService();
 
 		ts.open(context);
 
@@ -101,14 +109,20 @@ public class BDBTest {
 		TrackEvent event = new ClickTrackEvent();
 		event.put(EventAttribute.TIME, DateHelper.format(created.getTime()));
 		event.setTime(created.getTime().getTime());
+		event.setCampaign("c1");
 		// System.out.println(DateHelper.format(created.getTime()));
 		event.setSite("demo Site");
 		event.put(EventAttribute.BANNER_ID, "b1");
 		event.setUser("user1");
+		event.setId("id 1");
+		event.setIp("ip1");
 		ts.track(event);
 
 		created.add(Calendar.HOUR_OF_DAY, 1);
 		event = new ClickTrackEvent();
+		event.setId("id 2");
+		event.setCampaign("c1");
+		event.setIp("ip1");
 		event.put(EventAttribute.TIME, DateHelper.format(created.getTime()));
 		event.setTime(created.getTime().getTime());
 		// System.out.println(DateHelper.format(created.getTime()));
@@ -119,6 +133,9 @@ public class BDBTest {
 
 		created.add(Calendar.HOUR_OF_DAY, 1);
 		event = new ImpressionTrackEvent();
+		event.setId("id 3");
+		event.setIp("ip1");
+		event.setCampaign("c1");
 		event.put(EventAttribute.TIME, DateHelper.format(created.getTime()));
 		event.setTime(created.getTime().getTime());
 		// System.out.println(DateHelper.format(created.getTime()));
@@ -127,6 +144,7 @@ public class BDBTest {
 		event.setUser("user1");
 		ts.track(event);
 		event.setUser("user2");
+		event.setId("id 4");
 		ts.track(event);
 	}
 }

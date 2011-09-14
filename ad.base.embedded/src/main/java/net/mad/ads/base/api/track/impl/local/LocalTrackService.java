@@ -86,7 +86,7 @@ public class LocalTrackService implements TrackingService {
 	}
 
 	@Override
-	public List<TrackEvent> list(Criterion criterion, Date from, Date to)
+	public List<TrackEvent> list(Criterion criterion, EventType type, Date from, Date to)
 			throws ServiceException {
 
 		if (siteEvents.containsKey(criterion.value)) {
@@ -99,7 +99,13 @@ public class LocalTrackService implements TrackingService {
 	}
 
 	@Override
-	public int count(Criterion criterion, Date from, Date to) throws ServiceException {
+	public long count(Criterion criterion, EventType type, Date from, Date to) throws ServiceException {
+		
+		if (type.equals(EventType.CLICK)) {
+			return countClicks(criterion, from, to);
+		} else if (type.equals(EventType.IMPRESSION)) {
+			return countImpressions(criterion, from, to);
+		}
 		
 		if (siteEvents.containsKey(criterion.value)) {
 			TrackKey key1 = new TrackKey(java.util.UUID.randomUUID().toString(), from.getTime());
@@ -123,8 +129,8 @@ public class LocalTrackService implements TrackingService {
 		}
 	}
 
-	@Override
-	public int countClicks(Criterion criterion, Date from, Date to)
+	
+	private long countClicks(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		
 		if (bannerEvents.containsKey(criterion.value)) {
@@ -148,8 +154,8 @@ public class LocalTrackService implements TrackingService {
 		return 0;
 	}
 
-	@Override
-	public int countImpressions(Criterion criterion, Date from, Date to)
+	
+	private long countImpressions(Criterion criterion, Date from, Date to)
 			throws ServiceException {
 		
 		if (bannerEvents.containsKey(criterion.value)) {
@@ -170,34 +176,6 @@ public class LocalTrackService implements TrackingService {
 			return result.size();
 		}
 		
-		return 0;
-	}
-
-	@Override
-	public void deleteImpressions(Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteClicks(Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int countClicks(String user, Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int countImpressions(String user, Criterion criterion, Date from, Date to)
-			throws ServiceException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
