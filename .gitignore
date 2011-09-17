@@ -38,3 +38,8 @@
 /ad.services/.classpath
 /ad.common/.settings
 /ad.manager/server_root/logs
+/ad.base.hibernate/.settings
+/ad.base.hibernate/target
+/ad.base.hibernate/.classpath
+/ad.base.hibernate/.project
+/ad.base.hibernate/.settings
