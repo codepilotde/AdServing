@@ -57,7 +57,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -84,6 +83,14 @@
 		<dependency>
 			<groupId>net.mad.ads</groupId>
 			<artifactId>ad.base</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.mad.ads</groupId>
+			<artifactId>ad.base.embedded</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.mad.ads</groupId>
+			<artifactId>ad.base.hibernate</artifactId>
 		</dependency>
 
 	</dependencies>

@@ -49,7 +49,7 @@ public interface UserService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public User get (String id) throws ServiceException;
+	public User get (Long id) throws ServiceException;
 	
 	/**
 	 * Aktualisiert einen Benutzer
@@ -64,21 +64,21 @@ public interface UserService {
 	 * @return Die ID des neuen User
 	 * @throws ServiceException
 	 */
-	public String create (User user) throws ServiceException;
+	public User create (User user) throws ServiceException;
 	
 	/**
 	 * Aktiviert eine Benutzer
 	 * @param id
 	 * @throws ServiceException
 	 */
-	public void activate (String id) throws ServiceException;
+	public void activate (Long id) throws ServiceException;
 	
 	/**
 	 * Deaktiviert einen Benutzer
 	 * @param is
 	 * @throws ServiceException
 	 */
-	public void deactivate (String id) throws ServiceException;
+	public void deactivate (Long id) throws ServiceException;
 	
 	/**
 	 * überprüft ob ein Benutzername noch frei ist
@@ -95,11 +95,11 @@ public interface UserService {
 	public boolean checkMail (String mail) throws ServiceException;
 	
 	/**
-	 * �ndert das Passwort eines Benutzers
+	 * ändert das Passwort eines Benutzers
 	 * 
 	 * @throws ServiceException
 	 */
-	public void changePassword (String userid, String password) throws ServiceException;
+	public void changePassword (Long userid, String password) throws ServiceException;
 	
 	/**
 	 * Listet die Benutzer

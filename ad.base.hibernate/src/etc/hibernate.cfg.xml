@@ -31,10 +31,18 @@
     <session-factory>
 
         <!-- Database connection settings -->
+        <!-- 
         <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
         <property name="connection.url">jdbc:hsqldb:mem:.</property>
         <property name="connection.username">sa</property>
         <property name="connection.password"/>
+        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+         -->
+         <property name="connection.driver_class">org.h2.Driver</property>
+        <property name="connection.url">jdbc:h2:mem:test</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password"/>
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
@@ -46,8 +54,7 @@
 		<property name="c3p0.min_size">10</property> 
 		<property name="c3p0.timeout">100</property> <!-- seconds --> 
 
-        <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+        
 
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>

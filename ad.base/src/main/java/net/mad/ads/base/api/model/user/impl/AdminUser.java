@@ -18,91 +18,93 @@
 package net.mad.ads.base.api.model.user.impl;
 
 import java.util.Date;
-import java.util.HashMap;
 
-import net.mad.ads.base.api.BaseObject;
+import org.omg.CORBA.UserException;
+
 import net.mad.ads.base.api.model.user.User;
 import net.mad.ads.base.api.model.user.UserType;
 
-public abstract class AbstractUser extends BaseObject implements User {
+public class AdminUser implements User {
 
-	protected static final String USERNAME 		= "username";
-	protected static final String PASSWORD 		= "password";
-	protected static final String EMAIL 		= "email";
-	protected static final String CREATED 		= "created";
-	protected static final String TYPE 			= "type";
-	protected static final String ID 			= "id";
-	protected static final String ACTIVE		= "active";
+	private long id;
+	private String username;
+	private String password;
+	private String email;
+	private Date created;
+	private boolean active;
 	
-	protected AbstractUser (UserType type) {
-		put(TYPE, type);
+	private UserType type;
+	
+	public AdminUser () {
 	}
-	
-	public boolean isActive () {
-		return get(ACTIVE, Boolean.class, false);
-	}
-	
-	public void setActive (boolean active) {
-		put(ACTIVE, active);
-	}
-	
+
 	@Override
 	public Long getId() {
-		return get(ID, Long.class, null);
+		return this.id;
 	}
-	
+
 	@Override
 	public void setId(Long id) {
-		put(ID, id);
+		this.id = id;
 	}
-	
+
 	@Override
 	public String getUsername() {
-		return get(USERNAME, String.class, null);
+		return this.username;
 	}
 
 	@Override
 	public void setUsername(String username) {
-		put(USERNAME, username);
+		this.username = username;
 	}
 
 	@Override
 	public String getPassword() {
-		return get(PASSWORD, String.class, null);
+		return this.password;
 	}
 
 	@Override
 	public void setPassword(String password) {
-		put(PASSWORD, password);
+		this.password = password;
 	}
 
 	@Override
 	public String getEmail() {
-		return get(EMAIL, String.class, null);
+		return this.email;
 	}
 
 	@Override
 	public void setEmail(String email) {
-		put(EMAIL, email);
+		this.email = email;
 	}
 
 	@Override
 	public Date getCreated() {
-		return get(CREATED, Date.class, null);
+		return this.created;
 	}
 
 	@Override
 	public void setCreated(Date created) {
-		put(CREATED, created);
+		this.created = created;
 	}
-	
+
 	@Override
 	public UserType getType() {
-		return get(TYPE, UserType.class, null);
+		return this.type;
 	}
-	
+
 	@Override
 	public void setType(UserType type) {
-		put(TYPE, type);
+		this.type = type;
+	}
+
+	@Override
+	public boolean isActive() {
+		return this.active;
+	}
+
+	@Override
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

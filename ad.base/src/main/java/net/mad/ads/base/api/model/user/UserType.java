@@ -18,36 +18,37 @@
 
 package net.mad.ads.base.api.model.user;
 
+import net.mad.ads.common.util.StringValuedEnum;
 import net.mad.ads.common.util.Strings;
 
 
 
-public enum UserType {
+public enum UserType implements StringValuedEnum {
 	Publisher ("Publisher"),
 	Advertiser ("Advertiser"),
-	Unknown ("Unknown");
+	Admin ("Admin");
 	
-	private String name;
+	private String value;
 	
-	private UserType (String name) {
-		this.name = name;
+	private UserType (String value) {
+		this.value = value;
 	}
 	
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 	
-	public static UserType forName (String name) {
-		if (Strings.isEmpty(name)) {
-			return UserType.Unknown;
+	public static UserType forValue (String value) {
+		if (Strings.isEmpty(value)) {
+			return null;
 		}
 		
 		for (UserType t : values()) {
-			if (t.getName().equals(name)) {
+			if (t.getValue().equals(value)) {
 				return t;
 			}
 		}
 		
-		return UserType.Unknown;
+		return null;
 	}
 }

@@ -22,9 +22,9 @@ import java.util.Date;
 
 public interface User {
 
-	public String getId ();
+	public Long getId ();
 	
-	public void setId (String id);
+	public void setId (Long id);
 	
 	public String getUsername ();
 	
@@ -43,6 +43,8 @@ public interface User {
 	public void setCreated (Date created);
 	
 	public UserType getType ();
+	
+	public void setType (UserType type);
 	
 	public boolean isActive ();
 	
