@@ -269,7 +269,7 @@ public class HibernateUserService extends HibernateService implements UserServic
 			Criteria crit = session.createCriteria(AdminUser.class);
 			
 			crit.setProjection(Projections.rowCount());
-		    Integer count = (Integer) crit.uniqueResult();
+		    long count = (Long) crit.uniqueResult();
 			
 			return count;
 		} catch (Exception e) {
