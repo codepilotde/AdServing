@@ -2,6 +2,8 @@ package net.mad.ads.manager;
 
 import java.util.Properties;
 
+import net.mad.ads.base.api.service.user.UserService;
+
 import org.hibernate.SessionFactory;
 
 public final class RuntimeContext {
@@ -17,6 +19,18 @@ public final class RuntimeContext {
 	private static Properties properties = new Properties();
 	
 	private static SessionFactory sessionFactory;
+	
+	private static UserService userService;
+	
+	
+
+	public static UserService getUserService() {
+		return userService;
+	}
+
+	public static void setUserService(UserService userService) {
+		RuntimeContext.userService = userService;
+	}
 
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;

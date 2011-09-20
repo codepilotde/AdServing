@@ -18,8 +18,6 @@
 package net.mad.ads.server.utils;
 
 
-
-
 import java.util.HashMap;
 import java.util.Properties;
 

@@ -16,38 +16,23 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.mad.ads.base.api.model.user;
+package net.mad.ads.manager.web.pages;
 
-import java.io.Serializable;
-import java.util.Date;
+import net.mad.ads.manager.web.layout.LayoutPage;
 
-public interface User extends Serializable {
+import org.apache.wicket.authroles.authentication.panel.SignInPanel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-	public Long getId ();
-	
-	public void setId (Long id);
-	
-	public String getUsername ();
-	
-	public void setUsername (String username);
-	
-	public String getPassword ();
-	
-	public void setPassword (String password);
-	
-	public String getEmail ();
-	
-	public void setEmail (String email);
-	
-	public Date getCreated ();
-	
-	public void setCreated (Date created);
-	
-	public UserType getType ();
-	
-	public void setType (UserType type);
-	
-	public boolean isActive ();
-	
-	public void setActive (boolean active);
+/**
+ * Simple example of a sign in page.
+ * 
+ */
+public final class SignInPage extends LayoutPage {
+	public SignInPage() {
+		this(null);
+	}
+
+	public SignInPage(final PageParameters parameters) {
+		add(new SignInPanel("signInPanel"));
+	}
 }

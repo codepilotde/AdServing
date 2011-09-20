@@ -19,10 +19,17 @@ package net.mad.ads.manager.utils.listener;
 
 
 import java.io.File;
+import java.util.Date;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import net.mad.ads.base.api.BaseContext;
+import net.mad.ads.base.api.model.user.User;
+import net.mad.ads.base.api.model.user.impl.AdminUser;
+import net.mad.ads.base.api.service.HibernateService;
+import net.mad.ads.base.api.service.user.HibernateUserService;
+import net.mad.ads.base.api.service.user.UserService;
 import net.mad.ads.common.util.Properties2;
 import net.mad.ads.manager.RuntimeContext;
 
@@ -83,6 +90,23 @@ public class StartupPlugIn implements ServletContextListener {
 			File hibernateConfig = new File(configDirectory + "hibernate.cfg.xml");
 			SessionFactory sessionFactory = new Configuration().configure(hibernateConfig).buildSessionFactory();
 			RuntimeContext.setSessionFactory(sessionFactory);
+			
+			UserService users = new HibernateUserService();
+			BaseContext context = new BaseContext();
+			context.put(HibernateService.SESSION_FACTORY, sessionFactory);
+			users.open(context);
+			RuntimeContext.setUserService(users);
+			
+			User admin = users.get(1L);
+			if (admin == null) {
+				admin = new AdminUser();
+				admin.setActive(true);
+				admin.setCreated(new Date());
+				admin.setUsername("admin");
+				admin.setPassword("admin");
+				
+				users.create(admin);
+			}
 
 		} catch (Exception ex) {
 			logger.error("error init application", ex);

@@ -1,7 +1,7 @@
 package net.mad.ads.manager.web;
 
-import net.mad.ads.manager.web.HomePage;
-import net.mad.ads.manager.web.ManagerApplication;
+import net.mad.ads.manager.web.application.ManagerApplication;
+import net.mad.ads.manager.web.pages.HomePage;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;

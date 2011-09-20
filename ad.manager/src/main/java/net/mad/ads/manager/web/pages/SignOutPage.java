@@ -15,39 +15,18 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package net.mad.ads.manager.web.pages;
 
-package net.mad.ads.base.api.model.user;
+import net.mad.ads.manager.web.layout.LayoutPage;
 
-import java.io.Serializable;
-import java.util.Date;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-public interface User extends Serializable {
-
-	public Long getId ();
-	
-	public void setId (Long id);
-	
-	public String getUsername ();
-	
-	public void setUsername (String username);
-	
-	public String getPassword ();
-	
-	public void setPassword (String password);
-	
-	public String getEmail ();
-	
-	public void setEmail (String email);
-	
-	public Date getCreated ();
-	
-	public void setCreated (Date created);
-	
-	public UserType getType ();
-	
-	public void setType (UserType type);
-	
-	public boolean isActive ();
-	
-	public void setActive (boolean active);
+/**
+ * Simple logout page.
+ * 
+ */
+public class SignOutPage extends LayoutPage {
+	public SignOutPage(final PageParameters parameters) {
+		getSession().invalidate();
+	}
 }

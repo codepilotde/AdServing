@@ -64,8 +64,6 @@ import net.mad.ads.server.utils.runnable.AdDbUpdateTask;
 import net.mad.ads.services.geo.IPLocationDB;
 
 
-
-
 /**
  * 
  * @author thorsten

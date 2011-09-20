@@ -15,39 +15,14 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package net.mad.ads.manager.web.pages;
 
-package net.mad.ads.base.api.model.user;
+/**
+ * Simple home page with no authorization requirements - can be accessed by
+ * everybody.
+ * 
+ */
+public class HomePage extends BasePage {
 
-import java.io.Serializable;
-import java.util.Date;
-
-public interface User extends Serializable {
-
-	public Long getId ();
-	
-	public void setId (Long id);
-	
-	public String getUsername ();
-	
-	public void setUsername (String username);
-	
-	public String getPassword ();
-	
-	public void setPassword (String password);
-	
-	public String getEmail ();
-	
-	public void setEmail (String email);
-	
-	public Date getCreated ();
-	
-	public void setCreated (Date created);
-	
-	public UserType getType ();
-	
-	public void setType (UserType type);
-	
-	public boolean isActive ();
-	
-	public void setActive (boolean active);
+	private static final long serialVersionUID = 7275625409857017786L;
 }

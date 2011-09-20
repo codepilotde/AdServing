@@ -1,4 +1,4 @@
-package net.mad.ads.manager.web.help;
+package net.mad.ads.manager.web.pages.help;
 
 
 

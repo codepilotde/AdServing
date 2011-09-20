@@ -1,5 +1,6 @@
 package net.mad.ads.base.api.service.user;
 
+
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.model.ResultList;
 import net.mad.ads.base.api.model.user.User;
 import net.mad.ads.base.api.model.user.impl.AdminUser;
-import net.mad.ads.base.api.service.HibernateService;
+import net.mad.ads.base.api.service.*;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
