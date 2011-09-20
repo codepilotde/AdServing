@@ -1,7 +1,7 @@
 package net.mad.ads.manager.web;
 
 import net.mad.ads.manager.web.HomePage;
-import net.mad.ads.manager.web.WicketApplication;
+import net.mad.ads.manager.web.ManagerApplication;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -15,7 +15,7 @@ public class TestHomePage {
 
 	@Before
 	public void setUp() {
-		tester = new WicketTester(new WicketApplication());
+		tester = new WicketTester(new ManagerApplication());
 	}
 
 	@Test
