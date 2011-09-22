@@ -90,19 +90,27 @@ public class ImpressionPercentageSingleBannerSelector implements BannerSelector 
 		
 		/*
 		 * Alle Banner ermittel die in Frage kommen, also die, die noch nicht so häufig angezeigt wurden
+		 *  
 		 */
 		List<BannerDefinition> bannerList = new ArrayList<BannerDefinition>();
 		
+		/*
+		 * the smallest percentage view value used to select banner to choose the delivered banner 
+		 */
 		float sma = -2f;
 		for (BannerDecorator bd : decorators) {
+			// Every banner without exiration has -1 as percentage
 			if (bd.getPercentage() == -1f) {
 				bannerList.add(bd.getBanner());
 			} else if (sma == -2f) {
+				// first banner with vie expiration is used as minimum
 				sma = bd.getPercentage();
 				bannerList.add(bd.getBanner());
-			} else if (bd.getPercentage() == sma) {
+			} else if (bd.getPercentage() <= sma) {
+				// take all banners small or equals to the minimum
 				bannerList.add(bd.getBanner());
 			} else if (bd.getPercentage() > sma) {
+				// reached the bigger banners
 				break;
 			}
 		}

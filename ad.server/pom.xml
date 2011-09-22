@@ -79,6 +79,13 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.0-rc1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
 			<version>3.0</version>
@@ -154,12 +161,12 @@
 						<contextPath>/AdServer</contextPath>
 						<!-- <overrideDescriptor>${basedir}/src/config/override-web.xml</overrideDescriptor> -->
 					</webAppConfig>
-<!-- 					<systemProperties> -->
-<!-- 						<systemProperty> -->
-<!-- 							<name>mad.home</name> -->
-<!-- 							<value>/workspace1/advertisement/ad.server/server_root</value> -->
-<!-- 						</systemProperty> -->
-<!-- 					</systemProperties> -->
+					<!-- <systemProperties> -->
+					<!-- <systemProperty> -->
+					<!-- <name>mad.home</name> -->
+					<!-- <value>/workspace1/advertisement/ad.server/server_root</value> -->
+					<!-- </systemProperty> -->
+					<!-- </systemProperties> -->
 				</configuration>
 			</plugin>
 

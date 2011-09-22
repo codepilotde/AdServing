@@ -75,7 +75,9 @@ public interface BannerDefinition extends Serializable {
 	 * auf einer Seite an verschiedenen Plätzen angezeigt werden.
 	 * 
 	 * Bei der Erstellung von Produkten muss die extra Konfiguration bzgl. Auslieferung beachtet werden.
-	 * Da es verschiedene Banner sind, muss darauf geachtet werden, dass sie auch den selben Einschränkungen unterliegen 
+	 * Da es verschiedene Banner sind, muss darauf geachtet werden, dass sie auch den selben Einschränkungen unterliegen
+	 * 
+	 * Product können auch als Tandem-Banner bezeichnet werden 
 	 */
 	public boolean isProduct ();
 	public String getProduct ();
