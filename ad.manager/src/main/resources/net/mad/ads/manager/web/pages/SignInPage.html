@@ -1,13 +1,16 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
-    <title>Wicket Examples - signin2</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+<title wicket:id="pageTitle"></title>
 </head>
 <body>
-    <span wicket:id="mainNavigation"/>
-    <p>
-    <i>Username and password are both "wicket"</i>
-    </p>
-    <span wicket:id="signInPanel"/>
+	<div id="container"
+		style="width: 400px; margin-top: 15px; margin: 0 auto; text-align: center;">
+		<div id="content" style="text-align: left;">
+			<p>
+				<i><wicket:message key="login.greeting" /></i>
+			</p>
+			<span wicket:id="signInPanel" />
+		</div>
+	</div>
 </body>
 </html>

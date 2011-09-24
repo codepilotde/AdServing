@@ -27,4 +27,8 @@ import org.apache.wicket.authroles.authorization.strategies.role.annotations.Aut
  */
 @AuthorizeInstantiation("ADMIN")
 public class AdminPage extends BasePage {
+	
+	public AdminPage () {
+		super();
+	}
 }

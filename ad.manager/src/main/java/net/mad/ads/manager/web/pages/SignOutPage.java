@@ -19,14 +19,18 @@ package net.mad.ads.manager.web.pages;
 
 import net.mad.ads.manager.web.layout.LayoutPage;
 
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
  * Simple logout page.
  * 
  */
-public class SignOutPage extends LayoutPage {
+public class SignOutPage extends WebPage {
 	public SignOutPage(final PageParameters parameters) {
 		getSession().invalidate();
+		getRequestCycle().setResponsePage(SignInPage.class);
 	}
+	
+	
 }

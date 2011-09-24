@@ -1,24 +1,11 @@
-<!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org">
-	<head>
-		<meta charset="utf-8" />
-		<title>Apache Wicket Quickstart</title>
-		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-	</head>
-	<body>
-		<div id="hd">
-			<div id="logo">
-				<img src="logo.png" width="50px" height="50px" alt="Wicket Logo" />
-				<h1>Apache Wicket</h1>
-			</div>
-		</div>
-		<div id="bd">
-			<p>
-				<span wicket:id="myLable"></span>
-			</p>
-		</div>
-		<div id="ft">
-		</div>
-	</body>
-</html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+    <h2>The Help</h2>
+    <p>
+    This page should only be accessible if you are signed in as an administrator.
+    </p>
+    
+    <p>
+	<wicket:link><a href="../HomePage.html">Home</a></wicket:link><br/>
+	<wicket:link><a href="../SignOutPage.html">Sign Out</a></wicket:link>
+	</p>	
+</wicket:extend>

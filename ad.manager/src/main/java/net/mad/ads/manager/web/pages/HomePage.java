@@ -17,12 +17,34 @@
  */
 package net.mad.ads.manager.web.pages;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
+import org.odlabs.wiquery.ui.button.ButtonBehavior;
+
 /**
- * Simple home page with no authorization requirements - can be accessed by
- * everybody.
+ * The startpage of the manager
  * 
  */
+@AuthorizeInstantiation("ADMIN")
 public class HomePage extends BasePage {
 
 	private static final long serialVersionUID = 7275625409857017786L;
+	
+	public HomePage () {
+		super();
+
+		add(new AjaxLink<Void>("firstButton"){
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				System.out.println("firstbutton clicked");
+			}
+
+			
+		}.add(new ButtonBehavior()));
+	}
 }

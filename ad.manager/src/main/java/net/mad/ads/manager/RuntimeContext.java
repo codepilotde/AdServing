@@ -2,7 +2,11 @@ package net.mad.ads.manager;
 
 import java.util.Properties;
 
+import net.mad.ads.base.api.service.site.PlaceService;
+import net.mad.ads.base.api.service.site.SiteService;
+import net.mad.ads.base.api.service.site.ZoneService;
 import net.mad.ads.base.api.service.user.UserService;
+import net.mad.ads.base.api.track.TrackingService;
 
 import org.hibernate.SessionFactory;
 
@@ -21,8 +25,68 @@ public final class RuntimeContext {
 	private static SessionFactory sessionFactory;
 	
 	private static UserService userService;
+	private static SiteService siteService;
+	private static ZoneService zoneService;
+	private static PlaceService placeService;
+	private static TrackingService trackingService;
 	
 	
+	
+	/**
+	 * @return the siteService
+	 */
+	public static SiteService getSiteService() {
+		return siteService;
+	}
+
+	/**
+	 * @param siteService the siteService to set
+	 */
+	public static void setSiteService(SiteService siteService) {
+		RuntimeContext.siteService = siteService;
+	}
+
+	/**
+	 * @return the zoneService
+	 */
+	public static ZoneService getZoneService() {
+		return zoneService;
+	}
+
+	/**
+	 * @param zoneService the zoneService to set
+	 */
+	public static void setZoneService(ZoneService zoneService) {
+		RuntimeContext.zoneService = zoneService;
+	}
+
+	/**
+	 * @return the placeService
+	 */
+	public static PlaceService getPlaceService() {
+		return placeService;
+	}
+
+	/**
+	 * @param placeService the placeService to set
+	 */
+	public static void setPlaceService(PlaceService placeService) {
+		RuntimeContext.placeService = placeService;
+	}
+
+	/**
+	 * @return the trackingService
+	 */
+	public static TrackingService getTrackingService() {
+		return trackingService;
+	}
+
+	/**
+	 * @param trackingService the trackingService to set
+	 */
+	public static void setTrackingService(TrackingService trackingService) {
+		RuntimeContext.trackingService = trackingService;
+	}
 
 	public static UserService getUserService() {
 		return userService;

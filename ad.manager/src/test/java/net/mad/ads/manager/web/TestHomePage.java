@@ -2,6 +2,7 @@ package net.mad.ads.manager.web;
 
 import net.mad.ads.manager.web.application.ManagerApplication;
 import net.mad.ads.manager.web.pages.HomePage;
+import net.mad.ads.manager.web.pages.SignInPage;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -24,6 +25,6 @@ public class TestHomePage {
 		tester.startPage(HomePage.class);
 
 		// assert rendered page class
-		tester.assertRenderedPage(HomePage.class);
+		tester.assertRenderedPage(SignInPage.class);
 	}
 }

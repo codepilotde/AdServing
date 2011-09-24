@@ -19,17 +19,21 @@ package net.mad.ads.manager.web.application;
 
 import net.mad.ads.manager.web.pages.HomePage;
 import net.mad.ads.manager.web.pages.SignInPage;
+import net.mad.ads.manager.web.theme.SmoothnessTheme;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.resource.ResourceReference;
+import org.odlabs.wiquery.ui.themes.IThemableApplication;
 
 /**
  * A role-authorized, authenticated web application in just a few lines of code.
  * 
  */
-public class ManagerApplication extends AuthenticatedWebApplication {
+public class ManagerApplication extends AuthenticatedWebApplication implements IThemableApplication {
 	
 @Override
 	public Class<? extends Page> getHomePage() {
@@ -50,5 +54,10 @@ public class ManagerApplication extends AuthenticatedWebApplication {
 	@Override
 	protected void init() {
 		super.init();
+	}
+
+	@Override
+	public ResourceReference getTheme(Session session) {
+		return SmoothnessTheme.THEME;
 	}
 }

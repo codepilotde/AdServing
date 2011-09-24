@@ -2,17 +2,20 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <body>
 	<wicket:panel>
-		<a href="/" style="color: #E9601A" target="_top"><img
-			src="logo.png" />
-		</a>
-		<div id="titleblock"
-			style="font-size: larger; height: 1.5em; vertical-align: center;">
-			<div style="float: left;">
-				<span wicket:id="exampleTitle">Example Title Goes Here</span>
-			</div>
-			<a wicket:id="helpLink">zur Hilfe</a>
+		<div id="menu">
+			
+			<span id="leftmenu">
+				<a wicket:id="dashboardLink"><wicket:message key="link.dashboard" /></a>
+				|
+				<a wicket:id="siteManagerLink"><wicket:message key="link.sitemanager" /></a>
+			</span>
+			
+			<span id="rightmenu">
+				<a wicket:id="helpLink"><wicket:message key="link.help" /></a> |
+				<a wicket:id="logoutLink"><wicket:message key="link.logout" /></a>
+			</span>
+			
 		</div>
-		<br />
 	</wicket:panel>
 </body>
 </html>

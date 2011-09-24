@@ -21,17 +21,32 @@ package net.mad.ads.manager.utils.listener;
 import java.io.File;
 import java.util.Date;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.sql.DataSource;
 
 import net.mad.ads.base.api.BaseContext;
+import net.mad.ads.base.api.EmbeddedBaseContext;
+import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.user.User;
 import net.mad.ads.base.api.model.user.impl.AdminUser;
 import net.mad.ads.base.api.service.HibernateService;
+import net.mad.ads.base.api.service.site.HibernatePlaceService;
+import net.mad.ads.base.api.service.site.HibernateSiteService;
+import net.mad.ads.base.api.service.site.HibernateZoneService;
+import net.mad.ads.base.api.service.site.PlaceService;
+import net.mad.ads.base.api.service.site.SiteService;
+import net.mad.ads.base.api.service.site.ZoneService;
 import net.mad.ads.base.api.service.user.HibernateUserService;
 import net.mad.ads.base.api.service.user.UserService;
+import net.mad.ads.base.api.track.TrackingService;
+import net.mad.ads.base.api.track.impl.local.h2.H2TrackingService;
 import net.mad.ads.common.util.Properties2;
 import net.mad.ads.manager.RuntimeContext;
+import net.mad.ads.manager.utils.Constants;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.hibernate.SessionFactory;
@@ -51,6 +66,11 @@ public class StartupPlugIn implements ServletContextListener {
 		
 		RuntimeContext.getSessionFactory().close();
 
+		try {
+			RuntimeContext.getTrackingService().close();
+		} catch (ServiceException e) {
+			logger.error("", e);
+		}
 	}
 
 	public void contextInitialized(ServletContextEvent event) {
@@ -91,11 +111,24 @@ public class StartupPlugIn implements ServletContextListener {
 			SessionFactory sessionFactory = new Configuration().configure(hibernateConfig).buildSessionFactory();
 			RuntimeContext.setSessionFactory(sessionFactory);
 			
-			UserService users = new HibernateUserService();
 			BaseContext context = new BaseContext();
 			context.put(HibernateService.SESSION_FACTORY, sessionFactory);
+			
+			UserService users = new HibernateUserService();
 			users.open(context);
 			RuntimeContext.setUserService(users);
+			
+			SiteService sites = new HibernateSiteService();
+			sites.open(context);
+			RuntimeContext.setSiteService(sites);
+			
+			PlaceService places = new HibernatePlaceService();
+			places.open(context);
+			RuntimeContext.setPlaceService(places);
+			
+			ZoneService zones = new HibernateZoneService();
+			zones.open(context);
+			RuntimeContext.setZoneService(zones);
 			
 			User admin = users.get(1L);
 			if (admin == null) {
@@ -110,6 +143,41 @@ public class StartupPlugIn implements ServletContextListener {
 
 		} catch (Exception ex) {
 			logger.error("error init application", ex);
+		}
+	}
+	
+	public void initTracking (BaseContext context) {
+		try {
+			String classname = RuntimeContext.getProperties().getProperty(
+					Constants.CONFIG.PROPERTIES.TRACKINGSERVICE_CLASS,
+					"");
+			TrackingService trackService = (TrackingService) Class.forName(
+					classname).newInstance();
+			
+			if (trackService instanceof H2TrackingService) {
+				Context ctx = new InitialContext();
+				ctx = (Context) ctx.lookup("java:comp/env");
+				DataSource ds = (DataSource) ctx.lookup("jdbc/trackingds");
+
+				context.put(EmbeddedBaseContext.EMBEDDED_TRACKING_DATASOURCE, ds);
+			}
+			
+			trackService.open(context);
+
+			RuntimeContext.setTrackingService(trackService);
+
+		} catch (NamingException se) {
+			logger.error("", se);
+		} catch (ClassCastException cce) {
+			logger.error("", cce);
+		} catch (ServiceException e) {
+			logger.error("", e);
+		} catch (InstantiationException e) {
+			logger.error("", e);
+		} catch (IllegalAccessException e) {
+			logger.error("", e);
+		} catch (ClassNotFoundException e) {
+			logger.error("", e);
 		}
 	}
 

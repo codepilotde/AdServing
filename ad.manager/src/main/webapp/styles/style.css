@@ -1,0 +1,57 @@
+/* Default CSS Document */
+
+/** BODY ELEMENTS **/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: #333;
+	background-color: #fff;
+	font-family: "Arial", "Helvetica", sans-serif;
+	font-size: .75em;
+}
+
+/** MAIN CONTAINERS **/
+div#container {
+	
+}
+
+div#header {
+	
+}
+
+div#header-in {
+	
+}
+div#menu {
+	vertical-align: middle;
+}
+
+span#rightmenu {
+	float: right
+}
+span#leftmenu {
+	float: left;
+}
+
+div#content {
+	min-height: 300px;
+}
+
+div#center {
+	
+}
+
+div#center-in {
+	
+}
+
+div#footer {
+	clear: both;
+}
+
+div#footer-in {
+	
+}

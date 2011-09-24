@@ -21,18 +21,22 @@ package net.mad.ads.manager.web.pages;
 import net.mad.ads.manager.web.layout.LayoutPage;
 
 import org.apache.wicket.authroles.authentication.panel.SignInPanel;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
  * Simple example of a sign in page.
  * 
  */
-public final class SignInPage extends LayoutPage {
+public final class SignInPage extends WebPage {
 	public SignInPage() {
-		this(null);
+		this(null);  
 	}
 
 	public SignInPage(final PageParameters parameters) {
 		add(new SignInPanel("signInPanel"));
+		add(new Label("pageTitle", new StringResourceModel("page.title", this, null)));
 	}
 }

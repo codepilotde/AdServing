@@ -16,6 +16,10 @@
  */
 package net.mad.ads.manager.web.pages;
 
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.StringResourceModel;
+
 import net.mad.ads.manager.web.layout.LayoutPage;
 
 /**
@@ -23,4 +27,14 @@ import net.mad.ads.manager.web.layout.LayoutPage;
  * 
  */
 public class BasePage extends LayoutPage {
+
+	public BasePage() {
+		add(new Label("pageTitle", new StringResourceModel("page.title", this,
+				null)));
+	}
+
+	protected void setPageTitle(IModel<?> model) {
+		get("pageTitle").setDefaultModel(model);
+	}
+
 }
