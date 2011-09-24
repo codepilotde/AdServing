@@ -17,6 +17,13 @@
  */
 package net.mad.ads.server.utils.listener.configuration;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,49 +34,40 @@ import net.mad.ads.base.api.EmbeddedBaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.track.TrackingService;
 import net.mad.ads.base.api.track.impl.local.bdb.BDBTrackingService;
+import net.mad.ads.base.api.track.impl.local.h2.H2TrackingService;
 import net.mad.ads.common.util.Strings;
 import net.mad.ads.server.utils.AdServerConstants;
 import net.mad.ads.server.utils.RuntimeContext;
 import net.mad.ads.services.geo.IPLocationDB;
 import net.mad.ads.services.geo.MaxmindIpLocationDB;
 
-
 public class AdServerModule extends AbstractModule {
 
-	private static final Logger logger = LoggerFactory.getLogger(AdServerModule.class);
-	
+	private static final Logger logger = LoggerFactory
+			.getLogger(AdServerModule.class);
+
 	@Override
 	protected void configure() {
-		
+
 		try {
-//			BaseContext context = new BaseContext();
-//			context.put(BaseContext.CASSANDRA_DB_CLUSTER, RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.SERVICES_TRACKING_CASSANDRA_CLUSTER, ""));
-//			context.put(BaseContext.CASSANDRA_DB_HOST, RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.SERVICES_TRACKING_CASSANDRA_HOST, ""));
-//			
-//			TrackingService service = new CassandraTrackService();
-//			service.open(context);
-			
 			EmbeddedBaseContext baseContext = new EmbeddedBaseContext();
-			baseContext.put(EmbeddedBaseContext.EMBEDDED_DB_DIR, RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.TRACK_DIR));
-			
-			String classname = RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.TRACKINGSERVICE_CLASS, "");
-//			if (Strings.isEmpty(classname)) {
-//				classname = "net.mad.ads.base.api.track.impl.local.bdb.BDBTrackingService";
-//			}
-			TrackingService trackService = (TrackingService) Class.forName(classname).newInstance();
-			trackService.open(baseContext);
-			
-			classname = RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.IPLOCATIONSERVICE_CLASS, "");
-//			if (Strings.isEmpty(classname)) {
-//				classname = "net.mad.ads.services.geo.MaxmindIpLocationDB";
-//			}
-			IPLocationDB iplocDB = (IPLocationDB) Class.forName(classname).newInstance();
-			
-			bind(TrackingService.class).toInstance(trackService);
-//			bind(IPLocationDB.class).toInstance(new MaxmindIpLocationDB());
+			baseContext.put(
+					EmbeddedBaseContext.EMBEDDED_DB_DIR,
+					RuntimeContext.getProperties().getProperty(
+							AdServerConstants.CONFIG.PROPERTIES.TRACK_DIR));
+
+			String classname = RuntimeContext
+					.getProperties()
+					.getProperty(
+							AdServerConstants.CONFIG.PROPERTIES.IPLOCATIONSERVICE_CLASS,
+							"");
+			IPLocationDB iplocDB = (IPLocationDB) Class.forName(classname)
+					.newInstance();
+
 			bind(IPLocationDB.class).toInstance(iplocDB);
-		} catch (ServiceException se) {
-			logger.error("", se);
+
+			initTracking(baseContext);
+
 		} catch (ClassCastException cce) {
 			logger.error("", cce);
 		} catch (InstantiationException e) {
@@ -77,7 +75,43 @@ public class AdServerModule extends AbstractModule {
 		} catch (IllegalAccessException e) {
 			logger.error("", e);
 		} catch (ClassNotFoundException e) {
-			// logger.error("", e);
+			logger.error("", e);
+		}
+	}
+
+	private void initTracking(EmbeddedBaseContext context) {
+
+		try {
+			String classname = RuntimeContext.getProperties().getProperty(
+					AdServerConstants.CONFIG.PROPERTIES.TRACKINGSERVICE_CLASS,
+					"");
+			TrackingService trackService = (TrackingService) Class.forName(
+					classname).newInstance();
+			
+			if (trackService instanceof H2TrackingService) {
+				Context ctx = new InitialContext();
+				ctx = (Context) ctx.lookup("java:comp/env");
+				DataSource ds = (DataSource) ctx.lookup("jdbc/trackingds");
+
+				context.put(EmbeddedBaseContext.EMBEDDED_TRACKING_DATASOURCE, ds);
+			}
+			
+			trackService.open(context);
+
+			bind(TrackingService.class).toInstance(trackService);
+
+		} catch (NamingException se) {
+			logger.error("", se);
+		} catch (ClassCastException cce) {
+			logger.error("", cce);
+		} catch (ServiceException e) {
+			logger.error("", e);
+		} catch (InstantiationException e) {
+			logger.error("", e);
+		} catch (IllegalAccessException e) {
+			logger.error("", e);
+		} catch (ClassNotFoundException e) {
+			logger.error("", e);
 		}
 	}
 

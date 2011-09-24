@@ -30,6 +30,7 @@ import java.util.List;
 import javax.sql.ConnectionPoolDataSource;
 import javax.sql.DataSource;
 
+import org.h2.jdbcx.JdbcDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,14 +54,16 @@ public class H2TrackingService extends SQLService implements TrackingService {
 	public void open(BaseContext context) throws ServiceException {
 		// TODO Auto-generated method stub
 		DataSource ds = context.get(EmbeddedBaseContext.EMBEDDED_TRACKING_DATASOURCE, DataSource.class, null);
+		
 		if (ds == null) {
 			throw new ServiceException("DataSource can not be null");
 		}
+		((JdbcDataSource)ds).setPassword("sa");
+		((JdbcDataSource)ds).setUser("sa");
+		
 		int maxcon = context.get(EmbeddedBaseContext.EMBEDDED_TRACKING_DATASOURCE_MAX_CONNECTIONS, int.class, 50);
 		
 		this.poolMgr = new MiniConnectionPoolManager((ConnectionPoolDataSource) ds, maxcon);
-		
-		initTable();
 		
 		initTable();
 	}
@@ -312,9 +315,9 @@ public class H2TrackingService extends SQLService implements TrackingService {
 				sb.append("CREATE TABLE trackevent (");
 				sb.append(" id VARCHAR (100) NOT NULL, ");
 				sb.append(" type VARCHAR (10) NOT NULL, ");
-				sb.append(" site VARCHAR (20) NOT NULL, ");
-				sb.append(" campaign VARCHAR (20) NOT NULL, ");
-				sb.append(" user VARCHAR (20) NOT NULL, ");
+				sb.append(" site VARCHAR (50) NOT NULL, ");
+				sb.append(" campaign VARCHAR (50) NOT NULL, ");
+				sb.append(" user VARCHAR (50) NOT NULL, ");
 				sb.append(" bannerid VARCHAR(20) NOT NULL, ");
 				sb.append(" ip VARCHAR (100) NOT NULL, ");
 				sb.append(" created timestamp NOT NULL ");

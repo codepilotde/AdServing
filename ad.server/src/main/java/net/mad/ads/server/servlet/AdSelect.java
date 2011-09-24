@@ -122,9 +122,17 @@ public class AdSelect extends HttpServlet {
 				
 				TrackEvent trackEvent = new ImpressionTrackEvent();
 				trackEvent.setBannerId(banner.getId());
+				trackEvent.setCampaign("");
 				trackEvent.setUser(context.getUserid());
 				trackEvent.setId(UUID.randomUUID().toString());
 				trackEvent.setTime(System.currentTimeMillis());
+				trackEvent.setIp(context.getIp());
+				if (context.getSlot() != null) {
+					trackEvent.setSite(context.getSlot().getSite());
+				} else {
+					trackEvent.setSite("NONE_PAGE");
+				}
+				
 				
 				TrackingHelper.trackEvent(context, trackEvent);
 				

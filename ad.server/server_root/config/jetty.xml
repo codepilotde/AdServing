@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+
+<!-- =============================================================== -->
+<!-- Configure the Jetty Server -->
+<!-- -->
+<!-- Documentation of this file format can be found at: -->
+<!-- http://wiki.eclipse.org/Jetty/Reference/jetty.xml_syntax -->
+<!-- -->
+<!-- Additional configuration files are available in $JETTY_HOME/etc -->
+<!-- and can be mixed in. For example: -->
+<!-- java -jar start.jar etc/jetty-ssl.xml -->
+<!-- -->
+<!-- See start.ini file for the default configuraton files -->
+<!-- =============================================================== -->
+
+
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+	<New id="myds" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/trackingds</Arg>
+		<Arg>
+			<New class="org.h2.jdbcx.JdbcDataSource">
+				<Set name="URL">jdbc:h2:mem:testdb</Set>
+				<Set name="user">sa</Set>
+				<Set name="password">sa</Set>
+			</New>
+		</Arg>
+	</New>
+</Configure>

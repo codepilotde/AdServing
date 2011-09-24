@@ -104,14 +104,11 @@
 		<dependency>
 			<groupId>com.sleepycat</groupId>
 			<artifactId>je</artifactId>
-			<version>4.1.10</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.9.0-rc1</version>
-			<scope>test</scope>
+    		<groupId>com.h2database</groupId>
+    		<artifactId>h2</artifactId>
+    		<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -155,11 +152,12 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.version}</version>
 				<configuration>
+					<jettyConfig>${basedir}/server_root/config/jetty.xml</jettyConfig>
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<useTestClasspath>true</useTestClasspath>
 					<webAppConfig>
 						<contextPath>/AdServer</contextPath>
-						<!-- <overrideDescriptor>${basedir}/src/config/override-web.xml</overrideDescriptor> -->
+						<overrideDescriptor>${basedir}/server_root/config/override-web.xml</overrideDescriptor>
 					</webAppConfig>
 					<!-- <systemProperties> -->
 					<!-- <systemProperty> -->
@@ -168,6 +166,13 @@
 					<!-- </systemProperty> -->
 					<!-- </systemProperties> -->
 				</configuration>
+				<dependencies>
+					<dependency>
+    					<groupId>com.h2database</groupId>
+    					<artifactId>h2</artifactId>
+    					<version>1.3.160</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
