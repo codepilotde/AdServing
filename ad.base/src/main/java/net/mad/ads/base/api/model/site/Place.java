@@ -29,6 +29,31 @@ package net.mad.ads.base.api.model.site;
  * @author thorsten
  *
  */
-public interface Place {
+public class Place extends BasePageModel {
+	
+	/*
+	 * the parent zone this place is in
+	 */
+	private Zone zone;
+	
+	public Place () {
+		
+	}
+
+	/**
+	 * @return the zone
+	 */
+	public Zone getZone() {
+		return zone;
+	}
+
+	/**
+	 * @param zone the zone to set
+	 */
+	public void setZone(Zone zone) {
+		this.zone = zone;
+	}
+	
+	
 
 }

@@ -23,7 +23,7 @@ import net.mad.ads.common.util.Strings;
 
 
 
-public enum UserType implements StringValuedEnum {
+public enum UserType  {
 	Publisher ("Publisher"),
 	Advertiser ("Advertiser"),
 	Admin ("Admin");

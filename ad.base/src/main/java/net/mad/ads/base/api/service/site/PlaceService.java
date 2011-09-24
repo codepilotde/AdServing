@@ -17,6 +17,26 @@
  */
 package net.mad.ads.base.api.service.site;
 
-public interface PlaceService {
+import java.util.Collection;
+import java.util.List;
 
+import net.mad.ads.base.api.BaseContext;
+import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.model.site.Place;
+import net.mad.ads.base.api.model.site.Zone;
+
+public interface PlaceService {
+	
+	public void open (BaseContext context) throws ServiceException;
+	public void close () throws ServiceException;
+	
+	public void add(Place obj) throws ServiceException;
+    public void update(Place obj) throws ServiceException;
+    public void delete(Place obj) throws ServiceException;
+    public Place findByPrimaryKey(long id) throws ServiceException;
+    public List<Place> findAll() throws ServiceException;
+    public List<Place> findAll(int page, int perPage) throws ServiceException;
+    
+    public List<Place> findByZone(Zone zone) throws ServiceException;
+    public List<Place> findByZone(Zone zone, int page, int perPage) throws ServiceException; 
 }

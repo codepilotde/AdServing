@@ -19,9 +19,12 @@
 
 package net.mad.ads.base.api.model;
 
-public abstract class BaseModelObject {
+import java.util.Date;
+
+public abstract class BaseModel {
 
 	private Long id;
+	private Date created;
 
 	public Long getId() {
 		return id;
@@ -29,6 +32,16 @@ public abstract class BaseModelObject {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+	public Date getCreated() {
+		return this.created;
+	}
+
+	
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 	
 	

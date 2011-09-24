@@ -52,7 +52,7 @@ import net.mad.ads.db.enums.Country;
  * @author tmarx
  *
  */
-public class ExcludeSiteCondition implements Condition, Filter {
+public class ExcludeSiteCondition implements Condition/*, Filter */{
 
 	@Override
 	public void addQuery(AdRequest request, BooleanQuery mainQuery) {
@@ -91,15 +91,17 @@ public class ExcludeSiteCondition implements Condition, Filter {
 		}
 	}
 
-	@Override
+	// @Override
 	public Predicate<BannerDefinition> getFilterPredicate(final AdRequest request) {
 		Predicate<BannerDefinition> predicate = new Predicate<BannerDefinition>() {
 			@Override
 			public boolean apply(BannerDefinition type) {
 				
+				/*
 				if (true) {
 					return true;
 				}
+				*/
 				
 				ExcludeSiteConditionDefinition sdef = null;
 				if (type.hasConditionDefinition(ConditionDefinitions.EXCLUDE_SITE)) {

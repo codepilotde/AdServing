@@ -223,6 +223,15 @@ public class HibernateUserServiceTest {
 
 	@Test
 	public void testCount() throws Exception {
+		
+		AdminUser user = new AdminUser();
+		user.setActive(true);
+		user.setCreated(new Date());
+		user.setEmail("admin8@adserver.org");
+		user.setPassword("password");
+		user.setUsername("admin9");
+		user = (AdminUser) createUser(user);
+		
 		long count = users.count();
 		
 		assertTrue("wrong number of users found", count > 0L);

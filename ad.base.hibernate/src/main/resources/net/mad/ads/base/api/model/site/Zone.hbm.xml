@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24.09.2011 00:08:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="net.mad.ads.base.api.model.site.Zone" extends="net.mad.ads.base.api.model.site.BasePageModel" discriminator-value="Zone" lazy="false">
+        <many-to-one name="site" class="net.mad.ads.base.api.model.site.Site" fetch="join">
+            <column name="SITE" />
+        </many-to-one>
+    </subclass>
+</hibernate-mapping>

@@ -40,16 +40,16 @@ public class ContextTest extends TestCase {
 	
 	public void testGetContext () {
 		
-		ServletContextEvent event = new ServletContextEvent(new MockServletContext());
-		((MockServletContext)event.getServletContext()).getInitParameters().put("enviroment", "development");
-		
-		StartupPlugIn plugin = new StartupPlugIn();
-		
-		
-		plugin.contextInitialized(event);
-		
-		
-		plugin.contextDestroyed(event);
+//		ServletContextEvent event = new ServletContextEvent(new MockServletContext());
+//		((MockServletContext)event.getServletContext()).getInitParameters().put("enviroment", "development");
+//		
+//		StartupPlugIn plugin = new StartupPlugIn();
+//		
+//		
+//		plugin.contextInitialized(event);
+//		
+//		
+//		plugin.contextDestroyed(event);
 		
 		
 	}

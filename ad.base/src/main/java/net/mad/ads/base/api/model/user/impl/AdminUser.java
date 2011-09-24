@@ -21,31 +21,22 @@ import java.util.Date;
 
 import org.omg.CORBA.UserException;
 
+import net.mad.ads.base.api.model.BaseModel;
 import net.mad.ads.base.api.model.user.User;
 import net.mad.ads.base.api.model.user.UserType;
 
-public class AdminUser implements User {
+public class AdminUser extends BaseModel implements User {
 
-	private long id;
+	
 	private String username;
 	private String password;
 	private String email;
-	private Date created;
+	
 	private boolean active;
 	
 	private UserType type;
 	
 	public AdminUser () {
-	}
-
-	@Override
-	public Long getId() {
-		return this.id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	@Override
@@ -76,16 +67,6 @@ public class AdminUser implements User {
 	@Override
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	@Override
-	public Date getCreated() {
-		return this.created;
-	}
-
-	@Override
-	public void setCreated(Date created) {
-		this.created = created;
 	}
 
 	@Override

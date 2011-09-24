@@ -22,10 +22,12 @@ import net.mad.ads.common.code.Base16;
 import com.google.common.base.Strings;
 
 
-
-
-
-
+/**
+ * The AdSlot is the combination of a page, a zone and a place
+ * 
+ * @author thmarx
+ *
+ */
 public class AdSlot {
 	
 	private String site;

@@ -17,7 +17,7 @@
 
 package net.mad.ads.base.api.model.ads;
 
-import net.mad.ads.base.api.model.BaseModelObject;
+import net.mad.ads.base.api.model.BaseModel;
 
 
 
@@ -31,6 +31,6 @@ import net.mad.ads.base.api.model.BaseModelObject;
  * @author thorsten
  *
  */
-public class Advertisement extends BaseModelObject {
+public class Advertisement extends BaseModel {
 	private String campaignId;
 }

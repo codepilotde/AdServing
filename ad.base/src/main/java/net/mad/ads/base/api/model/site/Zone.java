@@ -16,17 +16,45 @@
  */
 
 package net.mad.ads.base.api.model.site;
+
+import java.util.List;
+
 /**
- * Eine Zone einer Seite entspricht einem Unterbereich einer Seite
+ * A Zone is something like a sub area of a page
  * 
- * Beispiel:
+ * Examples:
  * - Forum
  * - Blog
- * - usw
  * 
  * @author thorsten
  *
  */
-public interface Zone {
+public class Zone extends BasePageModel {
+	
+	/*
+	 * the parent site
+	 */
+	private Site site;
+	
+	public Zone () {
+	}
+
+	/**
+	 * @return the site
+	 */
+	public Site getSite() {
+		return site;
+	}
+
+	/**
+	 * @param site the site to set
+	 */
+	public void setSite(Site site) {
+		this.site = site;
+	}
+
+		
+	
+	
 
 }

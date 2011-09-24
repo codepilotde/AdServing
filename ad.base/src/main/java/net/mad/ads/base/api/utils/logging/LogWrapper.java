@@ -169,7 +169,7 @@ public class LogWrapper {
 		StringBuilder sbl = new StringBuilder();
 		// sbl.append(SPACE);
 		// sbl.append(className);
-		if (strings != null || strings.length > 0) {
+		if (strings != null && strings.length > 0) {
 			for (int count = 0; count < strings.length; count++) {
 				sbl.append(SPACE);
 				sbl.append(strings[count]);

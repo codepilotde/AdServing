@@ -16,14 +16,39 @@
  */
 
 package net.mad.ads.base.api.model.site;
+
+import java.util.List;
+
 /**
- * Die Seite eines Benutzers
+ * A simpe page object to manage different pages
  * 
- * Seiten werden in Zonen unterteilt und diese wiederrum in Plätze
+ * pages are divided into zones and zones are divided into places
+ * the combination of page, zone and place is ad AdSlot
+ * 
  * 
  * @author thorsten
  *
  */
-public interface Site {
+public class Site extends BasePageModel {
+	/*
+	 * Url of the page
+	 */
+	private String url;
+	
+	
+	public Site () {
+	}
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	
 
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24.09.2011 00:08:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="net.mad.ads.base.api.model.site.BasePageModel" extends="net.mad.ads.base.api.model.BaseModel" discriminator-value="BasePageModel" lazy="false" abstract="true">
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+    </subclass>
+</hibernate-mapping>
