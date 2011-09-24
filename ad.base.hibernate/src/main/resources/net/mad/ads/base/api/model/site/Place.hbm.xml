@@ -3,11 +3,29 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 24.09.2011 00:08:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
- <subclass discriminator-value="Place"
-  extends="net.mad.ads.base.api.model.site.BasePageModel" lazy="false"
-  name="net.mad.ads.base.api.model.site.Place" select-before-update="false">
-  <many-to-one class="net.mad.ads.base.api.model.site.Zone" fetch="join" name="zone">
-   <column name="ZONE" />
-  </many-to-one>
- </subclass>
+	<class 
+		entity-name="net.mad.ads.base.api.model.site.Place" lazy="false"
+		name="net.mad.ads.base.api.model.site.Place" select-before-update="false">
+		
+		<id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="increment"/>
+        </id>
+    
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        
+        <property name="created" type="java.util.Date">
+            <column name="CREATED" />
+        </property>
+		
+		<many-to-one class="net.mad.ads.base.api.model.site.Zone"
+			fetch="join" name="zone">
+			<column name="ZONE" />
+		</many-to-one>
+	</class>
 </hibernate-mapping>

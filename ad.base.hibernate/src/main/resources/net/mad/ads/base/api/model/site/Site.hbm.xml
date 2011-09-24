@@ -4,9 +4,26 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 24.09.2011 00:08:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <subclass name="net.mad.ads.base.api.model.site.Site" extends="net.mad.ads.base.api.model.site.BasePageModel" discriminator-value="Site" lazy="false">
+    <class name="net.mad.ads.base.api.model.site.Site" entity-name="net.mad.ads.base.api.model.site.Site" lazy="false">
+    	<id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="increment"/>
+        </id>
+    
         <property name="url" type="java.lang.String">
             <column name="URL" />
         </property>
-    </subclass>
+        
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        
+        <property name="created" type="java.util.Date">
+            <column name="CREATED" />
+        </property>
+        
+    </class>
 </hibernate-mapping>

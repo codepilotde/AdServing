@@ -1,0 +1,29 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<h2>
+		<wicket:message key="editsite.title" />: <u><span wicket:id="sitename"></span></u>
+	</h2>
+	<div>
+		<wicket:message key="editsite.intro" />
+	</div>
+	
+	<div class="overview">
+		<table>
+			<tr>
+				<td><wicket:message key="site.name" /></td>
+				<td wicket:id="name"></td>
+			</tr>
+			<tr>
+				<td><wicket:message key="site.description" /></td>
+				<td wicket:id="description"></td>
+			</tr>
+			<tr>
+				<td><wicket:message key="site.url" /></td>
+				<td wicket:id="url"></td>
+			</tr>
+			<tr>
+				<td><wicket:message key="site.created" /></td>
+				<td wicket:id="created"></td>
+			</tr>
+		</table>
+	</div>
+</wicket:extend>

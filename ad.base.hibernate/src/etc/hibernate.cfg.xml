@@ -46,8 +46,6 @@
         <mapping resource="net/mad/ads/base/api/model/user/AdminUser.hbm.xml"/>
         
         
-        <mapping resource="net/mad/ads/base/api/model/BaseModel.hbm.xml"/>
-        <mapping resource="net/mad/ads/base/api/model/site/BasePageModel.hbm.xml"/>
         <mapping resource="net/mad/ads/base/api/model/site/Place.hbm.xml"/>
         <mapping resource="net/mad/ads/base/api/model/site/Zone.hbm.xml"/>
         <mapping resource="net/mad/ads/base/api/model/site/Site.hbm.xml"/>

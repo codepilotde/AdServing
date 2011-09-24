@@ -2,5 +2,37 @@
 	<h2>
 		<wicket:message key="manager.title" />
 	</h2>
-	
+	<button wicket:id="newSite">
+		<wicket:message key="button.newsite" />
+	</button>
+	<br />
+	<br />
+
+	<span wicket:id="navigator">[dataview navigator]</span>
+	<table cellspacing="0" class="dataview" style="width: 80%; ">
+		<colgroup>
+			<col width="10%"/>
+			<col width="10%"/>
+			<col width="30%"/>
+			<col width="30%"/>
+			<col width="10%"/>
+			<col width="10%"/> 
+		</colgroup>
+		<tr style="text-align: center;">
+			<th>Actions</th>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Url</th>
+			<th>Created</th>
+			<th>Editieren</th>
+		</tr>
+		<tr wicket:id="pageable" style="text-align: center;">
+			<td><span wicket:id="actions">[actions]</span></td>
+			<td><span wicket:id="id">[id]</span></td>
+			<td><span wicket:id="name">[name]</span></td>
+			<td><span wicket:id="url">[url]</span></td>
+			<td><span wicket:id="created">[created]</span></td>
+			<td><span wicket:id="editSite">[editSite]</span></td>
+		</tr>
+	</table>
 </wicket:extend>

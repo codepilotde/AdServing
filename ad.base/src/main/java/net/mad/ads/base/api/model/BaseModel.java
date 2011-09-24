@@ -19,9 +19,10 @@
 
 package net.mad.ads.base.api.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class BaseModel {
+public abstract class BaseModel implements Serializable {
 
 	private Long id;
 	private Date created;
