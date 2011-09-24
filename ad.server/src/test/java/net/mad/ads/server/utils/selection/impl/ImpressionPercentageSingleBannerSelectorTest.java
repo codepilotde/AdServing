@@ -102,7 +102,7 @@ public class ImpressionPercentageSingleBannerSelectorTest {
 	@Test
 	public void testSelectBanner() {
 		BannerDefinition b = SELECTOR.selectBanner(banners, null);
-		assertEquals("1", b.getId());
+		assertTrue("wrong banner selected", (b.getId().equals("1") || b.getId().equals("5")));
 	}
 
 }
