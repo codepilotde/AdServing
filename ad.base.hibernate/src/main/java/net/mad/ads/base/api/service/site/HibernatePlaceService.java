@@ -7,6 +7,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import net.mad.ads.base.api.exception.ServiceException;
@@ -199,6 +201,32 @@ Session session = null;
 				session.close();
 			}
 		}
+	}
+
+	@Override
+	public long count() throws ServiceException {
+		Session session = null;
+		
+		try {
+			session = sessionFactory.openSession();
+			
+			Criteria crit = session.createCriteria(Place.class);
+			crit.setProjection(Projections.rowCount());
+			List<Long> result = crit.list();
+			
+			if (!result.isEmpty()) {
+				return result.get(0);
+			}
+			
+			return 0;
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		
 	}
 
 }

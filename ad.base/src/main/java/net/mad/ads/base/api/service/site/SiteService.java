@@ -33,6 +33,7 @@ public interface SiteService {
 	public void add(Site obj) throws ServiceException;
     public void update(Site obj) throws ServiceException;
     public void delete(Site obj) throws ServiceException;
+    public long count() throws ServiceException;
     public Site findByPrimaryKey(long id) throws ServiceException;
     public List<Site> findAll() throws ServiceException;
     public List<Site> findAll(int page, int perPage) throws ServiceException;

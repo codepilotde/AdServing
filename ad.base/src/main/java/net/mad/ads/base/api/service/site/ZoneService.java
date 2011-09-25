@@ -33,6 +33,7 @@ public interface ZoneService {
 	public void add(Zone obj) throws ServiceException;
     public void update(Zone obj) throws ServiceException;
     public void delete(Zone obj) throws ServiceException;
+    public long count() throws ServiceException;
     public Zone findByPrimaryKey(long id) throws ServiceException;
     public List<Zone> findAll() throws ServiceException;
     public List<Zone> findAll(int page, int perPage) throws ServiceException;

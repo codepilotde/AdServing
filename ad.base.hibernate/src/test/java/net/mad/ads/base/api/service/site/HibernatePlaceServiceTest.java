@@ -319,4 +319,29 @@ public class HibernatePlaceServiceTest {
 		assertEquals("place note deleted", 0, places.findAll().size());
 	}
 
+	@Test
+	public void testCount() throws Exception {
+		Site s1 = new Site();
+		s1.setDescription("seite 1");
+		s1.setName("name 1");
+		s1.setUrl("http://eins.de");
+		sites.add(s1);
+		
+		Zone zo = new Zone();
+		zo.setDescription("Das ist eine Zone zum testen");
+		zo.setName("testzone");
+		zo.setSite(s1);
+		zones.add(zo);
+		
+		Place p = new Place();
+		p.setDescription("test place");
+		p.setName("place1");
+		p.setZone(zo);
+		places.add(p);
+	
+		
+		assertEquals(1, sites.count());
+		assertEquals(1, zones.count());
+		assertEquals(1, places.count());
+	}
 }

@@ -33,6 +33,7 @@ public interface PlaceService {
 	public void add(Place obj) throws ServiceException;
     public void update(Place obj) throws ServiceException;
     public void delete(Place obj) throws ServiceException;
+    public long count() throws ServiceException;
     public Place findByPrimaryKey(long id) throws ServiceException;
     public List<Place> findAll() throws ServiceException;
     public List<Place> findAll(int page, int perPage) throws ServiceException;
