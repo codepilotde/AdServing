@@ -11,6 +11,7 @@ body {
 	background-color: #fff;
 	font-family: "Arial", "Helvetica", sans-serif;
 	font-size: .75em;
+	min-width: 1024px;
 }
 
 /** MAIN CONTAINERS **/
@@ -54,4 +55,23 @@ div#footer {
 
 div#footer-in {
 	
+}
+
+.column table.info {
+	width: 100%;
+}
+
+.column div.overview {
+	width: 45%;
+}
+.column div.overview h3.title {
+	text-decoration: underline;
+	margin-bottom: 10px;
+}
+.column div.overview.left {
+	float: left;
+}
+.column div.overview.right {
+	float: right;
+	margin-left: 15px;
 }

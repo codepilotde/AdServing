@@ -140,6 +140,8 @@ public class StartupPlugIn implements ServletContextListener {
 				
 				users.create(admin);
 			}
+			
+			initTracking(context);
 
 		} catch (Exception ex) {
 			logger.error("error init application", ex);

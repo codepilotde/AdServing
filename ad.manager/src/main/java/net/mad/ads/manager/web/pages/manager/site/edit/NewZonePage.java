@@ -17,18 +17,20 @@ import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.site.Site;
+import net.mad.ads.base.api.model.site.Zone;
 import net.mad.ads.manager.RuntimeContext;
 import net.mad.ads.manager.web.pages.BasePage;
-import net.mad.ads.manager.web.pages.manager.site.SiteManagerPage;
 
-public class NewSitePage extends BasePage {
+public class NewZonePage extends BasePage {
 	
-	private static final Logger logger = LoggerFactory.getLogger(NewSitePage.class);
+	private static final Logger logger = LoggerFactory.getLogger(NewZonePage.class);
 
 	private static final long serialVersionUID = -3079163120006125732L;
 
-	public NewSitePage() {
+	private Site site;
+	public NewZonePage(final Site site) {
 		super();
+		this.site = site;
 		
 		add(new FeedbackPanel("feedback"));
 		add(new InputForm("inputForm"));
@@ -36,12 +38,12 @@ public class NewSitePage extends BasePage {
 		add(new Link<Void>("backLink") {
 			@Override
 			public void onClick() {
-				setResponsePage(new SiteManagerPage());
+				setResponsePage(new EditSitePage(site));
 			}
 		}.add(new ButtonBehavior()));
 	}
 
-	private class InputForm extends Form<Site> {
+	private class InputForm extends Form<Zone> {
 		/**
 		 * Construct.
 		 * 
@@ -50,17 +52,14 @@ public class NewSitePage extends BasePage {
 		 */
 		@SuppressWarnings("serial")
 		public InputForm(String name) {
-			super(name, new CompoundPropertyModel<Site>(
-					new Site()));
+			super(name, new CompoundPropertyModel<Zone>(
+					new Zone()));
 
 			
+
 			add(new RequiredTextField<String>("name").setRequired(true));
 
 			add(new TextArea<String>("description").setRequired(true));
-			
-			add(new RequiredTextField<String>("url").setRequired(true));
-
-			
 
 			
 			add(new Button("saveButton").add(new ButtonBehavior()));
@@ -68,7 +67,7 @@ public class NewSitePage extends BasePage {
 			add(new Button("resetButton") {
 				@Override
 				public void onSubmit() {
-					setResponsePage(NewSitePage.class);
+					setResponsePage(NewZonePage.class);
 				}
 			}.setDefaultFormProcessing(false).add(new ButtonBehavior()));
 		}
@@ -80,15 +79,16 @@ public class NewSitePage extends BasePage {
 		public void onSubmit() {
 			// Form validation successful. Display message showing edited model.
 			
-			Site site = (Site) getDefaultModelObject();
+			Zone zone = (Zone) getDefaultModelObject();
+			zone.setSite(site);
 			try {
-				RuntimeContext.getSiteService().add(site);
+				RuntimeContext.getZoneService().add(zone);
 				
 				// Weiterleitung auf EditSitePage
-				setResponsePage(new EditSitePage(site));
+				setResponsePage(new EditZonePage(zone));
 			} catch (ServiceException e) {
 				logger.error("", e);
-				error(getPage().getString("error.saving.site"));
+				error(getPage().getString("error.saving.zone"));
 			}
 
 		}

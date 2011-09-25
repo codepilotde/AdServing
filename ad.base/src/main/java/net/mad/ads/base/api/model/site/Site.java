@@ -17,7 +17,10 @@
 
 package net.mad.ads.base.api.model.site;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A simpe page object to manage different pages
@@ -34,7 +37,8 @@ public class Site extends BasePageModel {
 	 * Url of the page
 	 */
 	private String url;
-	
+
+	private Set<Zone> zones = new HashSet<Zone>();
 	
 	public Site () {
 	}
@@ -47,6 +51,22 @@ public class Site extends BasePageModel {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+
+	/**
+	 * @return the zones
+	 */
+	public Set<Zone> getZones() {
+		return zones;
+	}
+
+
+	/**
+	 * @param zones the zones to set
+	 */
+	public void setZones(Set<Zone> zones) {
+		this.zones = zones;
 	}
 	
 	

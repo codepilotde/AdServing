@@ -17,7 +17,9 @@
 
 package net.mad.ads.base.api.model.site;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A Zone is something like a sub area of a page
@@ -36,6 +38,8 @@ public class Zone extends BasePageModel {
 	 */
 	private Site site;
 	
+	private Set<Place> places = new HashSet<Place>();
+	
 	public Zone () {
 	}
 
@@ -51,6 +55,20 @@ public class Zone extends BasePageModel {
 	 */
 	public void setSite(Site site) {
 		this.site = site;
+	}
+
+	/**
+	 * @return the places
+	 */
+	public Set<Place> getPlaces() {
+		return places;
+	}
+
+	/**
+	 * @param places the places to set
+	 */
+	public void setPlaces(Set<Place> places) {
+		this.places = places;
 	}
 
 		

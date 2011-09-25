@@ -45,8 +45,6 @@ public class SiteManagerPage extends BasePage {
 
 	private static final long serialVersionUID = 701015869883210133L;
 
-	private Site selected;
-
 	public SiteManagerPage() {
 		super();
 
@@ -60,7 +58,6 @@ public class SiteManagerPage extends BasePage {
 			@Override
 			protected void populateItem(final Item<Site> item) {
 				final Site site = item.getModelObject();
-				item.add(new ActionPanel("actions", item.getModel()));
 				item.add(new Label("id", String.valueOf(site.getId())));
 				item.add(new Label("name", site.getName()));
 				item.add(new Label("url", site.getUrl()));
@@ -80,33 +77,10 @@ public class SiteManagerPage extends BasePage {
 			}
 		};
 
-		dataView.setItemsPerPage(8);
+		dataView.setItemsPerPage(5);
 		add(dataView);
 
 		add(new PagingNavigator("navigator", dataView));
-	}
-
-	class ActionPanel extends Panel {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -7925212999572127761L;
-
-		/**
-		 * @param id
-		 *            component id
-		 * @param model
-		 *            model for contact
-		 */
-		public ActionPanel(String id, IModel<Site> model) {
-			super(id, model);
-			add(new Link<Void>("select") {
-				@Override
-				public void onClick() {
-					selected = (Site) getParent().getDefaultModelObject();
-				}
-			});
-		}
 	}
 	
 	class EditPanel extends Panel {

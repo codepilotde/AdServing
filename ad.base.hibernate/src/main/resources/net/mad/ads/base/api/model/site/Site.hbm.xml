@@ -25,5 +25,10 @@
             <column name="CREATED" />
         </property>
         
+        <set name="zones" inverse="true" cascade="all-delete-orphan">
+    		<key column="SITE"/>
+    		<one-to-many class="net.mad.ads.base.api.model.site.Zone"/>
+		</set>
+        
     </class>
 </hibernate-mapping>

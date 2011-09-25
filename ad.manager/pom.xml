@@ -50,7 +50,6 @@
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>2.2.4</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -179,6 +178,8 @@
 						<contextPath>/</contextPath>
 						<overrideDescriptor>${basedir}/server_root/config/override-web.xml</overrideDescriptor>
 					</webAppConfig>
+					<stopPort>9966</stopPort>
+    				<stopKey>foo</stopKey>	
 				</configuration>
 				<dependencies>
 					<dependency>

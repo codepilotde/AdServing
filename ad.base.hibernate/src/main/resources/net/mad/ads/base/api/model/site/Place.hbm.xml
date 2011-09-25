@@ -24,7 +24,7 @@
         </property>
 		
 		<many-to-one class="net.mad.ads.base.api.model.site.Zone"
-			fetch="join" name="zone">
+			fetch="join" name="zone" cascade="all" not-null="true">
 			<column name="ZONE" />
 		</many-to-one>
 	</class>

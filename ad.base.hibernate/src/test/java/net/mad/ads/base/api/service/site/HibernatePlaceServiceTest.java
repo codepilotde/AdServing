@@ -73,7 +73,7 @@ public class HibernatePlaceServiceTest {
 		
 		p = places.findByPrimaryKey(p.getId());
 		
-		assertNotNull(zo);
+		assertNotNull(p);
 		assertEquals("wrong description", "test place", p.getDescription());
 		assertEquals("wrong name", "place1", p.getName());
 	}
@@ -289,6 +289,34 @@ public class HibernatePlaceServiceTest {
 		
 		assertEquals(1, result.size());
 		assertEquals(z2.getId(), result.get(0).getZone().getId());
+	}
+	
+	@Test
+	public void testCascade() throws Exception {
+		Site s1 = new Site();
+		s1.setDescription("seite 1");
+		s1.setName("name 1");
+		s1.setUrl("http://eins.de");
+		sites.add(s1);
+		
+		Zone zo = new Zone();
+		zo.setDescription("Das ist eine Zone zum testen");
+		zo.setName("testzone");
+		zo.setSite(s1);
+		zones.add(zo);
+		
+		Place p = new Place();
+		p.setDescription("test place");
+		p.setName("place1");
+		p.setZone(zo);
+		places.add(p);
+	
+		
+		sites.delete(s1);
+		
+		assertEquals("site note deleted", 0, sites.findAll().size());
+		assertEquals("zone not deleted", 0, zones.findAll().size());
+		assertEquals("place note deleted", 0, places.findAll().size());
 	}
 
 }
