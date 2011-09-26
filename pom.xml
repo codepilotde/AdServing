@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 
 	<version>0.1</version>
+	<inceptionYear>2011</inceptionYear>
 
 	<licenses>
 		<license>
@@ -133,7 +134,40 @@
 				<artifactId>sonar-maven3-plugin</artifactId>
 				<version>2.11-RC1</version>
 			</plugin>
+			
+			<plugin>
+    <inherited>false</inherited>
+    <groupId>com.mycila.maven-license-plugin</groupId>
+    <artifactId>maven-license-plugin</artifactId>
+    <version>1.9.0</version>
+    <configuration>
+        <header>${basedir}/etc/license.txt</header>
+        <failIfMissing>true</failIfMissing>
+        <aggregate>true</aggregate>
+        <properties>
+            <name>Thorsten Marx</name>
+            <year>${project.inceptionYear}</year>
+            <email>thmarx@gmx.net</email>
+        </properties>
+        <excludes>
+            <exclude>LICENSE.txt</exclude>
+            <exclude>**/src/test/resources/**</exclude>
+            <exclude>**/src/test/data/**</exclude>
+        </excludes>
+    </configuration>
+    <executions>
+        <execution>
+            <id>check-headers</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>check</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+			
 		</plugins>
+		
 	</build>
 
 	<profiles>
@@ -187,5 +221,7 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+	
+	
 
 </project>
