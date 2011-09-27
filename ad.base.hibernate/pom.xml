@@ -11,10 +11,6 @@
 
 	<artifactId>ad.base.hibernate</artifactId>
 
-	<properties>
-		<hibernate-core-version>3.6.7.Final</hibernate-core-version>
-	</properties>
-
 	<dependencies>
 
 		<dependency>

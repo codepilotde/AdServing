@@ -9,6 +9,14 @@
 
 	<version>0.1</version>
 	<inceptionYear>2011</inceptionYear>
+	
+	<properties>
+<!-- 		<jetty.version>7.5.1.v20110908</jetty.version> -->
+		<jetty.version>8.0.1.v20110908</jetty.version>
+		<infinispan.version>5.0.1.FINAL</infinispan.version>
+		<wicket.version>1.5.0</wicket.version>
+		<hibernate-core-version>3.6.7.Final</hibernate-core-version>
+	</properties>
 
 	<licenses>
 		<license>
