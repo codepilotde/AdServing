@@ -11,13 +11,6 @@
 	<artifactId>ad.manager</artifactId>
 	<packaging>war</packaging>
 
-
-
-	<properties>
-		<wicket.version>1.5.0</wicket.version>
-		<jetty.version>8.0.1.v20110908</jetty.version>
-		<hibernate-core-version>3.6.7.Final</hibernate-core-version>
-	</properties>
 	<dependencies>
 		<!-- WICKET DEPENDENCIES -->
 		<dependency>

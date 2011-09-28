@@ -1,3 +1,20 @@
+/*
+ * Mad-Advertisement
+ * Copyright (C) 2011 Thorsten Marx <thmarx@gmx.net>
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 typeof madApi=="undefined"&&(madApi={onload:function(b){var a=window.onload;window.onload=typeof window.onload!="function"?b:function(){a();b()}},delegate:function(b,a,c){var e=c||arguments,g=function(){return b.apply(arguments.callee.target,e)};g.target=a;g.func=this;return g},position:function(b){var a=0,c=0;if(b.offsetParent){do a+=b.offsetLeft,c+=b.offsetTop;while(b=b.offsetParent)}return{left:a,top:c}},size:function(b){return{height:b.offsetHeight,width:b.offsetWidth}},isIE:function(){return window.navigator.userAgent.indexOf("MSIE ")>
 0?!0:!1},isBrowser:function(b,a){versionOk=browserOk=!1;browserOk=navigator.appName.indexOf(b)!=-1;versionOk=a==0?!0:a<=parseInt(navigator.appVersion);return browserOk&&versionOk},getWindowSize:function(){var b=0,a=0;if(typeof window.innerWidth=="number")b=window.innerWidth,a=window.innerHeight;else if(document.documentElement&&(document.documentElement.clientWidth||document.documentElement.clientHeight))b=document.documentElement.clientWidth,a=document.documentElement.clientHeight;else if(document.body&&
 (document.body.clientWidth||document.body.clientHeight))b=document.body.clientWidth,a=document.body.clientHeight;return{width:b,height:a}},getScrollXY:function(){var b=0,a=0;if(typeof window.pageYOffset=="number")a=window.pageYOffset,b=window.pageXOffset;else if(document.body&&(document.body.scrollLeft||document.body.scrollTop))a=document.body.scrollTop,b=document.body.scrollLeft;else if(document.documentElement&&(document.documentElement.scrollLeft||document.documentElement.scrollTop))a=document.documentElement.scrollTop,
