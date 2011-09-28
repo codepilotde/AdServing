@@ -1,0 +1,142 @@
+/* Default CSS Document */
+
+/** BODY ELEMENTS **/
+* {
+	
+}
+
+body {
+	
+}
+
+/** MAIN CONTAINERS **/
+div#container {
+	/*margin: 20px inherit;*/
+}
+
+div#header {
+	padding: 20px;
+	background-color: #f5f5f5;
+}
+
+div#header-in {
+	
+}
+
+div#content {
+	margin: 10px 0;
+}
+
+div#center {
+	padding: 20px;
+	padding-top: 5px;
+}
+
+div#center-in {
+	
+}
+
+/* div.column { */
+/* 	padding: 20px 0; */
+/* 	text-indent: 20px; */
+/* 	background-color: #f5f5f5; */
+/* } */
+
+div#left {
+	
+}
+
+div#right {
+	
+}
+
+div.column-in {
+	
+}
+
+div#footer {
+	margin: 10px 0;
+	padding: 20px;
+	background-color: #f5f5f5;
+}
+
+div#footer-in {
+	
+}
+
+/** SUB CONTAINERS **/
+* {
+	
+}
+
+/** LISTS **/
+* {
+	
+}
+
+/** TYPOGRAPHY **/
+* {
+	
+}
+
+/** FORMS **/
+* {
+	
+}
+
+/** END **/
+#infowrap li{
+	display:inline:
+}
+#infobox{
+	width:365px;
+	float:left;
+	margin-top:10px;
+}
+#infobox h3{
+	padding:5px;
+	font-size:14px;
+}
+.margin-left{
+	margin-left:5px;
+}
+#rightnow .reallynow {
+	padding: 5px;
+	font-size:14px;
+}
+#rightnow h3{
+	padding:2px;
+	padding: 0 10px;
+	font-size:14px;
+}
+#rightnow .reallynow span {
+	display: block;
+	text-align: left;
+	float: left;
+	padding:0 2px;
+	font-size:14px
+}
+#rightnow .reallynow a {
+	text-decoration:none;
+	display: block;
+	text-align: right;
+	float: right;
+	padding:0 0 0 18px;
+	margin-left:4px;
+	font-weight:normal;
+	font-size:12px;
+}
+#rightnow .reallynow a:hover{
+	text-decoration:underline;
+}
+#rightnow .youhave {
+	font-size:  12px;
+	padding: 10px;
+}
+#rightnow a {
+	font-weight: bold;
+}
+
+a, a:visited {
+color: #A43708;
+}

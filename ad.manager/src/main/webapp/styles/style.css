@@ -9,9 +9,10 @@
 body {
 	color: #333;
 	background-color: #fff;
-	font-family: "Arial", "Helvetica", sans-serif;
-	font-size: .75em;
+/* 	font-size: .75em; */
 	min-width: 1024px;
+	font-size: 12px;
+	font-family: Arial, Tahoma, Verdana;
 }
 
 /** MAIN CONTAINERS **/
@@ -39,6 +40,7 @@ span#leftmenu {
 
 div#content {
 	min-height: 300px;
+	max-width: 1024px;
 }
 
 div#center {
@@ -74,4 +76,31 @@ div#footer-in {
 .column div.overview.right {
 	float: right;
 	margin-left: 15px;
+}
+
+
+/* #content{ */
+/* 	width:740px; */
+/* 	float:left; */
+/* 	margin:10px 0 10px 0; */
+/* 	padding:10px; */
+/* } */
+#infobox{
+	border:1px solid #e8e7e1;
+}
+#infobox h3{
+	background:#f7f6f0;
+	border-bottom:1px solid #e8e7e1;
+	color:#a43708;
+}
+#rightnow {
+	border:1px solid #e8e7e1;
+}
+#rightnow .reallynow {
+	background:#f7f6f0;
+	color:#a43708;
+}
+#rightnow h3{
+	background:#f7f6f0;
+	border-bottom:1px solid #e8e7e1;
 }

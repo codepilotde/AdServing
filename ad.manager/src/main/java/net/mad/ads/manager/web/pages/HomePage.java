@@ -17,12 +17,20 @@
  */
 package net.mad.ads.manager.web.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.mad.ads.manager.web.pages.dashboard.Widget;
+import net.mad.ads.manager.web.pages.dashboard.panels.SimplePanel;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.odlabs.wiquery.ui.button.ButtonBehavior;
 
 /**
@@ -33,18 +41,28 @@ import org.odlabs.wiquery.ui.button.ButtonBehavior;
 public class HomePage extends BasePage {
 
 	private static final long serialVersionUID = 7275625409857017786L;
-	
-	public HomePage () {
+
+	public HomePage() {
 		super();
 
-		add(new AjaxLink<Void>("firstButton"){
+		add(new AjaxLink<Void>("firstButton") {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				System.out.println("firstbutton clicked");
 			}
 
-			
 		}.add(new ButtonBehavior()));
+
+		add(new SimplePanel("spanel"));
+
+		List<Widget> widgets = new ArrayList<Widget>();
+		widgets.add(new Widget("Simple Stat", new SimplePanel("panel")));
+		widgets.add(new Widget("Simple Stat", new SimplePanel("panel")));
+		add(new ListView<Widget>("widgets", widgets) {
+			protected void populateItem(ListItem<Widget> item) {
+				item.add((Widget) item.getModelObject());
+			}
+		});
 	}
 }
