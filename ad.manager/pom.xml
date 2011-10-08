@@ -10,7 +10,7 @@
 
 	<artifactId>ad.manager</artifactId>
 	<packaging>war</packaging>
-
+	
 	<dependencies>
 		<!-- WICKET DEPENDENCIES -->
 		<dependency>
