@@ -15,66 +15,49 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.base.api.model.site;
+package net.mad.ads.base.api.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import net.mad.ads.base.api.model.ExtendedBaseModel;
-
-/**
- * A Zone is something like a sub area of a page
- * 
- * Examples:
- * - Forum
- * - Blog
- * 
- * @author thorsten
- *
- */
-public class Zone extends ExtendedBaseModel {
+public abstract class ExtendedBaseModel extends BaseModel {
 	
 	/*
-	 * the parent site
+	 * the name of the object
 	 */
-	private Site site;
+	private String name;
+	/*
+	 * The description of the object 
+	 */
+	private String description;
 	
-	private Set<Place> places = new HashSet<Place>();
 	
-	public Zone () {
-	}
-
-	/**
-	 * @return the site
-	 */
-	public Site getSite() {
-		return site;
-	}
-
-	/**
-	 * @param site the site to set
-	 */
-	public void setSite(Site site) {
-		this.site = site;
-	}
-
-	/**
-	 * @return the places
-	 */
-	public Set<Place> getPlaces() {
-		return places;
-	}
-
-	/**
-	 * @param places the places to set
-	 */
-	public void setPlaces(Set<Place> places) {
-		this.places = places;
-	}
-
-		
 	
 	
 
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 }

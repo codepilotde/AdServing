@@ -17,6 +17,8 @@
  */
 package net.mad.ads.base.api.model.site;
 
+import net.mad.ads.base.api.model.ExtendedBaseModel;
+
 /**
  * Ein Place ist die kleinste Einheit um eine Zone weiter 
  * zu unterteilen
@@ -29,7 +31,7 @@ package net.mad.ads.base.api.model.site;
  * @author thorsten
  *
  */
-public class Place extends BasePageModel {
+public class Place extends ExtendedBaseModel {
 	
 	/*
 	 * the parent zone this place is in

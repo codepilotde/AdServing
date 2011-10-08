@@ -15,66 +15,61 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.base.api.model.site;
+package net.mad.ads.base.api.model.ads.condition;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.sql.Time;
 
-import net.mad.ads.base.api.model.ExtendedBaseModel;
+import net.mad.ads.base.api.model.BaseModel;
 
 /**
- * A Zone is something like a sub area of a page
+ * Describes the times of the day the banner should be delivered
  * 
- * Examples:
- * - Forum
- * - Blog
- * 
- * @author thorsten
+ * @author thmarx
  *
  */
-public class Zone extends ExtendedBaseModel {
+public class TimeCondition extends BaseModel {
+	private Time from;
+	private Time to;
 	
-	/*
-	 * the parent site
-	 */
-	private Site site;
-	
-	private Set<Place> places = new HashSet<Place>();
-	
-	public Zone () {
-	}
-
-	/**
-	 * @return the site
-	 */
-	public Site getSite() {
-		return site;
-	}
-
-	/**
-	 * @param site the site to set
-	 */
-	public void setSite(Site site) {
-		this.site = site;
-	}
-
-	/**
-	 * @return the places
-	 */
-	public Set<Place> getPlaces() {
-		return places;
-	}
-
-	/**
-	 * @param places the places to set
-	 */
-	public void setPlaces(Set<Place> places) {
-		this.places = places;
-	}
-
+	public TimeCondition () {
 		
+	}
 	
-	
+	public TimeCondition (Time from, Time to) {
+		super();
+		
+		this.to = to;
+		this.from = from;
+	}
 
+	/**
+	 * @return the from
+	 */
+	public Time getFrom() {
+		return from;
+	}
+
+	/**
+	 * @param from the from to set
+	 */
+	public void setFrom(Time from) {
+		this.from = from;
+	}
+
+	/**
+	 * @return the to
+	 */
+	public Time getTo() {
+		return to;
+	}
+
+	/**
+	 * @param to the to to set
+	 */
+	public void setTo(Time to) {
+		this.to = to;
+	}
+	
+	
+	
 }

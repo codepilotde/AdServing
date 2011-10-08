@@ -15,50 +15,62 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.base.api.model.site;
+package net.mad.ads.base.api.model.ads.condition;
+
+import java.sql.Time;
+import java.util.Date;
 
 import net.mad.ads.base.api.model.BaseModel;
 
-public abstract class BasePageModel extends BaseModel {
-	
-	/*
-	 * the name of the object
-	 */
-	private String name;
-	/*
-	 * The description of the object 
-	 */
-	private String description;
-	
+/**
+ * Describes the dates the banner should be delivered
+ * 
+ * @author thmarx
+ *
+ */
+public class DateCondition extends BaseModel {
+	private Date from;
+	private Date to;
 	
 	
+	public DateCondition () {
+		
+	}
 	
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
+	public DateCondition (Time from, Time to) {
+		super();
+		this.to = to;
+		this.from = from;
 	}
 
 	/**
-	 * @param description the description to set
+	 * @return the from
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public Date getFrom() {
+		return from;
 	}
 
 	/**
-	 * @return the name
+	 * @param from the from to set
 	 */
-	public String getName() {
-		return name;
+	public void setFrom(Date from) {
+		this.from = from;
 	}
 
 	/**
-	 * @param name the name to set
+	 * @return the to
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public Date getTo() {
+		return to;
 	}
+
+	/**
+	 * @param to the to to set
+	 */
+	public void setTo(Date to) {
+		this.to = to;
+	}
+	
+	
+	
 }

@@ -17,65 +17,80 @@
  */
 package net.mad.ads.base.api.model.ads;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import net.mad.ads.base.api.model.BaseModel;
+import net.mad.ads.base.api.model.ExtendedBaseModel;
+import net.mad.ads.base.api.model.ads.condition.DateCondition;
+import net.mad.ads.base.api.model.ads.condition.TimeCondition;
 import net.mad.ads.db.definition.ConditionDefinition;
 import net.mad.ads.db.enums.ConditionDefinitions;
 
 /**
  * Die Kampagne ist das Mutter-Objekt der Banner. Jedes
  * Banner liegt in einer Kampagne und übernimmt die Einstellung, die dort 
- * gemacht werden. So k�nnen Bedingung, wann die Banner angezeigt werden sollen
+ * gemacht werden. So können Bedingung, wann die Banner angezeigt werden sollen
  * global konfiguriert werden.
  * 
  * 
  * @author thorsten
  *
  */
-public class Campaign {
-	
-	private String id;
-	private String name;
+public class Campaign extends ExtendedBaseModel {
 	
 	/*
-	 * Bedingungen für die Anzeige des Banners
+	 * The times this campaign is valid
 	 */
-	private EnumMap<ConditionDefinitions, ConditionDefinition> conditionDefinitions = new EnumMap<ConditionDefinitions, ConditionDefinition>(ConditionDefinitions.class);
+	private Set<TimeCondition> timeConditions = new HashSet<TimeCondition>();
+	/*
+	 * The dates this campaign is valid
+	 */
+	private Set<DateCondition> dateConditions = new HashSet<DateCondition>();
 
-	/**
-	 * prüft, diese Kampagne irgendwelche Bedingungen hat
-	 * 
-	 * @return
-	 */
-	public boolean hasConditionDefinitions() {
-		return this.conditionDefinitions.isEmpty();
-	}
-	/**
-	 * Prüft, ob die Kampagne eine bestimmte Bedingung hat
-	 * 
-	 * @param key
-	 * @return
-	 */
-	public boolean hasConditionDefinition(ConditionDefinitions key) {
-		return this.conditionDefinitions.containsKey(key);
+	
+	public Campaign () {
+		
 	}
 
+
 	/**
-	 * Liefert eine bestimmte Bedingung dieser Kampagne
-	 * 
-	 * @param key
-	 * @return
+	 * @return the timeConditions
 	 */
-	public ConditionDefinition getConditionDefinition(ConditionDefinitions key) {
-		return this.conditionDefinitions.get(key);
+	public Set<TimeCondition> getTimeConditions() {
+		return timeConditions;
 	}
+
+
 	/**
-	 * Fügt der Kampagne eine neue Bedingugn hinzu
-	 * 
-	 * @param key
-	 * @param value
+	 * @param timeConditions the timeConditions to set
 	 */
-	public void addConditionDefinition(ConditionDefinitions key, ConditionDefinition value) {
-		this.conditionDefinitions.put(key, value);
+	public void setTimeConditions(Set<TimeCondition> timeConditions) {
+		this.timeConditions = timeConditions;
 	}
+
+
+	/**
+	 * @return the dateConditions
+	 */
+	public Set<DateCondition> getDateConditions() {
+		return dateConditions;
+	}
+
+
+	/**
+	 * @param dateConditions the dateConditions to set
+	 */
+	public void setDateConditions(Set<DateCondition> dateConditions) {
+		this.dateConditions = dateConditions;
+	}
+	
+	
+	
+	
+	
+	
 }

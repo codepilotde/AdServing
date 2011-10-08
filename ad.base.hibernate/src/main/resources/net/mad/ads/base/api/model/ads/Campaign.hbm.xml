@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+
+    Mad-Advertisement
+    Copyright (C) 2011 Thorsten Marx <thmarx@gmx.net>
+
+    This program is free software: you can redistribute it and/or modify it under
+    the terms of the GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option) any later
+    version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+    details.
+
+    You should have received a copy of the GNU General Public License along with
+    this program. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08.10.2011 19:54:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="net.mad.ads.base.api.model.ads.Campaign" entity-name="net.mad.ads.base.api.model.ads.Campaign" select-before-update="false" lazy="false">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="increment"/>
+        </id>
+        
+          <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="created" type="java.util.Date">
+            <column name="CREATED" />
+        </property>
+        
+        <set name="timeConditions" inverse="false" table="CAMPAIGN_TIMECONDITION" lazy="true" cascade="all">
+            <key column="CAMPAING_ID"/>
+            <many-to-many class="net.mad.ads.base.api.model.ads.condition.TimeCondition" column="CONDITION_ID"/>
+        </set>
+        <set name="dateConditions" inverse="false" table="CAMPAIGN_DATECONDITION" lazy="true" cascade="all">
+            <key column="CAMPAING_ID"/>
+            <many-to-many class="net.mad.ads.base.api.model.ads.condition.DateCondition" column="CONDITION_ID"/>
+        </set>
+    </class>
+</hibernate-mapping>

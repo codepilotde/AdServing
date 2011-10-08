@@ -22,6 +22,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.mad.ads.base.api.model.ExtendedBaseModel;
+
 /**
  * A simpe page object to manage different pages
  * 
@@ -32,7 +34,7 @@ import java.util.Set;
  * @author thorsten
  *
  */
-public class Site extends BasePageModel {
+public class Site extends ExtendedBaseModel {
 	/*
 	 * Url of the page
 	 */
