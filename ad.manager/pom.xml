@@ -91,17 +91,25 @@
 		<dependency>
 			<groupId>org.odlabs.wiquery</groupId>
 			<artifactId>wiquery-core</artifactId>
-			<version>${wiquery.version}}</version>
+			<version>${wiquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.odlabs.wiquery</groupId>
 			<artifactId>wiquery-jquery-ui</artifactId>
-			<version>${wiquery.version}}</version>
+			<version>${wiquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>nl.topicus</groupId>
 			<artifactId>whighcharts</artifactId>
 			<version>1.5-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.odlabs.wiquery</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.wicket</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 
