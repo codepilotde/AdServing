@@ -12,11 +12,11 @@
 
 	<properties>
 		<!-- <jetty.version>7.5.1.v20110908</jetty.version> -->
-		<jetty.version>8.0.3.v20111011</jetty.version>
+		<jetty.version>8.0.4.v20111024</jetty.version>
 		<infinispan.version>5.0.1.FINAL</infinispan.version>
-		<wicket.version>1.5.1</wicket.version>
-		<wiquery.version>1.5.1</wiquery.version>
-		<hibernate-core-version>3.6.7.Final</hibernate-core-version>
+		<wicket.version>1.5.2</wicket.version>
+		<wiquery.version>1.5.2</wiquery.version>
+		<hibernate-core-version>3.6.8.Final</hibernate-core-version>
 	</properties>
 
 	<licenses>

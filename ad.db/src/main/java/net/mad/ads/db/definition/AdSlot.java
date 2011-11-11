@@ -23,7 +23,7 @@ import com.google.common.base.Strings;
 
 
 /**
- * The AdSlot is the combination of a page, a zone and a place
+ * The AdSlot is the combination of a page and an unique place
  * 
  * @author thmarx
  *
@@ -31,26 +31,16 @@ import com.google.common.base.Strings;
 public class AdSlot {
 	
 	private String site;
-	private String zone;
 	private String place;
 	
-	public AdSlot (String site, String zone, String place) {
+	public AdSlot (String site, String place) {
 		this.site = site;
-		this.zone = zone;
 		this.place = place;
 	}
 	
 	public String getSite() {
 		return site;
 	}
-
-
-
-	public String getZone() {
-		return zone;
-	}
-
-
 
 	public String getPlace() {
 		return place;
@@ -59,7 +49,7 @@ public class AdSlot {
 	@Override
 	public String toString() {
 //		new Base
-		return Base16.encode(site) + "-" + Base16.encode(zone) + "-" + Base16.encode(place);
+		return Base16.encode(site) + "-" + Base16.encode(place);
 	}
 	
 	public static AdSlot fromString (String uuid) throws IllegalArgumentException{
@@ -71,19 +61,18 @@ public class AdSlot {
             throw new IllegalArgumentException("Invalid AdUUID string: " + uuid);
         }
         
-        AdSlot aduuid = new AdSlot(Base16.decode(components[0]), Base16.decode(components[1]), Base16.decode(components[2]));
+        AdSlot aduuid = new AdSlot(Base16.decode(components[0]), Base16.decode(components[1]));
         
         return aduuid;
 	}
 
 
 	public static void main (String []args) throws Exception {
-		AdSlot uuid = new AdSlot("1", "2", "3");
+		AdSlot uuid = new AdSlot("1", "2");
 		System.out.println(uuid.toString());
 		AdSlot uuid2 = AdSlot.fromString(uuid.toString());
 		
 		System.out.println(uuid2.getSite());
-		System.out.println(uuid2.getZone());
 		System.out.println(uuid2.getPlace());
 	}
 }
