@@ -36,10 +36,8 @@ import net.mad.ads.base.api.model.user.impl.AdminUser;
 import net.mad.ads.base.api.service.HibernateService;
 import net.mad.ads.base.api.service.site.HibernatePlaceService;
 import net.mad.ads.base.api.service.site.HibernateSiteService;
-import net.mad.ads.base.api.service.site.HibernateZoneService;
 import net.mad.ads.base.api.service.site.PlaceService;
 import net.mad.ads.base.api.service.site.SiteService;
-import net.mad.ads.base.api.service.site.ZoneService;
 import net.mad.ads.base.api.service.user.HibernateUserService;
 import net.mad.ads.base.api.service.user.UserService;
 import net.mad.ads.base.api.track.TrackingService;
@@ -127,10 +125,6 @@ public class StartupPlugIn implements ServletContextListener {
 			PlaceService places = new HibernatePlaceService();
 			places.open(context);
 			RuntimeContext.setPlaceService(places);
-			
-			ZoneService zones = new HibernateZoneService();
-			zones.open(context);
-			RuntimeContext.setZoneService(zones);
 			
 			User admin = users.get(1L);
 			if (admin == null) {

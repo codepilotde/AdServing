@@ -40,7 +40,7 @@ public class Site extends ExtendedBaseModel {
 	 */
 	private String url;
 
-	private Set<Zone> zones = new HashSet<Zone>();
+	private Set<Place> places = new HashSet<Place>();
 	
 	public Site () {
 	}
@@ -57,18 +57,18 @@ public class Site extends ExtendedBaseModel {
 
 
 	/**
-	 * @return the zones
+	 * @return the places
 	 */
-	public Set<Zone> getZones() {
-		return zones;
+	public Set<Place> getPlaces() {
+		return places;
 	}
 
 
 	/**
-	 * @param zones the zones to set
+	 * @param places the places to set
 	 */
-	public void setZones(Set<Zone> zones) {
-		this.zones = zones;
+	public void setPlaces(Set<Place> places) {
+		this.places = places;
 	}
 	
 	

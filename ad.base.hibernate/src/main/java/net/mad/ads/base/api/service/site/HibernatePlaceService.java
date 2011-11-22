@@ -32,7 +32,6 @@ import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.ResultList;
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
-import net.mad.ads.base.api.model.site.Zone;
 import net.mad.ads.base.api.model.user.User;
 import net.mad.ads.base.api.model.user.impl.AdminUser;
 import net.mad.ads.base.api.service.HibernateService;
@@ -74,7 +73,7 @@ public class HibernatePlaceService extends HibernateService implements
 
 			temp.setDescription(obj.getDescription());
 			temp.setName(obj.getName());
-			temp.setZone(obj.getZone());
+			temp.setSite(obj.getSite());
 
 			session.update(temp);
 
@@ -178,12 +177,12 @@ public class HibernatePlaceService extends HibernateService implements
 	}
 
 	@Override
-	public List<Place> findByZone(Zone zone) throws ServiceException {
-		return findByZone(zone, 0, 0);
+	public List<Place> findBySite(Site site) throws ServiceException {
+		return findBySite(site, 0, 0);
 	}
 
 	@Override
-	public List<Place> findByZone(Zone zone, int page, int perPage)
+	public List<Place> findBySite(Site site, int page, int perPage)
 			throws ServiceException {
 Session session = null;
 		
@@ -201,7 +200,7 @@ Session session = null;
 				crit.setFirstResult(offset);
 				crit.setMaxResults(perPage);
 			}
-			crit.createCriteria("zone", "z").add(Restrictions.eq("z.id", zone.getId()));
+			crit.createCriteria("site", "s").add(Restrictions.eq("s.id", site.getId()));
 			
 			
 			ResultList<Place> places = new ResultList<Place>();

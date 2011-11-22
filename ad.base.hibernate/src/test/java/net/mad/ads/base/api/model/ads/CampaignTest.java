@@ -27,11 +27,9 @@ import java.util.Date;
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.ads.condition.TimeCondition;
-import net.mad.ads.base.api.model.site.Zone;
 import net.mad.ads.base.api.service.HibernateService;
 import net.mad.ads.base.api.service.site.HibernatePlaceService;
 import net.mad.ads.base.api.service.site.HibernateSiteService;
-import net.mad.ads.base.api.service.site.HibernateZoneService;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;

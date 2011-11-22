@@ -60,10 +60,10 @@
 
 		<div class="overview right">
 			<h3 class="title">
-				<wicket:message key="overview.zones" />
+				<wicket:message key="overview.places" />
 			</h3>
-			<button wicket:id="newZone">
-				<wicket:message key="button.newzone" />
+			<button wicket:id="newPlace">
+				<wicket:message key="button.newplace" />
 			</button>
 			<br /> <br /> <span wicket:id="navigator">[dataview
 				navigator]</span>
@@ -78,17 +78,17 @@
 					<th>Name</th>
 					<th>Created</th>
 					<th>Editieren</th>
-					<th>Löschen</th>
+					<th>L&ouml;schen</th>
 				</tr>
 				<tr wicket:id="pageable" style="text-align: center;">
 					<td><span wicket:id="id">[id]</span></td>
 					<td><span wicket:id="name">[name]</span></td>
 					<td><span wicket:id="created">[created]</span></td>
-					<td><span wicket:id="editZone">[editZone]</span></td>
-					<td><a href="#" wicket:id="deleteZone"><wicket:message key="actionpanel.delete" /></a></td>
+					<td><span wicket:id="editPlace">[editPlace]</span></td>
+					<td><a href="#" wicket:id="deletePlace"><wicket:message key="actionpanel.delete" /></a></td>
 				</tr>
 			</table>
-			<div wicket:id="zoneFeedback"></div>
+			<div wicket:id="placeFeedback"></div>
 		</div>
 
 	</div>

@@ -42,9 +42,9 @@
             <column name="CREATED" />
         </property>
 		
-		<many-to-one class="net.mad.ads.base.api.model.site.Zone"
-			fetch="join" name="zone" cascade="all" not-null="true">
-			<column name="ZONE" />
+		<many-to-one class="net.mad.ads.base.api.model.site.Site"
+			fetch="join" name="site" cascade="all" not-null="true">
+			<column name="SITE" />
 		</many-to-one>
 	</class>
 </hibernate-mapping>

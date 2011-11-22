@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
-import net.mad.ads.base.api.model.site.Zone;
+
 import net.mad.ads.manager.RuntimeContext;
 import net.mad.ads.manager.web.pages.BasePage;
 
@@ -45,10 +45,10 @@ public class NewPlacePage extends BasePage {
 
 	private static final long serialVersionUID = -3079163120006125732L;
 
-	private Zone zone;
-	public NewPlacePage(final Zone zone) {
+	private Site site;
+	public NewPlacePage(final Site site) {
 		super();
-		this.zone = zone;
+		this.site = site;
 		
 		add(new FeedbackPanel("feedback"));
 		add(new InputForm("inputForm"));
@@ -56,7 +56,7 @@ public class NewPlacePage extends BasePage {
 		add(new Link<Void>("backLink") {
 			@Override
 			public void onClick() {
-				setResponsePage(new EditZonePage(zone));
+				setResponsePage(new EditSitePage(site));
 			}
 		}.add(new ButtonBehavior()));
 	}
@@ -96,7 +96,7 @@ public class NewPlacePage extends BasePage {
 			// Form validation successful. Display message showing edited model.
 			
 			Place place = (Place) getDefaultModelObject();
-			place.setZone(zone);
+			place.setSite(site);
 			try {
 				RuntimeContext.getPlaceService().add(place);
 				

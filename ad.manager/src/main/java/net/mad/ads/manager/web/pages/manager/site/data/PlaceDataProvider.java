@@ -22,7 +22,6 @@ import java.util.Iterator;
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
-import net.mad.ads.base.api.model.site.Zone;
 import net.mad.ads.manager.RuntimeContext;
 
 import org.apache.wicket.markup.repeater.data.IDataProvider;
@@ -34,9 +33,9 @@ public class PlaceDataProvider  implements IDataProvider<Place> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PlaceDataProvider.class);
 
-	private Zone zone;
-	public PlaceDataProvider (Zone zone) {
-		this.zone = zone;
+	private Site site;
+	public PlaceDataProvider (Site site) {
+		this.site = site;
 	}
 	
 	@Override
@@ -46,7 +45,7 @@ public class PlaceDataProvider  implements IDataProvider<Place> {
 	public Iterator<? extends Place> iterator(int first, int count) {
 		// TODO Auto-generated method stub
 		try {
-			return RuntimeContext.getPlaceService().findByZone(zone, first, count).iterator();
+			return RuntimeContext.getPlaceService().findBySite(site, first, count).iterator();
 		} catch (ServiceException e) {
 			logger.error("", e);
 		}
@@ -56,7 +55,7 @@ public class PlaceDataProvider  implements IDataProvider<Place> {
 	@Override
 	public int size() {
 		try {
-			return RuntimeContext.getPlaceService().findByZone(zone).size();
+			return RuntimeContext.getPlaceService().findBySite(site).size();
 		} catch (ServiceException e) {
 			logger.error("", e);
 		}

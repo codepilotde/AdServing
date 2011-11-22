@@ -25,7 +25,6 @@ import java.util.List;
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
-import net.mad.ads.base.api.model.site.Zone;
 import net.mad.ads.base.api.service.HibernateService;
 
 import org.hibernate.SessionFactory;
@@ -37,7 +36,6 @@ import org.junit.Test;
 public class HibernatePlaceServiceTest {
 	
 	private SessionFactory sessionFactory;
-	private ZoneService zones;
 	private PlaceService places;
 	private SiteService sites;
 	
@@ -47,10 +45,8 @@ public class HibernatePlaceServiceTest {
 			File hibernateConfig = new File("src/etc/hibernate.cfg.xml");
 			sessionFactory = new Configuration().configure(hibernateConfig).buildSessionFactory();
 			
-			zones = new HibernateZoneService();
 			BaseContext context = new BaseContext();
 			context.put(HibernateService.SESSION_FACTORY, sessionFactory);
-			zones.open(context);
 			
 			places = new HibernatePlaceService();
 			places.open(context);
@@ -75,16 +71,11 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine Zone zum testen");
-		zo.setName("testzone");
-		zo.setSite(s1);
-		zones.add(zo);
 		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 	
 		
@@ -103,16 +94,10 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine zone zum testen");
-		zo.setName("testzone");
-		zo.setSite(s1);
-		zones.add(zo);
-		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 	
 		p = places.findByPrimaryKey(p.getId());
@@ -135,16 +120,11 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine Zone zum testen");
-		zo.setName("testzone");
-		zo.setSite(s1);
-		zones.add(zo);
 		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 	
 		
@@ -164,16 +144,12 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine Zone zum testen");
-		zo.setName("testzone");
-		zo.setSite(s1);
-		zones.add(zo);
+		
 		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 	
 		
@@ -190,24 +166,19 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine Seite zum testen");
-		zo.setName("testseite");
-		zo.setSite(s1);
-		zones.add(zo);
 		
 		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);		
 		
 		
 		p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 		
 		assertEquals("", 2, places.findAll().size());
@@ -221,22 +192,17 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine Seite zum testen");
-		zo.setName("testseite");
-		zo.setSite(s1);
 		
-		zones.add(zo);
 		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 		p = new Place();
 		p.setDescription("test place");
 		p.setName("place2");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 		
 		
@@ -258,7 +224,7 @@ public class HibernatePlaceServiceTest {
 	}
 
 	@Test
-	public void testFindByZone() throws Exception {
+	public void testFindBySite() throws Exception {
 		Site s1 = new Site();
 		s1.setDescription("seite 1");
 		s1.setName("name 1");
@@ -271,41 +237,28 @@ public class HibernatePlaceServiceTest {
 		s2.setUrl("http://zwei.de");
 		sites.add(s2);
 		
-		Zone z1 = new Zone();
-		z1.setDescription("zone 1");
-		z1.setName("zona 1");
-		z1.setSite(s1);
-		
-		zones.add(z1);
-		
-		Zone z2 = new Zone();
-		z2.setDescription("zone 2");
-		z2.setName("zona 2");
-		z2.setSite(s2);
-		
-		zones.add(z2);
 		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(z1);
+		p.setSite(s1);
 		places.add(p);
 		
 		p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(z2);
+		p.setSite(s2);
 		places.add(p);
 		
-		List<Place> result = places.findByZone(z1);
+		List<Place> result = places.findBySite(s1);
 		
 		assertEquals(1, result.size());
-		assertEquals(z1.getId(), result.get(0).getZone().getId());
+		assertEquals(s1.getId(), result.get(0).getSite().getId());
 		
-		result = places.findByZone(z2);
+		result = places.findBySite(s2);
 		
 		assertEquals(1, result.size());
-		assertEquals(z2.getId(), result.get(0).getZone().getId());
+		assertEquals(s2.getId(), result.get(0).getSite().getId());
 	}
 	
 	@Test
@@ -316,23 +269,16 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine Zone zum testen");
-		zo.setName("testzone");
-		zo.setSite(s1);
-		zones.add(zo);
-		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 	
 		
 		sites.delete(s1);
 		
 		assertEquals("site note deleted", 0, sites.findAll().size());
-		assertEquals("zone not deleted", 0, zones.findAll().size());
 		assertEquals("place note deleted", 0, places.findAll().size());
 	}
 
@@ -344,21 +290,15 @@ public class HibernatePlaceServiceTest {
 		s1.setUrl("http://eins.de");
 		sites.add(s1);
 		
-		Zone zo = new Zone();
-		zo.setDescription("Das ist eine Zone zum testen");
-		zo.setName("testzone");
-		zo.setSite(s1);
-		zones.add(zo);
 		
 		Place p = new Place();
 		p.setDescription("test place");
 		p.setName("place1");
-		p.setZone(zo);
+		p.setSite(s1);
 		places.add(p);
 	
 		
 		assertEquals(1, sites.count());
-		assertEquals(1, zones.count());
 		assertEquals(1, places.count());
 	}
 }

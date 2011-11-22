@@ -21,7 +21,6 @@ import java.util.Properties;
 
 import net.mad.ads.base.api.service.site.PlaceService;
 import net.mad.ads.base.api.service.site.SiteService;
-import net.mad.ads.base.api.service.site.ZoneService;
 import net.mad.ads.base.api.service.user.UserService;
 import net.mad.ads.base.api.track.TrackingService;
 
@@ -43,7 +42,6 @@ public final class RuntimeContext {
 	
 	private static UserService userService;
 	private static SiteService siteService;
-	private static ZoneService zoneService;
 	private static PlaceService placeService;
 	private static TrackingService trackingService;
 	
@@ -61,20 +59,6 @@ public final class RuntimeContext {
 	 */
 	public static void setSiteService(SiteService siteService) {
 		RuntimeContext.siteService = siteService;
-	}
-
-	/**
-	 * @return the zoneService
-	 */
-	public static ZoneService getZoneService() {
-		return zoneService;
-	}
-
-	/**
-	 * @param zoneService the zoneService to set
-	 */
-	public static void setZoneService(ZoneService zoneService) {
-		RuntimeContext.zoneService = zoneService;
 	}
 
 	/**

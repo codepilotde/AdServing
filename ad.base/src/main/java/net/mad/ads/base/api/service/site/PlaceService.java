@@ -23,7 +23,7 @@ import java.util.List;
 import net.mad.ads.base.api.BaseContext;
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.site.Place;
-import net.mad.ads.base.api.model.site.Zone;
+import net.mad.ads.base.api.model.site.Site;
 
 public interface PlaceService {
 	
@@ -38,6 +38,6 @@ public interface PlaceService {
     public List<Place> findAll() throws ServiceException;
     public List<Place> findAll(int page, int perPage) throws ServiceException;
     
-    public List<Place> findByZone(Zone zone) throws ServiceException;
-    public List<Place> findByZone(Zone zone, int page, int perPage) throws ServiceException; 
+    public List<Place> findBySite(Site site) throws ServiceException;
+    public List<Place> findBySite(Site site, int page, int perPage) throws ServiceException; 
 }

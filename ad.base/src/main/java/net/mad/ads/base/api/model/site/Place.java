@@ -34,26 +34,26 @@ import net.mad.ads.base.api.model.ExtendedBaseModel;
 public class Place extends ExtendedBaseModel {
 	
 	/*
-	 * the parent zone this place is in
+	 * the parent site this place is in
 	 */
-	private Zone zone;
+	private Site site;
 	
 	public Place () {
 		
 	}
 
 	/**
-	 * @return the zone
+	 * @return the site
 	 */
-	public Zone getZone() {
-		return zone;
+	public Site getSite() {
+		return site;
 	}
 
 	/**
-	 * @param zone the zone to set
+	 * @param site the site to set
 	 */
-	public void setZone(Zone zone) {
-		this.zone = zone;
+	public void setSite(Site site) {
+		this.site = site;
 	}
 	
 	

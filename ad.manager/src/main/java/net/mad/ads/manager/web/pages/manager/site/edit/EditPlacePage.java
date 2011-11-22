@@ -47,7 +47,6 @@ import net.mad.ads.manager.utils.DateUtil;
 import net.mad.ads.manager.web.pages.BasePage;
 import net.mad.ads.manager.web.pages.manager.site.SiteManagerPage;
 import net.mad.ads.manager.web.pages.manager.site.data.SiteDataProvider;
-import net.mad.ads.manager.web.pages.manager.site.data.ZoneDataProvider;
 
 public class EditPlacePage extends BasePage {
 	
@@ -66,7 +65,7 @@ public class EditPlacePage extends BasePage {
 		add(new Link<Void>("backLink") {
 			@Override
 			public void onClick() {
-				setResponsePage(new EditZonePage(place.getZone()));
+				setResponsePage(new EditSitePage(place.getSite()));
 			}
 		}.add(new ButtonBehavior()));
 	}

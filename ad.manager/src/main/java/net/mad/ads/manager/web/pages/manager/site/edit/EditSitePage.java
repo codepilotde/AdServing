@@ -40,15 +40,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
-import net.mad.ads.base.api.model.site.Zone;
 import net.mad.ads.manager.RuntimeContext;
 import net.mad.ads.manager.utils.DateUtil;
 import net.mad.ads.manager.web.component.confirm.ConfirmLink;
 import net.mad.ads.manager.web.pages.BasePage;
 import net.mad.ads.manager.web.pages.manager.site.SiteManagerPage;
+import net.mad.ads.manager.web.pages.manager.site.data.PlaceDataProvider;
 import net.mad.ads.manager.web.pages.manager.site.data.SiteDataProvider;
-import net.mad.ads.manager.web.pages.manager.site.data.ZoneDataProvider;
 
 public class EditSitePage extends BasePage {
 
@@ -65,13 +65,13 @@ public class EditSitePage extends BasePage {
 		add(new FeedbackPanel("feedback"));
 		add(new InputForm("inputForm", site));
 
-		final FeedbackPanel zoneFeed = new FeedbackPanel("zoneFeedback");
-		add(zoneFeed);
+		final FeedbackPanel placeFeed = new FeedbackPanel("placeFeedback");
+		add(placeFeed);
 
-		add(new Link<Void>("newZone") {
+		add(new Link<Void>("newPlace") {
 			@Override
 			public void onClick() {
-				setResponsePage(new NewZonePage(site));
+				setResponsePage(new NewPlacePage(site));
 			}
 		}.add(new ButtonBehavior()));
 
@@ -82,30 +82,30 @@ public class EditSitePage extends BasePage {
 			}
 		}.add(new ButtonBehavior()));
 
-		DataView<Zone> dataView = new DataView<Zone>("pageable",
-				new ZoneDataProvider(site)) {
+		DataView<Place> dataView = new DataView<Place>("pageable",
+				new PlaceDataProvider(site)) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void populateItem(final Item<Zone> item) {
-				final Zone zone = item.getModelObject();
-				item.add(new Label("id", String.valueOf(zone.getId())));
-				item.add(new Label("name", zone.getName()));
+			protected void populateItem(final Item<Place> item) {
+				final Place place = item.getModelObject();
+				item.add(new Label("id", String.valueOf(place.getId())));
+				item.add(new Label("name", place.getName()));
 				item.add(new Label("created",
-						DateUtil.format(zone.getCreated())));
-				item.add(new EditPanel("editZone", item.getModel()));
+						DateUtil.format(place.getCreated())));
+				item.add(new EditPanel("editPlace", item.getModel()));
 
-				item.add(new ConfirmLink<Void>("deleteZone", getPage()
+				item.add(new ConfirmLink<Void>("deletePlace", getPage()
 						.getString("dialog.confirm.message")) {
 					@Override
 					public void onClick() {
 						try {
-							RuntimeContext.getZoneService().delete(zone);
+							RuntimeContext.getPlaceService().delete(place);
 							setResponsePage(getPage());
 						} catch (Exception e) {
 							logger.error("", e);
-							zoneFeed.error(getPage().getString(
-									"zone.delete.error"));
+							placeFeed.error(getPage().getString(
+									"place.delete.error"));
 						}
 					}
 				});
@@ -183,12 +183,12 @@ public class EditSitePage extends BasePage {
 		 * @param model
 		 *            model for contact
 		 */
-		public EditPanel(String id, IModel<Zone> model) {
+		public EditPanel(String id, IModel<Place> model) {
 			super(id, model);
 			add(new Link<Void>("edit") {
 				@Override
 				public void onClick() {
-					setResponsePage(new EditZonePage((Zone) getParent()
+					setResponsePage(new EditPlacePage((Place) getParent()
 							.getDefaultModelObject()));
 				}
 			});

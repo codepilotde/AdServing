@@ -19,10 +19,8 @@ package net.mad.ads.manager.web.pages.manager.site.data;
 
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
-import net.mad.ads.base.api.model.site.Zone;
 import net.mad.ads.base.api.service.site.PlaceService;
 import net.mad.ads.base.api.service.site.SiteService;
-import net.mad.ads.base.api.service.site.ZoneService;
 import net.mad.ads.manager.RuntimeContext;
 
 import org.apache.wicket.model.LoadableDetachableModel;
