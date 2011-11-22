@@ -69,7 +69,7 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
 
-        <mapping resource="net/mad/ads/base/api/model/ads/Advertisement.hbm.xml"/>
+<!--         <mapping resource="net/mad/ads/base/api/model/ads/Advertisement.hbm.xml"/> -->
         <mapping resource="net/mad/ads/base/api/model/user/AdminUser.hbm.xml"/>
         
         

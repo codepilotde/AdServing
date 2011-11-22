@@ -87,7 +87,9 @@ public class StartupPlugIn implements ServletContextListener {
 			if (System.getProperties().containsKey("mad.home")) {
 				configDirectory = System.getProperty("mad.home");
 			}
-			
+			if (configDirectory.endsWith(".")) {
+				configDirectory = configDirectory.substring(0, configDirectory.length() - 1);
+			}
 			if (!configDirectory.endsWith("/")) {
 				configDirectory += "/";
 			}

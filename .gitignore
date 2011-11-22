@@ -1,6 +1,7 @@
 
 /.project
 /.settings
+/*.log
 /ad.base/.project
 /ad.base/.settings
 /ad.base/target
