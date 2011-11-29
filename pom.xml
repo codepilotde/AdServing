@@ -17,6 +17,7 @@
 		<wicket.version>1.5.3</wicket.version>
 		<wiquery.version>1.5.3</wiquery.version>
 		<hibernate-core-version>3.6.8.Final</hibernate-core-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<licenses>
