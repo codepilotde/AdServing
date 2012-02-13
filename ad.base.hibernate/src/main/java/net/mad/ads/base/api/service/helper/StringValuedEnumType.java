@@ -28,6 +28,7 @@ import java.lang.reflect.*;
 import net.mad.ads.common.util.StringValuedEnum;
 
 import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.EnhancedUserType;
 import org.hibernate.usertype.ParameterizedType;
  
@@ -171,5 +172,20 @@ public class StringValuedEnumType <T extends Enum<T> & StringValuedEnum>
         String name = getNameFromValue(enumClass, xmlValue);
         return Enum.valueOf(enumClass, name);
     }
+
+	@Override
+	public Object nullSafeGet(ResultSet arg0, String[] arg1,
+			SessionImplementor arg2, Object arg3) throws HibernateException,
+			SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void nullSafeSet(PreparedStatement arg0, Object arg1, int arg2,
+			SessionImplementor arg3) throws HibernateException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
         
 }
