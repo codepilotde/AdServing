@@ -24,7 +24,7 @@ import net.mad.ads.db.db.request.AdRequest;
 import net.mad.ads.db.definition.BannerDefinition;
 
 /**
- * Filter werden nach der Suche �ber das Ergebnis laufen gelassen. Dadurch können 
+ * Filter werden nach der Suche  über das Ergebnis laufen gelassen. Dadurch können 
  * noch Banner gefiltert werden, die eine Bestimmte Eigenschaft nicht erfüllen
  * 
  * @author thmarx

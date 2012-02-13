@@ -95,19 +95,22 @@ public class ImpressionPercentageSingleBannerSelector implements BannerSelector 
 		List<BannerDefinition> bannerList = new ArrayList<BannerDefinition>();
 		
 		/*
-		 * the smallest percentage view value used to select banner to choose the delivered banner 
+		 * the smallest percentage view value used to select banner to choose the delivered banner
+		 * 
+		 *  The to steps to detect the smallest value and select all possible banners can be done in one step
+		 *  because the list of banners is ordered by the view-percentage
 		 */
 		float sma = -2f;
 		for (BannerDecorator bd : decorators) {
-			// Every banner without exiration has -1 as percentage
+			// Every banner without expiration has -1 as percentage
 			if (bd.getPercentage() == -1f) {
 				bannerList.add(bd.getBanner());
 			} else if (sma == -2f) {
-				// first banner with vie expiration is used as minimum
+				// first banner with view expiration is used as minimum
 				sma = bd.getPercentage();
 				bannerList.add(bd.getBanner());
 			} else if (bd.getPercentage() <= sma) {
-				// take all banners small or equals to the minimum
+				// take all banners smaller or equals to the minimum
 				bannerList.add(bd.getBanner());
 			} else if (bd.getPercentage() > sma) {
 				// reached the bigger banners
