@@ -61,7 +61,7 @@ public class DistanceCondition implements Condition, Filter {
 				}
 				
 				/*
-				 * Positionen f�r Banner und Request
+				 * Positionen für Banner und Request
 				 */
 				LatLng bannerPOS = new LatLng(dcdef.getGeoLocation().getLatitude(), dcdef.getGeoLocation().getLongitude());
 				LatLng requestPOS = new LatLng(request.getGeoLocation().getLatitude(), request.getGeoLocation().getLongitude());

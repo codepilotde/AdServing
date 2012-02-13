@@ -27,6 +27,7 @@ import net.mad.ads.db.condition.impl.DateCondition;
 import net.mad.ads.db.condition.impl.DayCondition;
 import net.mad.ads.db.condition.impl.DistanceCondition;
 import net.mad.ads.db.condition.impl.ExcludeSiteCondition;
+import net.mad.ads.db.condition.impl.KeyValueCondition;
 import net.mad.ads.db.condition.impl.KeywordCondition;
 import net.mad.ads.db.condition.impl.SiteCondition;
 import net.mad.ads.db.condition.impl.StateCondition;
@@ -53,9 +54,13 @@ public class AdDBManager {
 		conditions.add(new DayCondition());
 		conditions.add(new TimeCondition());
 		conditions.add(new KeywordCondition());
+		conditions.add(new KeyValueCondition());
 		conditions.add(new SiteCondition());
 		conditions.add(new AdSlotCondition());
 		// wieso ist diese ExcludeCondition auskommentiert
+		/*
+		 * wahrscheinlich muss die Klasse ExcludeCondition noch angepasst werden, da dort die selben Element wir in Site verwendet werden
+		 */
 //		conditions.add(new ExcludeSiteCondition());
 		conditions.add(new DistanceCondition());
 	}

@@ -44,6 +44,8 @@ public final class AdDBConstants {
 	
 	public static final String ADDB_BANNER_KEYWORD = "banner_keyword";
 	public static final String ADDB_BANNER_KEYWORD_ALL = "all";
+	public static final String ADDB_BANNER_KEYVALUE = "banner_keyvalue";
+	public static final String ADDB_BANNER_KEYVALUE_ALL = "all";
 	public static final String ADDB_BANNER_SITE = "banner_site";
 	public static final String ADDB_BANNER_SITE_ALL = "all";
 	

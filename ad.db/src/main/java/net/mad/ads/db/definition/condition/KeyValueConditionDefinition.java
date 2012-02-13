@@ -15,23 +15,35 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.db.enums;
+package net.mad.ads.db.definition.condition;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public enum ConditionDefinitions implements Serializable {
-	TIME,
-	DAY,
-	DATE,
-	COUNTRY,
-	STATE,
-	SITE,
-	EXCLUDE_SITE,
-	KEYWORD,
-	KEYVALUE,
-	DISTANCE,
-	ADSLOT,
+import net.mad.ads.db.definition.ConditionDefinition;
+import net.mad.ads.db.definition.KeyValue;
+import net.mad.ads.db.definition.Keyword;
+/**
+ * Eine einfache Key-Value Bedingung
+ * 
+ * kann z.B. verwendet werden um Default-Banner zu definieren
+ * 
+ * @author tmarx
+ *
+ */
+public class KeyValueConditionDefinition implements ConditionDefinition {
+
+	private List<KeyValue> keyvalues = new ArrayList<KeyValue>();
 	
-	VIEW_EXPIRATION,
-	CLICK_EXPIRATION
+	public KeyValueConditionDefinition () {
+		
+	}
+
+	public List<KeyValue> getKeyValues() {
+		return keyvalues;
+	}
+	
+	public void addKeyValue (KeyValue kv) {
+		this.keyvalues.add(kv);
+	}
 }

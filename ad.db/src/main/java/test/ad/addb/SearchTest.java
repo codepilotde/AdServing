@@ -261,8 +261,7 @@ public class SearchTest {
 		b.addConditionDefinition(ConditionDefinitions.COUNTRY, cdef);
 
 		b.setFormat(BannerFormat.FULL_BANNER);
-		Keyword kw = new Keyword();
-		kw.setWord("Esprit");
+		Keyword kw = new Keyword("Esprit");
 		KeywordConditionDefinition kdef = new KeywordConditionDefinition();
 		kdef.addKeyword(kw);
 		b.addConditionDefinition(ConditionDefinitions.KEYWORD, cdef);

@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import net.mad.ads.db.AdDBConstants;
 import net.mad.ads.db.definition.AdSlot;
 import net.mad.ads.db.definition.BannerDefinition;
+import net.mad.ads.db.definition.KeyValue;
 import net.mad.ads.db.definition.Keyword;
 import net.mad.ads.db.definition.condition.AdSlotConditionDefinition;
 import net.mad.ads.db.definition.condition.ClickExpirationConditionDefinition;
@@ -34,6 +35,7 @@ import net.mad.ads.db.definition.condition.DateConditionDefinition;
 import net.mad.ads.db.definition.condition.DayConditionDefinition;
 import net.mad.ads.db.definition.condition.DistanceConditionDefinition;
 import net.mad.ads.db.definition.condition.ExcludeSiteConditionDefinition;
+import net.mad.ads.db.definition.condition.KeyValueConditionDefinition;
 import net.mad.ads.db.definition.condition.KeywordConditionDefinition;
 import net.mad.ads.db.definition.condition.SiteConditionDefinition;
 import net.mad.ads.db.definition.condition.StateConditionDefinition;
@@ -78,8 +80,7 @@ public class ConditionReader {
 			definition.addConditionDefinition(ConditionDefinitions.COUNTRY, cdef);
 			
 			// keine Keyword Einschwänkung für dieses Banner
-			Keyword kw = new Keyword();
-			kw.setWord(AdDBConstants.ADDB_BANNER_KEYWORD_ALL);
+			Keyword kw = new Keyword(AdDBConstants.ADDB_BANNER_KEYWORD_ALL);
 			
 			KeywordConditionDefinition kdef = new KeywordConditionDefinition();
 			kdef.addKeyword(kw);
@@ -254,8 +255,7 @@ public class ConditionReader {
 					for (Element e : childs) {
 						String text = e.getTextTrim();
 						try {
-							Keyword kw = new Keyword();
-							kw.setWord(text);
+							Keyword kw = new Keyword(text);
 							kdef.addKeyword(kw);
 						} catch (Exception ex) {
 							ex.printStackTrace();
@@ -264,13 +264,40 @@ public class ConditionReader {
 					definition.addConditionDefinition(ConditionDefinitions.KEYWORD, kdef);
 				}
 			} else {
-				Keyword kw = new Keyword();
-				kw.setWord(AdDBConstants.ADDB_BANNER_KEYWORD_ALL);
+				Keyword kw = new Keyword(AdDBConstants.ADDB_BANNER_KEYWORD_ALL);
 				
 				KeywordConditionDefinition kdef = new KeywordConditionDefinition();
 				kdef.addKeyword(kw);
 				definition.addConditionDefinition(ConditionDefinitions.KEYWORD, kdef);
 			}
+			
+			elem = conditions.getChild("keyvalues");
+			if (elem != null) {
+				List<Element> childs = elem.getChildren("kv");
+				if (childs != null) {
+					KeyValueConditionDefinition kdef = new KeyValueConditionDefinition();
+					
+					for (Element e : childs) {
+						String key = e.getAttributeValue("key");
+						String value = e.getAttributeValue("value");
+						try {
+							KeyValue kw = new KeyValue(key, value);
+							kdef.addKeyValue(kw);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+					definition.addConditionDefinition(ConditionDefinitions.KEYVALUE, kdef);
+				}
+			} else {
+				KeyValue kw = new KeyValue(AdDBConstants.ADDB_BANNER_KEYVALUE, AdDBConstants.ADDB_BANNER_KEYVALUE_ALL);
+				
+				KeyValueConditionDefinition kdef = new KeyValueConditionDefinition();
+				kdef.addKeyValue(kw);
+				definition.addConditionDefinition(ConditionDefinitions.KEYVALUE, kdef);
+			}
+			
+			
 			elem = conditions.getChild("sites");
 			if (elem != null) {
 				List<Element> childs = elem.getChildren("site");

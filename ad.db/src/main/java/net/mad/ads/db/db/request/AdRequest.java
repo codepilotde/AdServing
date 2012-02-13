@@ -19,7 +19,9 @@ package net.mad.ads.db.db.request;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.mad.ads.db.enums.BannerFormat;
 import net.mad.ads.db.enums.BannerType;
@@ -67,6 +69,11 @@ public class AdRequest {
 	 * Keywords für die Banner
 	 */
 	private List<String> keywords = new ArrayList<String>();
+	/*
+	 * Key-Values
+	 */
+	private Map<String, String> keyValues = new HashMap<String, String>();
+	
 	/*
 	 * ID der Seite auf der das Banner eingebunden wird
 	 */
@@ -131,9 +138,13 @@ public class AdRequest {
 	public final List<String> getKeywords() {
 		return keywords;
 	}
-
+	
 	public final void setKeywords(List<String> keywords) {
 		this.keywords = keywords;
+	}
+	
+	public final Map<String, String> getKeyValues () {
+		return this.keyValues;
 	}
 
 
@@ -205,6 +216,6 @@ public class AdRequest {
 		return (
 					day != null || state != null || time != null || 
 					date != null || country != null || (keywords != null && keywords.size() > 0) || 
-					site != null || geoLocation != null);
+					site != null || geoLocation != null || ((keyValues != null && !keyValues.isEmpty())));
 	}
 }

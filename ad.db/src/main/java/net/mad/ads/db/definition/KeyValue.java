@@ -15,23 +15,35 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.db.enums;
+package net.mad.ads.db.definition;
 
 import java.io.Serializable;
 
-public enum ConditionDefinitions implements Serializable {
-	TIME,
-	DAY,
-	DATE,
-	COUNTRY,
-	STATE,
-	SITE,
-	EXCLUDE_SITE,
-	KEYWORD,
-	KEYVALUE,
-	DISTANCE,
-	ADSLOT,
+public class KeyValue implements Serializable {
+	public final String key;
+	public final String value;
 	
-	VIEW_EXPIRATION,
-	CLICK_EXPIRATION
+	public KeyValue (String key, String value) {
+		this.key = key;
+		this.value = value;
+	}
+
+//	public String getKey() {
+//		return key;
+//	}
+//
+//	public void setKey(String key) {
+//		this.key = key;
+//	}
+//
+//	public String getValue() {
+//		return value;
+//	}
+//
+//	public void setValue(String value) {
+//		this.value = value;
+//	}
+	
+	
+
 }

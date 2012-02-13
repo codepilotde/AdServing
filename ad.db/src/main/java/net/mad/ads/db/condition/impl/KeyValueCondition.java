@@ -30,7 +30,9 @@ import net.mad.ads.db.AdDBConstants;
 import net.mad.ads.db.condition.Condition;
 import net.mad.ads.db.db.request.AdRequest;
 import net.mad.ads.db.definition.BannerDefinition;
+import net.mad.ads.db.definition.KeyValue;
 import net.mad.ads.db.definition.Keyword;
+import net.mad.ads.db.definition.condition.KeyValueConditionDefinition;
 import net.mad.ads.db.definition.condition.KeywordConditionDefinition;
 import net.mad.ads.db.enums.ConditionDefinitions;
 import net.mad.ads.db.enums.Country;
@@ -43,11 +45,11 @@ import net.mad.ads.db.enums.Country;
  * @author tmarx
  *
  */
-public class KeywordCondition implements Condition {
+public class KeyValueCondition implements Condition {
 
 	@Override
 	public void addQuery(AdRequest request, BooleanQuery mainQuery) {
-		if (request.getKeywords() == null || request.getKeywords().size() == 0) {
+		if (request.getKeyValues() == null || request.getKeyValues().isEmpty()) {
 			return;
 		}
 		
@@ -55,12 +57,12 @@ public class KeywordCondition implements Condition {
 		
 		BooleanQuery temp = new BooleanQuery();
 		
-		// keywords einfügen
-		for (String k : request.getKeywords()) {
-			temp.add(new TermQuery(new Term(AdDBConstants.ADDB_BANNER_KEYWORD, k)), Occur.SHOULD);
+		// keyvalues einfügen
+		for (String k : request.getKeyValues().keySet()) {
+			temp.add(new TermQuery(new Term(AdDBConstants.ADDB_BANNER_KEYVALUE + "_" + k , request.getKeyValues().get(k))), Occur.SHOULD);
 		}
-		// all keywords einfügen
-		temp.add(new TermQuery(new Term(AdDBConstants.ADDB_BANNER_KEYWORD, AdDBConstants.ADDB_BANNER_KEYWORD_ALL)), Occur.SHOULD);
+		// all keyvalues einfügen
+		temp.add(new TermQuery(new Term(AdDBConstants.ADDB_BANNER_KEYVALUE, AdDBConstants.ADDB_BANNER_KEYVALUE_ALL)), Occur.SHOULD);
 		
 		query.add(temp, Occur.MUST);
 		mainQuery.add(query, Occur.MUST);
@@ -69,22 +71,22 @@ public class KeywordCondition implements Condition {
 	@Override
 	public void addFields(Document bannerDoc, BannerDefinition bannerDefinition) {
 		
-		KeywordConditionDefinition kdef = null;
-		if (bannerDefinition.hasConditionDefinition(ConditionDefinitions.KEYWORD)) {
-			kdef = (KeywordConditionDefinition) bannerDefinition.getConditionDefinition(ConditionDefinitions.KEYWORD);
+		KeyValueConditionDefinition kdef = null;
+		if (bannerDefinition.hasConditionDefinition(ConditionDefinitions.KEYVALUE)) {
+			kdef = (KeyValueConditionDefinition) bannerDefinition.getConditionDefinition(ConditionDefinitions.KEYVALUE);
 		}
 		
-		if (kdef != null && kdef.getKeywords().size() > 0) {
-			// keywords im Dokument speichern
-			List<Keyword> kws = kdef.getKeywords();
-			for (Keyword k : kws) {
-				bannerDoc.add(new Field(AdDBConstants.ADDB_BANNER_KEYWORD, k.word, Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
+		if (kdef != null && !kdef.getKeyValues().isEmpty()) {
+			// keyvalues im Dokument speichern
+			List<KeyValue> kws = kdef.getKeyValues();
+			for (KeyValue k : kws) {
+				bannerDoc.add(new Field(AdDBConstants.ADDB_BANNER_KEYVALUE + "_" + k.key, k.value, Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
 			}
 		} else {
 			/*
-			 * für alle Banner ohne angegebenem Keyword wird das default ALL-Keyword gesetzt
+			 * für alle Banner ohne angegebenem KeyValue wird das default ALL-KeyValue gesetzt
 			 */
-			bannerDoc.add(new Field(AdDBConstants.ADDB_BANNER_KEYWORD, AdDBConstants.ADDB_BANNER_KEYWORD_ALL, Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
+			bannerDoc.add(new Field(AdDBConstants.ADDB_BANNER_KEYVALUE, AdDBConstants.ADDB_BANNER_KEYVALUE_ALL, Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
 		}
 	}
 
