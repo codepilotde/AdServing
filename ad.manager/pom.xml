@@ -184,13 +184,13 @@
 					<stopPort>9966</stopPort>
     				<stopKey>foo</stopKey>	
 				</configuration>
-<!-- 				<dependencies> -->
-<!-- 					<dependency> -->
-<!-- 						<groupId>com.h2database</groupId> -->
-<!-- 						<artifactId>h2</artifactId> -->
-<!-- 						<version>1.3.160</version> -->
-<!-- 					</dependency> -->
-<!-- 				</dependencies> -->
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>1.3.160</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
