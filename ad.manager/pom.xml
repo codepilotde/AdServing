@@ -105,7 +105,7 @@
 		<dependency>
 			<groupId>nl.topicus</groupId>
 			<artifactId>whighcharts</artifactId>
-			<version>1.5-SNAPSHOT</version>
+			<version>1.5.3.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.odlabs.wiquery</groupId>
