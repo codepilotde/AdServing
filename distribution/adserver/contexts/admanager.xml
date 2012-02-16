@@ -19,7 +19,7 @@ detected.
   <!--  + contextPath                                                  -->
   <!--  + war OR resourceBase                                          -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <Set name="contextPath">/</Set>
+  <Set name="contextPath">/manager</Set>
   <Set name="war"><SystemProperty name="jetty.home" default="."/>/content/ad.manager.war</Set>
   <!--<Set name="resourceBase"><SystemProperty name="jetty.home" default="."/>/content/ad.manager/</Set>-->
 
