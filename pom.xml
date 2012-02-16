@@ -198,6 +198,7 @@
 						<exclude>LICENSE.txt</exclude>
 						<exclude>**/src/test/resources/**</exclude>
 						<exclude>**/src/test/data/**</exclude>
+						<exclude>distribution/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>

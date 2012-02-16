@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+
+    Mad-Advertisement
+    Copyright (C) 2011 Thorsten Marx <thmarx@gmx.net>
+
+    This program is free software: you can redistribute it and/or modify it under
+    the terms of the GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option) any later
+    version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+    details.
+
+    You should have received a copy of the GNU General Public License along with
+    this program. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+
+<!-- =============================================================== -->
+<!-- Configure the Jetty Server -->
+<!-- -->
+<!-- Documentation of this file format can be found at: -->
+<!-- http://wiki.eclipse.org/Jetty/Reference/jetty.xml_syntax -->
+<!-- -->
+<!-- Additional configuration files are available in $JETTY_HOME/etc -->
+<!-- and can be mixed in. For example: -->
+<!-- java -jar start.jar etc/jetty-ssl.xml -->
+<!-- -->
+<!-- See start.ini file for the default configuraton files -->
+<!-- =============================================================== -->
+
+
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+	<New id="myds" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/trackingds</Arg>
+		<Arg>
+			<New class="org.h2.jdbcx.JdbcDataSource">
+				<Set name="URL">jdbc:h2:mem:testdb</Set>
+				<Set name="user">sa</Set>
+				<Set name="password">sa</Set>
+			</New>
+		</Arg>
+	</New>
+</Configure>

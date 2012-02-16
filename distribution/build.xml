@@ -18,16 +18,64 @@
 
 -->
 <project default="distribute">
+
+	<property name="version" value="0.1" />
+	<property name="jetty.version" value="8.1.0.v20120127" />
+
+
 	<target name="distribute">
 		<echo>maven build</echo>
-		
-		<exec dir="../" executable="cmd">
-			<arg value="/c"/>
-			<arg value="mvn.bat"/>
+
+		<!--exec dir="../" executable="cmd">
+			<arg value="/c" />
+			<arg value="mvn.bat" />
 			<arg line="clean package install" />
-		</exec>
+		</exec-->
+
+		<!--exec dir="../" executable="bash">
+			<arg value="mvn" />
+			<arg line="clean package install" />
+		</exec-->
+
+		<echo>unzip jetty-distribution ${jetty.version}</echo>
+
+		<unzip src="jetty-distribution-${jetty.version}.zip" dest="./temp/" />
 		
+		<delete dir="dist-${version}" />
+		<mkdir dir="dist-${version}"/>
+		<copy todir="dist-${version}">
+			<fileset dir="adserver"></fileset>
+			<fileset dir="temp/jetty-distribution-${jetty.version}">
+				<exclude name="**/contexts/*"/>
+				<exclude name="**/contexts/**/*"/>
+				<exclude name="**/contexts-available/*"/>
+				<exclude name="**/webapps/*"/>
+				<exclude name="**/javadoc/*"/>
+				<exclude name="etc/jetty.xml"/>
+				<exclude name="about.html"/>
+				<exclude name="notice.html"/>
+				<exclude name="README.txt"/>
+				<exclude name="start.ini"/>
+				<exclude name="VERSION.txt"/>
+			</fileset>
+		</copy>
+		<delete dir="dist-${version}" quiet="true" includeemptydirs="true" >
+			<include name="contexts-available"/>
+			<include name="webapps"/>
+			<include name="javadoc"/>
+		</delete>
+		
+		<copy todir="dist-${version}/content" file="../ad.manager/target/ad.manager-${version}.war">
+		</copy>
+		<copy todir="dist-${version}/content" file="../ad.server/target/ad.server-${version}.war">
+		</copy>
+		<move file="dist-${version}/content/ad.manager-${version}.war" tofile="dist-${version}/content/ad.manager.war"/>
+		<move file="dist-${version}/content/ad.server-${version}.war" tofile="dist-${version}/content/ad.server.war"/>
+		
+	
+		<delete dir="temp" />
+
 		<echo>build finished</echo>
-		
+
 	</target>
 </project>
