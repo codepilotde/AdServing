@@ -65,7 +65,7 @@ public class CampaignManagerPage extends BasePage {
 				item.add(new Label("id", String.valueOf(campaign.getId())));
 				item.add(new Label("name", campaign.getName()));
 				item.add(new Label("created", DateUtil.format(campaign.getCreated())));
-				item.add(new EditPanel("editSite", item.getModel()));
+				item.add(new EditPanel("editCampaign", item.getModel()));
 
 				item.add(AttributeModifier.replace("class",
 						new AbstractReadOnlyModel<String>() {

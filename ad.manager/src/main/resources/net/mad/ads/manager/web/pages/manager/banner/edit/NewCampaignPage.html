@@ -1,0 +1,56 @@
+<!--
+
+    Mad-Advertisement
+    Copyright (C) 2011 Thorsten Marx <thmarx@gmx.net>
+
+    This program is free software: you can redistribute it and/or modify it under
+    the terms of the GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option) any later
+    version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+    details.
+
+    You should have received a copy of the GNU General Public License along with
+    this program. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<a href="#" wicket:id="backLink"><wicket:message key="backlink.label"/></a>
+	<br/>
+	<h2>
+		<wicket:message key="newsite.title" />
+	</h2>
+	<div>
+		<wicket:message key="newsite.intro" />
+	</div>
+	<div>
+		<form wicket:id="inputForm" class="inputForm">
+			<table>
+				<tr>
+					<td><wicket:message key="inputForm.name" /></td>
+					<td><input wicket:id="name" id="name" type="text" size="40" /></td>
+				</tr>
+				<tr>
+					<td><wicket:message key="inputForm.url" /></td>
+					<td><input wicket:id="url" id="url" type="text" size="40" /></td>
+				</tr>
+				<tr>
+					<td><wicket:message key="inputForm.description" /></td>
+					<td><textarea wicket:id="description" id="description"
+							cols="40" rows="10"></textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="submit" wicket:id="saveButton" value="save" />
+						<input type="submit" wicket:id="resetButton" value="reset" />
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div wicket:id="feedback"></div>
+	</div>
+</wicket:extend>
