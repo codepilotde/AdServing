@@ -33,35 +33,38 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.odlabs.wiquery.ui.button.ButtonBehavior;
 
+import net.mad.ads.base.api.model.ads.Campaign;
 import net.mad.ads.base.api.model.site.Site;
 import net.mad.ads.manager.utils.DateUtil;
 import net.mad.ads.manager.web.pages.BasePage;
+import net.mad.ads.manager.web.pages.manager.campain.data.CampaignDataProvider;
+import net.mad.ads.manager.web.pages.manager.campain.edit.EditCampaignPage;
+import net.mad.ads.manager.web.pages.manager.campain.edit.NewCampaignPage;
 import net.mad.ads.manager.web.pages.manager.site.data.SiteDataProvider;
 import net.mad.ads.manager.web.pages.manager.site.edit.EditSitePage;
 import net.mad.ads.manager.web.pages.manager.site.edit.NewSitePage;
 
 @AuthorizeInstantiation("ADMIN")
-public class SiteManagerPage extends BasePage {
+public class CampaignManagerPage extends BasePage {
 
 	private static final long serialVersionUID = 701015869883210133L;
 
-	public SiteManagerPage() {
+	public CampaignManagerPage() {
 		super();
 
-		add(new BookmarkablePageLink<Void>("newSite", NewSitePage.class)
+		add(new BookmarkablePageLink<Void>("newCampaign", NewCampaignPage.class)
 				.add(new ButtonBehavior()));
 
-		DataView<Site> dataView = new DataView<Site>("pageable",
-				new SiteDataProvider()) {
+		DataView<Campaign> dataView = new DataView<Campaign>("pageable",
+				new CampaignDataProvider()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void populateItem(final Item<Site> item) {
-				final Site site = item.getModelObject();
-				item.add(new Label("id", String.valueOf(site.getId())));
-				item.add(new Label("name", site.getName()));
-				item.add(new Label("url", site.getUrl()));
-				item.add(new Label("created", DateUtil.format(site.getCreated())));
+			protected void populateItem(final Item<Campaign> item) {
+				final Campaign campaign = item.getModelObject();
+				item.add(new Label("id", String.valueOf(campaign.getId())));
+				item.add(new Label("name", campaign.getName()));
+				item.add(new Label("created", DateUtil.format(campaign.getCreated())));
 				item.add(new EditPanel("editSite", item.getModel()));
 
 				item.add(AttributeModifier.replace("class",
@@ -95,12 +98,12 @@ public class SiteManagerPage extends BasePage {
 		 * @param model
 		 *            model for contact
 		 */
-		public EditPanel(String id, IModel<Site> model) {
+		public EditPanel(String id, IModel<Campaign> model) {
 			super(id, model);
 			add(new Link<Void>("edit") {
 				@Override
 				public void onClick() {
-					setResponsePage(new EditSitePage((Site) getParent().getDefaultModelObject()));
+					setResponsePage(new EditCampaignPage((Campaign) getParent().getDefaultModelObject()));
 				}
 			});
 		}

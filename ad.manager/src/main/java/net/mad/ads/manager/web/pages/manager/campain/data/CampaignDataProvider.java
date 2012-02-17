@@ -34,9 +34,9 @@ public class CampaignDataProvider  implements IDataProvider<Campaign> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CampaignDataProvider.class);
 
-	private Site site;
-	public CampaignDataProvider (Site site) {
-		this.site = site;
+	
+	public CampaignDataProvider () {
+		
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class CampaignDataProvider  implements IDataProvider<Campaign> {
 	@Override
 	public int size() {
 		try {
-			return RuntimeContext.getPlaceService().findBySite(site).size();
+			return (int)RuntimeContext.getCampaignService().count();
 		} catch (ServiceException e) {
 			logger.error("", e);
 		}

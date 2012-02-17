@@ -40,96 +40,40 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.exception.ServiceException;
+import net.mad.ads.base.api.model.ads.Campaign;
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
 import net.mad.ads.manager.RuntimeContext;
 import net.mad.ads.manager.utils.DateUtil;
 import net.mad.ads.manager.web.component.confirm.ConfirmLink;
 import net.mad.ads.manager.web.pages.BasePage;
-import net.mad.ads.manager.web.pages.manager.site.SiteManagerPage;
-import net.mad.ads.manager.web.pages.manager.site.data.PlaceDataProvider;
-import net.mad.ads.manager.web.pages.manager.site.data.SiteDataProvider;
+import net.mad.ads.manager.web.pages.manager.campain.CampaignManagerPage;
 
-public class EditSitePage extends BasePage {
+public class EditCampaignPage extends BasePage {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(EditSitePage.class);
+			.getLogger(EditCampaignPage.class);
 
 	private static final long serialVersionUID = -3079163120006125732L;
 
-	public EditSitePage(final Site site) {
+	public EditCampaignPage(final Campaign campaign) {
 		super();
 
-		add(new Label("sitename", site.getName()));
+		add(new Label("campaignname", campaign.getName()));
 
 		add(new FeedbackPanel("feedback"));
-		add(new InputForm("inputForm", site));
-
-		final FeedbackPanel placeFeed = new FeedbackPanel("placeFeedback");
-		add(placeFeed);
-
-		add(new Link<Void>("newPlace") {
-			@Override
-			public void onClick() {
-				setResponsePage(new NewPlacePage(site));
-			}
-		}.add(new ButtonBehavior()));
+		add(new InputForm("inputForm", campaign));
 
 		add(new Link<Void>("backLink") {
 			@Override
 			public void onClick() {
-				setResponsePage(new SiteManagerPage());
+				setResponsePage(new CampaignManagerPage());
 			}
 		}.add(new ButtonBehavior()));
 
-		DataView<Place> dataView = new DataView<Place>("pageable",
-				new PlaceDataProvider(site)) {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void populateItem(final Item<Place> item) {
-				final Place place = item.getModelObject();
-				item.add(new Label("id", String.valueOf(place.getId())));
-				item.add(new Label("name", place.getName()));
-				item.add(new Label("created",
-						DateUtil.format(place.getCreated())));
-				item.add(new EditPanel("editPlace", item.getModel()));
-
-				item.add(new ConfirmLink<Void>("deletePlace", getPage()
-						.getString("dialog.confirm.message")) {
-					@Override
-					public void onClick() {
-						try {
-							RuntimeContext.getPlaceService().delete(place);
-							setResponsePage(getPage());
-						} catch (Exception e) {
-							logger.error("", e);
-							placeFeed.error(getPage().getString(
-									"place.delete.error"));
-						}
-					}
-				});
-
-				item.add(AttributeModifier.replace("class",
-						new AbstractReadOnlyModel<String>() {
-							private static final long serialVersionUID = 1L;
-
-							@Override
-							public String getObject() {
-								return (item.getIndex() % 2 == 1) ? "even"
-										: "odd";
-							}
-						}));
-			}
-		};
-
-		dataView.setItemsPerPage(5);
-		add(dataView);
-
-		add(new PagingNavigator("navigator", dataView));
 	}
 
-	private class InputForm extends Form<Site> {
+	private class InputForm extends Form<Campaign> {
 		/**
 		 * Construct.
 		 * 
@@ -137,14 +81,12 @@ public class EditSitePage extends BasePage {
 		 *            Component name
 		 */
 		@SuppressWarnings("serial")
-		public InputForm(String name, Site site) {
-			super(name, new CompoundPropertyModel<Site>(site));
+		public InputForm(String name, Campaign campaign) {
+			super(name, new CompoundPropertyModel<Campaign>(campaign));
 
 			add(new RequiredTextField<String>("name").setRequired(true));
 
 			add(new TextArea<String>("description").setRequired(true));
-
-			add(new RequiredTextField<String>("url").setRequired(true));
 
 			add(new Button("saveButton").add(new ButtonBehavior()));
 		}
@@ -156,42 +98,17 @@ public class EditSitePage extends BasePage {
 		public void onSubmit() {
 			// Form validation successful. Display message showing edited model.
 
-			Site site = (Site) getDefaultModelObject();
+			Campaign campaign = (Campaign) getDefaultModelObject();
 			try {
-				RuntimeContext.getSiteService().update(site);
+				RuntimeContext.getCampaignService().update(campaign);
 
-				// Weiterleitung auf EditSitePage
-				setResponsePage(new EditSitePage(site));
+				// Weiterleitung auf EditCampaignPage
+				setResponsePage(new EditCampaignPage(campaign));
 			} catch (ServiceException e) {
 				logger.error("", e);
 				error(getPage().getString("error.saving.site"));
 			}
 
-		}
-	}
-
-	class EditPanel extends Panel {
-
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 5695018920646174059L;
-
-		/**
-		 * @param id
-		 *            component id
-		 * @param model
-		 *            model for contact
-		 */
-		public EditPanel(String id, IModel<Place> model) {
-			super(id, model);
-			add(new Link<Void>("edit") {
-				@Override
-				public void onClick() {
-					setResponsePage(new EditPlacePage((Place) getParent()
-							.getDefaultModelObject()));
-				}
-			});
 		}
 	}
 }

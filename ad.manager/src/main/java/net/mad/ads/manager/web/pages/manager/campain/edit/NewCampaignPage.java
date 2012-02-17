@@ -33,22 +33,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.exception.ServiceException;
-import net.mad.ads.base.api.model.site.Place;
+import net.mad.ads.base.api.model.ads.Campaign;
 import net.mad.ads.base.api.model.site.Site;
-
 import net.mad.ads.manager.RuntimeContext;
 import net.mad.ads.manager.web.pages.BasePage;
+import net.mad.ads.manager.web.pages.manager.site.SiteManagerPage;
 
-public class NewPlacePage extends BasePage {
+public class NewCampaignPage extends BasePage {
 	
-	private static final Logger logger = LoggerFactory.getLogger(NewPlacePage.class);
+	private static final Logger logger = LoggerFactory.getLogger(NewCampaignPage.class);
 
 	private static final long serialVersionUID = -3079163120006125732L;
 
-	private Site site;
-	public NewPlacePage(final Site site) {
+	public NewCampaignPage() {
 		super();
-		this.site = site;
 		
 		add(new FeedbackPanel("feedback"));
 		add(new InputForm("inputForm"));
@@ -56,12 +54,12 @@ public class NewPlacePage extends BasePage {
 		add(new Link<Void>("backLink") {
 			@Override
 			public void onClick() {
-				setResponsePage(new EditSitePage(site));
+				setResponsePage(new SiteManagerPage());
 			}
 		}.add(new ButtonBehavior()));
 	}
 
-	private class InputForm extends Form<Place> {
+	private class InputForm extends Form<Campaign> {
 		/**
 		 * Construct.
 		 * 
@@ -70,12 +68,17 @@ public class NewPlacePage extends BasePage {
 		 */
 		@SuppressWarnings("serial")
 		public InputForm(String name) {
-			super(name, new CompoundPropertyModel<Place>(
-					new Place()));
+			super(name, new CompoundPropertyModel<Campaign>(
+					new Campaign()));
 
+			
 			add(new RequiredTextField<String>("name").setRequired(true));
 
 			add(new TextArea<String>("description").setRequired(true));
+			
+			add(new RequiredTextField<String>("url").setRequired(true));
+
+			
 
 			
 			add(new Button("saveButton").add(new ButtonBehavior()));
@@ -83,7 +86,7 @@ public class NewPlacePage extends BasePage {
 			add(new Button("resetButton") {
 				@Override
 				public void onSubmit() {
-					setResponsePage(NewPlacePage.class);
+					setResponsePage(NewCampaignPage.class);
 				}
 			}.setDefaultFormProcessing(false).add(new ButtonBehavior()));
 		}
@@ -95,15 +98,15 @@ public class NewPlacePage extends BasePage {
 		public void onSubmit() {
 			// Form validation successful. Display message showing edited model.
 			
-			Place place = (Place) getDefaultModelObject();
-			place.setSite(site);
+			Campaign campaign = (Campaign) getDefaultModelObject();
 			try {
-				RuntimeContext.getPlaceService().add(place);
+				RuntimeContext.getCampaignService().add(campaign);
 				
-				setResponsePage(new EditPlacePage(place));
+				// Weiterleitung auf EditCampaignPage
+				setResponsePage(new EditCampaignPage(campaign));
 			} catch (ServiceException e) {
 				logger.error("", e);
-				error(getPage().getString("error.saving.place"));
+				error(getPage().getString("error.saving.site"));
 			}
 
 		}
