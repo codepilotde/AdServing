@@ -20,13 +20,29 @@
 <project default="distribute">
 
 	<property name="version" value="0.1" />
-	<property name="jetty.version" value="8.1.0.v20120127" />
+	<property name="jetty.version" value="8.1.1.v20120215" />
+	<property name="maxmind.version" value="GeoLiteCity_20120207"/>
+
+	<taskdef name="geoipimport" classname="net.mad.ads.services.geo.ant.GeoIpImportTask">
+		<classpath location="../ad.services/target/ad.services-${version}-jar-with-dependencies.jar" />
+	</taskdef>
+
+	<target name="ipdb">
+		<delete dir="services" />
+		<mkdir dir="services" />
+		<mkdir dir="services/db" />
+		
+		<get src="http://geolite.maxmind.com/download/geoip/database/GeoLiteCity_CSV/${maxmind.version}.zip" dest="services/maxmind_${maxmind.version}.zip" verbose="true" />
+		<unzip src="services/maxmind_${maxmind.version}.zip" dest="./services/" />
+		
+		<geoipimport importdir="services/${maxmind.version}/" exportdir="services/db/ipinfo"/>
+	</target>
 
 
-	<target name="distribute">
+	<target name="distribute" depends="ipdb">
 		<echo>maven build</echo>
 
-		<exec dir="../" executable="cmd" os="Windows">
+		<exec dir="../" executable="cmd" os="Windows 7">
 			<arg value="/c" />
 			<arg value="mvn.bat" />
 			<arg line="clean package install" />
@@ -39,45 +55,50 @@
 		<echo>unzip jetty-distribution ${jetty.version}</echo>
 
 		<delete dir="dist-${version}" />
-		<mkdir dir="dist-${version}"/>
+		<mkdir dir="dist-${version}" />
 		<delete dir="temp" />
-		<mkdir dir="temp"/>
-		
+		<mkdir dir="temp" />
+
 		<echo>Get jetty distribution ${jetty.version}</echo>
 		<get src="http://download.eclipse.org/jetty/8.1.0.v20120127/dist/jetty-distribution-${jetty.version}.zip" dest="temp/jetty-distribution-${jetty.version}.zip" verbose="true" />
 		<unzip src="temp/jetty-distribution-${jetty.version}.zip" dest="./temp/" />
-		
+
 		<copy todir="dist-${version}">
-			<fileset dir="adserver"></fileset>
+			<fileset dir="adserver">
+			</fileset>
 			<fileset dir="temp/jetty-distribution-${jetty.version}">
-				<exclude name="**/contexts/*"/>
-				<exclude name="**/contexts/**/*"/>
-				<exclude name="**/contexts-available/*"/>
-				<exclude name="**/webapps/*"/>
-				<exclude name="**/javadoc/*"/>
-				<exclude name="etc/jetty.xml"/>
-				<exclude name="about.html"/>
-				<exclude name="notice.html"/>
-				<exclude name="README.txt"/>
-				<exclude name="start.ini"/>
-				<exclude name="VERSION.txt"/>
+				<exclude name="**/contexts/*" />
+				<exclude name="**/contexts/**/*" />
+				<exclude name="**/contexts-available/*" />
+				<exclude name="**/webapps/*" />
+				<exclude name="**/javadoc/*" />
+				<exclude name="etc/jetty.xml" />
+				<exclude name="about.html" />
+				<exclude name="notice.html" />
+				<exclude name="README.txt" />
+				<exclude name="start.ini" />
+				<exclude name="VERSION.txt" />
 			</fileset>
 		</copy>
-		<delete dir="dist-${version}" quiet="true" includeemptydirs="true" >
-			<include name="contexts-available"/>
-			<include name="webapps"/>
-			<include name="javadoc"/>
+		<delete dir="dist-${version}" quiet="true" includeemptydirs="true">
+			<include name="contexts-available" />
+			<include name="webapps" />
+			<include name="javadoc" />
 		</delete>
-		
+
 		<copy todir="dist-${version}/content" file="../ad.manager/target/ad.manager-${version}.war">
 		</copy>
 		<copy todir="dist-${version}/content" file="../ad.server/target/ad.server-${version}.war">
 		</copy>
-		<move file="dist-${version}/content/ad.manager-${version}.war" tofile="dist-${version}/content/ad.manager.war"/>
-		<move file="dist-${version}/content/ad.server-${version}.war" tofile="dist-${version}/content/ad.server.war"/>
-		
-	
+		<move file="dist-${version}/content/ad.manager-${version}.war" tofile="dist-${version}/content/ad.manager.war" />
+		<move file="dist-${version}/content/ad.server-${version}.war" tofile="dist-${version}/content/ad.server.war" />
+		<move  toDir="dist-${version}/data/services/ipinfo" >
+			<fileset dir="services/db"/>
+		</move>
+
+
 		<delete dir="temp" />
+		<delete dir="service" />
 
 		<echo>build finished</echo>
 

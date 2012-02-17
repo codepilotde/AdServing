@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.manager.web.pages.manager.campain.data;
+package net.mad.ads.manager.web.pages.manager.campaign.data;
 
 import net.mad.ads.base.api.model.ads.Campaign;
 import net.mad.ads.base.api.model.site.Place;

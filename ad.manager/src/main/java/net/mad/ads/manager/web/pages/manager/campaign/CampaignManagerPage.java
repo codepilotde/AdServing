@@ -15,7 +15,8 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.manager.web.pages.manager.campain;
+package net.mad.ads.manager.web.pages.manager.campaign;
+
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -37,9 +38,9 @@ import net.mad.ads.base.api.model.ads.Campaign;
 import net.mad.ads.base.api.model.site.Site;
 import net.mad.ads.manager.utils.DateUtil;
 import net.mad.ads.manager.web.pages.BasePage;
-import net.mad.ads.manager.web.pages.manager.campain.data.CampaignDataProvider;
-import net.mad.ads.manager.web.pages.manager.campain.edit.EditCampaignPage;
-import net.mad.ads.manager.web.pages.manager.campain.edit.NewCampaignPage;
+import net.mad.ads.manager.web.pages.manager.campaign.data.CampaignDataProvider;
+import net.mad.ads.manager.web.pages.manager.campaign.edit.EditCampaignPage;
+import net.mad.ads.manager.web.pages.manager.campaign.edit.NewCampaignPage;
 import net.mad.ads.manager.web.pages.manager.site.data.SiteDataProvider;
 import net.mad.ads.manager.web.pages.manager.site.edit.EditSitePage;
 import net.mad.ads.manager.web.pages.manager.site.edit.NewSitePage;
@@ -52,9 +53,10 @@ public class CampaignManagerPage extends BasePage {
 	public CampaignManagerPage() {
 		super();
 
-		add(new BookmarkablePageLink<Void>("newCampaign", NewCampaignPage.class)
-				.add(new ButtonBehavior()));
+//		add(new BookmarkablePageLink<Void>("newCampaign", NewCampaignPage.class)
+//				.add(new ButtonBehavior()));
 
+		/*
 		DataView<Campaign> dataView = new DataView<Campaign>("pageable",
 				new CampaignDataProvider()) {
 			private static final long serialVersionUID = 1L;
@@ -84,6 +86,7 @@ public class CampaignManagerPage extends BasePage {
 		add(dataView);
 
 		add(new PagingNavigator("navigator", dataView));
+		*/
 	}
 	
 	class EditPanel extends Panel {

@@ -15,25 +15,18 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.mad.ads.manager.web.pages.manager.campain.edit;
+package net.mad.ads.manager.web.pages.manager.campaign.edit;
 
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.basic.Label;
+
+
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.markup.repeater.data.DataView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.odlabs.wiquery.ui.button.ButtonBehavior;
 import org.slf4j.Logger;
@@ -41,36 +34,29 @@ import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.ads.Campaign;
-import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
 import net.mad.ads.manager.RuntimeContext;
-import net.mad.ads.manager.utils.DateUtil;
-import net.mad.ads.manager.web.component.confirm.ConfirmLink;
 import net.mad.ads.manager.web.pages.BasePage;
-import net.mad.ads.manager.web.pages.manager.campain.CampaignManagerPage;
+import net.mad.ads.manager.web.pages.manager.site.SiteManagerPage;
 
-public class EditCampaignPage extends BasePage {
-
-	private static final Logger logger = LoggerFactory
-			.getLogger(EditCampaignPage.class);
+public class NewCampaignPage extends BasePage {
+	
+	private static final Logger logger = LoggerFactory.getLogger(NewCampaignPage.class);
 
 	private static final long serialVersionUID = -3079163120006125732L;
 
-	public EditCampaignPage(final Campaign campaign) {
+	public NewCampaignPage() {
 		super();
-
-		add(new Label("campaignname", campaign.getName()));
-
+		
 		add(new FeedbackPanel("feedback"));
-		add(new InputForm("inputForm", campaign));
-
+		add(new InputForm("inputForm"));
+		
 		add(new Link<Void>("backLink") {
 			@Override
 			public void onClick() {
-				setResponsePage(new CampaignManagerPage());
+				setResponsePage(new SiteManagerPage());
 			}
 		}.add(new ButtonBehavior()));
-
 	}
 
 	private class InputForm extends Form<Campaign> {
@@ -81,14 +67,28 @@ public class EditCampaignPage extends BasePage {
 		 *            Component name
 		 */
 		@SuppressWarnings("serial")
-		public InputForm(String name, Campaign campaign) {
-			super(name, new CompoundPropertyModel<Campaign>(campaign));
+		public InputForm(String name) {
+			super(name, new CompoundPropertyModel<Campaign>(
+					new Campaign()));
 
+			
 			add(new RequiredTextField<String>("name").setRequired(true));
 
 			add(new TextArea<String>("description").setRequired(true));
+			
+			add(new RequiredTextField<String>("url").setRequired(true));
 
+			
+
+			
 			add(new Button("saveButton").add(new ButtonBehavior()));
+
+			add(new Button("resetButton") {
+				@Override
+				public void onSubmit() {
+					setResponsePage(NewCampaignPage.class);
+				}
+			}.setDefaultFormProcessing(false).add(new ButtonBehavior()));
 		}
 
 		/**
@@ -97,11 +97,11 @@ public class EditCampaignPage extends BasePage {
 		@Override
 		public void onSubmit() {
 			// Form validation successful. Display message showing edited model.
-
+			
 			Campaign campaign = (Campaign) getDefaultModelObject();
 			try {
-				RuntimeContext.getCampaignService().update(campaign);
-
+				RuntimeContext.getCampaignService().add(campaign);
+				
 				// Weiterleitung auf EditCampaignPage
 				setResponsePage(new EditCampaignPage(campaign));
 			} catch (ServiceException e) {

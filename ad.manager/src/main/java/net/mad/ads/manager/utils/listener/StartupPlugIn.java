@@ -34,6 +34,8 @@ import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.user.User;
 import net.mad.ads.base.api.model.user.impl.AdminUser;
 import net.mad.ads.base.api.service.HibernateService;
+import net.mad.ads.base.api.service.banner.CampaignService;
+import net.mad.ads.base.api.service.banner.HibernateCampaignService;
 import net.mad.ads.base.api.service.site.HibernatePlaceService;
 import net.mad.ads.base.api.service.site.HibernateSiteService;
 import net.mad.ads.base.api.service.site.PlaceService;
@@ -125,6 +127,10 @@ public class StartupPlugIn implements ServletContextListener {
 			PlaceService places = new HibernatePlaceService();
 			places.open(context);
 			RuntimeContext.setPlaceService(places);
+			
+			CampaignService campaigns = new HibernateCampaignService();
+			campaigns.open(context);
+			RuntimeContext.setCampaignService(campaigns);
 			
 			User admin = users.get(1L);
 			if (admin == null) {

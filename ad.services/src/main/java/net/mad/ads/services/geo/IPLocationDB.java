@@ -27,7 +27,7 @@ public interface IPLocationDB {
 
 	/**
 	 * Falls die Datenbank von verschiedenen Services verwendet wird, kann eine
-	 * Connection �bergeben werden
+	 * Connection übergeben werden
 	 * 
 	 * @param con
 	 */

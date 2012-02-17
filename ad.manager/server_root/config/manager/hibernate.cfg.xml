@@ -76,6 +76,10 @@
         <mapping resource="net/mad/ads/base/api/model/site/Place.hbm.xml"/>
         <mapping resource="net/mad/ads/base/api/model/site/Site.hbm.xml"/>
         
+        <mapping resource="net/mad/ads/base/api/model/ads/Campaign.hbm.xml"/>
+        <mapping resource="net/mad/ads/base/api/model/ads/condition/DateCondition.hbm.xml"/>
+        <mapping resource="net/mad/ads/base/api/model/ads/condition/TimeCondition.hbm.xml"/>
+        
 
     </session-factory>
 

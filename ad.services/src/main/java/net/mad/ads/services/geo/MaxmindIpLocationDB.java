@@ -170,7 +170,7 @@ public class MaxmindIpLocationDB implements IPLocationDB {
 				ps.execute();
 				count++;
 			}
-			System.out.println(count + " Eintr�ge importiert");
+			System.out.println(count + " Einträge importiert");
 			
 			ps.close();
 		} catch (Exception e) {
