@@ -17,8 +17,15 @@
  */
 package net.mad.ads.manager.web.pages.manager.campaign.edit;
 
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -27,6 +34,8 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -36,12 +45,15 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.odlabs.wiquery.ui.button.ButtonBehavior;
+import org.odlabs.wiquery.ui.tabs.Tabs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.ads.Campaign;
+import net.mad.ads.base.api.model.ads.condition.TimeCondition;
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
 import net.mad.ads.manager.RuntimeContext;
@@ -57,8 +69,14 @@ public class EditCampaignPage extends BasePage {
 
 	private static final long serialVersionUID = -3079163120006125732L;
 
+	private final ListView<TimeCondition> tcListView;
+	private final WebMarkupContainer tcs;
+	private final Campaign campaign;
+	
 	public EditCampaignPage(final Campaign campaign) {
 		super();
+
+		this.campaign = campaign;
 
 		add(new Label("campaignname", campaign.getName()));
 
@@ -72,6 +90,41 @@ public class EditCampaignPage extends BasePage {
 			}
 		}.add(new ButtonBehavior()));
 
+		Tabs tabs = new Tabs("tabs");
+		add(tabs);
+
+		tcs = new WebMarkupContainer("timeConditions");
+		tcs.add(tcListView = new ListView<TimeCondition>("timeConditions",
+				new PropertyModel<List<TimeCondition>>(this, "timeConditionsList")) {
+			@Override
+			public void populateItem(final ListItem<TimeCondition> listItem) {
+				final TimeCondition condition = listItem.getModelObject();
+				listItem.add(new Label("from", new Model<Time>(condition
+						.getFrom())));
+				listItem.add(new Label("to", new Model<Time>(condition.getTo())));
+			}
+		});
+		tabs.add(tcs.setOutputMarkupId(true));
+
+		tabs.add(new AjaxLink<Void>("addButton") {
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				campaign.getTimeConditions().add(new TimeCondition());
+				
+				target.add(tcs);
+			}
+
+		}.add(new ButtonBehavior()));
+
+	}
+	
+	public List<TimeCondition> getTimeConditionsList () {
+		List<TimeCondition> conditions = new ArrayList<TimeCondition>();
+		
+		conditions.addAll(this.campaign.getTimeConditions());
+		
+		return conditions;
 	}
 
 	private class InputForm extends Form<Campaign> {

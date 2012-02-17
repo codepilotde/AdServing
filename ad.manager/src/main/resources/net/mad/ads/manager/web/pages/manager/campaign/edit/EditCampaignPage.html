@@ -19,8 +19,9 @@
 -->
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
 
-	<a href="#" wicket:id="backLink"><wicket:message key="backlink.label"/></a>
-	<br/>
+	<a href="#" wicket:id="backLink"><wicket:message
+			key="backlink.label" /></a>
+	<br />
 	<h2>
 		<wicket:message key="editcampaign.title" />
 		: <u><span wicket:id="campaignname"></span></u>
@@ -55,7 +56,32 @@
 		</div>
 
 		<div class="overview right">
-			
+			<h3 class="title">
+				<wicket:message key="overview.condition" />
+			</h3>
+			<div wicket:id="tabs">
+				<ul>
+					<li><a href="#tab1">Tab 1</a></li>
+					<li><a href="#tab2">Tab 2</a></li>
+				</ul>
+				<div id="tab1">
+					<h4>Time</h4>
+					<button wicket:id="addButton">Add</button>
+					<div wicket:id="timeConditions">
+						<span wicket:id="timeConditions">
+							<p>
+								<span wicket:id="from">1/1/2004</span><br /> <span
+									wicket:id="to">Comment text goes here.</span>
+							</p>
+						</span>
+					</div>
+				</div>
+				<div id="tab2">
+					<h4>Tab 2</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Morbi facilisis porta nisi.</p>
+				</div>
+			</div>
 		</div>
 
 	</div>
