@@ -26,16 +26,15 @@
 	<target name="distribute">
 		<echo>maven build</echo>
 
-		<!--exec dir="../" executable="cmd">
+		<exec dir="../" executable="cmd" os="Windows">
 			<arg value="/c" />
 			<arg value="mvn.bat" />
 			<arg line="clean package install" />
-		</exec-->
+		</exec>
 
-		<!--exec dir="../" executable="bash">
-			<arg value="mvn" />
+		<exec dir="../" executable="mvn" os="Linux">
 			<arg line="clean package install" />
-		</exec-->
+		</exec>
 
 		<echo>unzip jetty-distribution ${jetty.version}</echo>
 
