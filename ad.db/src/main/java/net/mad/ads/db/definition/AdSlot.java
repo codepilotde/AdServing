@@ -57,7 +57,7 @@ public class AdSlot {
             throw new IllegalArgumentException("Invalid AdUUID string: " + uuid);
         }
 		String[] components = uuid.split("-");
-        if (components.length != 3) {
+        if (components.length != 2) {
             throw new IllegalArgumentException("Invalid AdUUID string: " + uuid);
         }
         
