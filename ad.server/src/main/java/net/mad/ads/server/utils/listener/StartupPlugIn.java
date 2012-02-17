@@ -143,6 +143,7 @@ public class StartupPlugIn implements ServletContextListener {
 			RuntimeContext.setImporter(new Importer(RuntimeContext.getProperties().getProperty(AdServerConstants.CONFIG.PROPERTIES.BANNER_IMPORT_DIRECOTRY), RuntimeContext.getAdDB()));
 		} catch (Exception e) {
 			logger.error("", e);
+			throw new RuntimeException(e);
 		}
 	}
 	
