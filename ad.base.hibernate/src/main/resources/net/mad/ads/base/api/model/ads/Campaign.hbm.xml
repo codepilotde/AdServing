@@ -38,11 +38,11 @@
             <column name="CREATED" />
         </property>
         
-        <set name="timeConditions" inverse="false" table="CAMPAIGN_TIMECONDITION" lazy="true" cascade="all">
+        <set name="timeConditions" inverse="false" table="CAMPAIGN_TIMECONDITION" lazy="false" cascade="all">
             <key column="CAMPAING_ID"/>
             <many-to-many class="net.mad.ads.base.api.model.ads.condition.TimeCondition" column="CONDITION_ID"/>
         </set>
-        <set name="dateConditions" inverse="false" table="CAMPAIGN_DATECONDITION" lazy="true" cascade="all">
+        <set name="dateConditions" inverse="false" table="CAMPAIGN_DATECONDITION" lazy="false" cascade="all">
             <key column="CAMPAING_ID"/>
             <many-to-many class="net.mad.ads.base.api.model.ads.condition.DateCondition" column="CONDITION_ID"/>
         </set>

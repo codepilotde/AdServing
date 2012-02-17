@@ -17,18 +17,12 @@
  */
 package net.mad.ads.base.api.model.ads;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import net.mad.ads.base.api.model.BaseModel;
 import net.mad.ads.base.api.model.ExtendedBaseModel;
 import net.mad.ads.base.api.model.ads.condition.DateCondition;
 import net.mad.ads.base.api.model.ads.condition.TimeCondition;
-import net.mad.ads.db.definition.ConditionDefinition;
-import net.mad.ads.db.enums.ConditionDefinitions;
 
 /**
  * Die Kampagne ist das Mutter-Objekt der Banner. Jedes

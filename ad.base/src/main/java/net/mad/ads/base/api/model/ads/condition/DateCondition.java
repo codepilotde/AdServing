@@ -37,7 +37,7 @@ public class DateCondition extends BaseModel {
 		
 	}
 	
-	public DateCondition (Time from, Time to) {
+	public DateCondition (Date from, Date to) {
 		super();
 		this.to = to;
 		this.from = from;

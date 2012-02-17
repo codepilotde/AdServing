@@ -19,6 +19,7 @@ package net.mad.ads.manager;
 
 import java.util.Properties;
 
+import net.mad.ads.base.api.service.banner.CampaignService;
 import net.mad.ads.base.api.service.site.PlaceService;
 import net.mad.ads.base.api.service.site.SiteService;
 import net.mad.ads.base.api.service.user.UserService;
@@ -43,10 +44,19 @@ public final class RuntimeContext {
 	private static UserService userService;
 	private static SiteService siteService;
 	private static PlaceService placeService;
+	private static CampaignService campaignService;
 	private static TrackingService trackingService;
 	
 	
 	
+	public static CampaignService getCampaignService() {
+		return campaignService;
+	}
+
+	public static void setCampaignService(CampaignService campaignService) {
+		RuntimeContext.campaignService = campaignService;
+	}
+
 	/**
 	 * @return the siteService
 	 */
