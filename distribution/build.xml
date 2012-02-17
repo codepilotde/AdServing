@@ -39,10 +39,15 @@
 
 		<echo>unzip jetty-distribution ${jetty.version}</echo>
 
-		<unzip src="jetty-distribution-${jetty.version}.zip" dest="./temp/" />
-		
 		<delete dir="dist-${version}" />
 		<mkdir dir="dist-${version}"/>
+		<delete dir="temp" />
+		<mkdir dir="temp"/>
+		
+		<echo>Get jetty distribution ${jetty.version}</echo>
+		<get src="http://download.eclipse.org/jetty/8.1.0.v20120127/dist/jetty-distribution-${jetty.version}.zip" dest="temp/jetty-distribution-${jetty.version}.zip" verbose="true" />
+		<unzip src="temp/jetty-distribution-${jetty.version}.zip" dest="./temp/" />
+		
 		<copy todir="dist-${version}">
 			<fileset dir="adserver"></fileset>
 			<fileset dir="temp/jetty-distribution-${jetty.version}">
