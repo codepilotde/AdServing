@@ -60,4 +60,5 @@ public class ManagerApplication extends AuthenticatedWebApplication implements I
 	public ResourceReference getTheme(Session session) {
 		return SmoothnessTheme.THEME;
 	}
+	
 }

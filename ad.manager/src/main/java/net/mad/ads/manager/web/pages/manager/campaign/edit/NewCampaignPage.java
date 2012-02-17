@@ -76,11 +76,6 @@ public class NewCampaignPage extends BasePage {
 
 			add(new TextArea<String>("description").setRequired(true));
 			
-			add(new RequiredTextField<String>("url").setRequired(true));
-
-			
-
-			
 			add(new Button("saveButton").add(new ButtonBehavior()));
 
 			add(new Button("resetButton") {

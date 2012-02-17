@@ -22,8 +22,8 @@
 	<a href="#" wicket:id="backLink"><wicket:message key="backlink.label"/></a>
 	<br/>
 	<h2>
-		<wicket:message key="editsite.title" />
-		: <u><span wicket:id="sitename"></span></u>
+		<wicket:message key="editcampaign.title" />
+		: <u><span wicket:id="campaignname"></span></u>
 	</h2>
 
 	<br />
@@ -32,17 +32,13 @@
 	<div class="column">
 		<div class="overview left">
 			<h3 class="title">
-				<wicket:message key="overview.site" />
+				<wicket:message key="overview.campaign" />
 			</h3>
 			<form wicket:id="inputForm" class="inputForm">
 				<table>
 					<tr>
 						<td><wicket:message key="inputForm.name" /></td>
 						<td><input wicket:id="name" id="name" type="text" size="40" /></td>
-					</tr>
-					<tr>
-						<td><wicket:message key="inputForm.url" /></td>
-						<td><input wicket:id="url" id="url" type="text" size="40" /></td>
 					</tr>
 					<tr>
 						<td><wicket:message key="inputForm.description" /></td>
@@ -59,36 +55,7 @@
 		</div>
 
 		<div class="overview right">
-			<h3 class="title">
-				<wicket:message key="overview.places" />
-			</h3>
-			<button wicket:id="newPlace">
-				<wicket:message key="button.newplace" />
-			</button>
-			<br /> <br /> <span wicket:id="navigator">[dataview
-				navigator]</span>
-			<table cellspacing="0" class="dataview" style="width: 80%;">
-				<colgroup>
-					<col width="10%" />
-					<col width="30%" />
-					<col width="30%" />
-				</colgroup>
-				<tr style="text-align: center;">
-					<th>ID</th>
-					<th>Name</th>
-					<th>Created</th>
-					<th>Editieren</th>
-					<th>L&ouml;schen</th>
-				</tr>
-				<tr wicket:id="pageable" style="text-align: center;">
-					<td><span wicket:id="id">[id]</span></td>
-					<td><span wicket:id="name">[name]</span></td>
-					<td><span wicket:id="created">[created]</span></td>
-					<td><span wicket:id="editPlace">[editPlace]</span></td>
-					<td><a href="#" wicket:id="deletePlace"><wicket:message key="actionpanel.delete" /></a></td>
-				</tr>
-			</table>
-			<div wicket:id="placeFeedback"></div>
+			
 		</div>
 
 	</div>

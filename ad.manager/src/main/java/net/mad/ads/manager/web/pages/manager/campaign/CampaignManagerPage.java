@@ -53,10 +53,10 @@ public class CampaignManagerPage extends BasePage {
 	public CampaignManagerPage() {
 		super();
 
-//		add(new BookmarkablePageLink<Void>("newCampaign", NewCampaignPage.class)
-//				.add(new ButtonBehavior()));
+		add(new BookmarkablePageLink<Void>("newCampaign", NewCampaignPage.class)
+				.add(new ButtonBehavior()));
 
-		/*
+		
 		DataView<Campaign> dataView = new DataView<Campaign>("pageable",
 				new CampaignDataProvider()) {
 			private static final long serialVersionUID = 1L;
@@ -86,7 +86,7 @@ public class CampaignManagerPage extends BasePage {
 		add(dataView);
 
 		add(new PagingNavigator("navigator", dataView));
-		*/
+		
 	}
 	
 	class EditPanel extends Panel {
