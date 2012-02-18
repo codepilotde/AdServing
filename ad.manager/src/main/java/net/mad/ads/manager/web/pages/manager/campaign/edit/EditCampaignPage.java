@@ -23,8 +23,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -34,8 +36,6 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -53,12 +53,16 @@ import org.slf4j.LoggerFactory;
 
 import net.mad.ads.base.api.exception.ServiceException;
 import net.mad.ads.base.api.model.ads.Campaign;
+import net.mad.ads.base.api.model.ads.condition.DateCondition;
 import net.mad.ads.base.api.model.ads.condition.TimeCondition;
 import net.mad.ads.base.api.model.site.Place;
 import net.mad.ads.base.api.model.site.Site;
 import net.mad.ads.manager.RuntimeContext;
 import net.mad.ads.manager.utils.DateUtil;
 import net.mad.ads.manager.web.component.confirm.ConfirmLink;
+import net.mad.ads.manager.web.component.listeditor.ListEditor;
+import net.mad.ads.manager.web.component.listeditor.ListItem;
+import net.mad.ads.manager.web.component.listeditor.RemoveButton;
 import net.mad.ads.manager.web.pages.BasePage;
 import net.mad.ads.manager.web.pages.manager.campaign.CampaignManagerPage;
 
@@ -69,19 +73,22 @@ public class EditCampaignPage extends BasePage {
 
 	private static final long serialVersionUID = -3079163120006125732L;
 
-	private final ListView<TimeCondition> tcListView;
-	private final WebMarkupContainer tcs;
-	private final Campaign campaign;
+	// private final ListView<TimeCondition> tcListView;
+//	private final WebMarkupContainer tcs;
+
+	private final InputForm inputForm;
 	
+	private final Campaign campaign;
+
 	public EditCampaignPage(final Campaign campaign) {
 		super();
 
 		this.campaign = campaign;
+		this.inputForm = new InputForm("inputForm", campaign);
 
 		add(new Label("campaignname", campaign.getName()));
 
-		add(new FeedbackPanel("feedback"));
-		add(new InputForm("inputForm", campaign));
+		add(inputForm);
 
 		add(new Link<Void>("backLink") {
 			@Override
@@ -90,44 +97,40 @@ public class EditCampaignPage extends BasePage {
 			}
 		}.add(new ButtonBehavior()));
 
-		Tabs tabs = new Tabs("tabs");
-		add(tabs);
-
-		tcs = new WebMarkupContainer("timeConditions");
-		tcs.add(tcListView = new ListView<TimeCondition>("timeConditions",
-				new PropertyModel<List<TimeCondition>>(this, "timeConditionsList")) {
-			@Override
-			public void populateItem(final ListItem<TimeCondition> listItem) {
-				final TimeCondition condition = listItem.getModelObject();
-				listItem.add(new Label("from", new Model<Time>(condition
-						.getFrom())));
-				listItem.add(new Label("to", new Model<Time>(condition.getTo())));
-			}
-		});
-		tabs.add(tcs.setOutputMarkupId(true));
-
-		tabs.add(new AjaxLink<Void>("addButton") {
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				campaign.getTimeConditions().add(new TimeCondition());
-				
-				target.add(tcs);
-			}
-
-		}.add(new ButtonBehavior()));
-
-	}
-	
-	public List<TimeCondition> getTimeConditionsList () {
-		List<TimeCondition> conditions = new ArrayList<TimeCondition>();
 		
-		conditions.addAll(this.campaign.getTimeConditions());
-		
-		return conditions;
+
+		/*
+		 * tcs = new WebMarkupContainer("timeConditions"); tcs.add(tcListView =
+		 * new ListView<TimeCondition>("timeConditions", new
+		 * PropertyModel<List<TimeCondition>>(this, "timeConditionsList")) {
+		 * 
+		 * @Override public void populateItem(final ListItem<TimeCondition>
+		 * listItem) { final TimeCondition condition =
+		 * listItem.getModelObject();
+		 * 
+		 * listItem.add(new TextField<Time>("from", new Model<Time>(condition
+		 * .getFrom()))); listItem.add(new TextField<Time>("to", new
+		 * Model<Time>(condition .getFrom())));
+		 * 
+		 * listItem.add(new DeleteAjaxLink("deleteTimeLink",
+		 * listItem.getIndex(), tcs)); } });
+		 * tabs.add(tcs.setOutputMarkupId(true));
+		 * 
+		 * tabs.add(new AjaxLink<Void>("addButton") {
+		 * 
+		 * @Override public void onClick(AjaxRequestTarget target) {
+		 * campaign.getTimeConditions().add(new TimeCondition());
+		 * 
+		 * target.add(tcs); }
+		 * 
+		 * }.add(new ButtonBehavior()));
+		 */
+
 	}
 
 	private class InputForm extends Form<Campaign> {
+		
+		private final ListEditor<TimeCondition> timeEditor;
 		/**
 		 * Construct.
 		 * 
@@ -143,6 +146,37 @@ public class EditCampaignPage extends BasePage {
 			add(new TextArea<String>("description").setRequired(true));
 
 			add(new Button("saveButton").add(new ButtonBehavior()));
+			
+			add(new FeedbackPanel("feedback"));
+			
+			Tabs tabs = new Tabs("tabs");
+			add(tabs);
+
+			timeEditor = new ListEditor<TimeCondition>("timeConditions", new PropertyModel(
+					this, "timeConditionsList")) {
+				@Override
+				protected void onPopulateItem(ListItem<TimeCondition> item) {
+					final TimeCondition condition = item.getModelObject();
+					item.setModel(new CompoundPropertyModel(item.getModel()));
+
+					item.add(new TextField<Time>("from", new Model<Time>(condition
+							.getFrom())));
+					item.add(new TextField<Time>("to", new Model<Time>(condition
+							.getFrom())));
+
+					item.add(new RemoveButton("remove"));
+				}
+			};
+			
+			tabs.add(new Button("addTimeButton")
+	        {
+	            @Override
+	            public void onSubmit()
+	            {
+	                timeEditor.addItem(new TimeCondition());
+	            }
+	        }.setDefaultFormProcessing(false));
+	        tabs.add(timeEditor);
 		}
 
 		/**
@@ -160,9 +194,31 @@ public class EditCampaignPage extends BasePage {
 				setResponsePage(new EditCampaignPage(campaign));
 			} catch (ServiceException e) {
 				logger.error("", e);
-				error(getPage().getString("error.saving.site"));
+				error(getPage().getString("error.saving.campaign"));
 			}
 
 		}
+		
+		public List<TimeCondition> getTimeConditionsList() {
+			return campaign.getTimeConditions();
+		}
+
+		public List<DateCondition> getDateConditionsList() {
+			return campaign.getDateConditions();
+		}
 	}
+
+	/*
+	 * private class DeleteAjaxLink extends AjaxLink<Void> {
+	 * 
+	 * private int index = 0; private Component component;
+	 * 
+	 * public DeleteAjaxLink(String id, int index, Component component) {
+	 * super(id); this.index = index; this.component = component; }
+	 * 
+	 * @Override public void onClick(AjaxRequestTarget target) {
+	 * campaign.getTimeConditions().remove(index);
+	 * target.add(tcListView.get(index));
+	 * tcListView.remove(tcListView.get(index)); } }
+	 */
 }

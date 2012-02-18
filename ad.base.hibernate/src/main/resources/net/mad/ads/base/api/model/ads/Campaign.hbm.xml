@@ -38,13 +38,15 @@
             <column name="CREATED" />
         </property>
         
-        <set name="timeConditions" inverse="false" table="CAMPAIGN_TIMECONDITION" lazy="false" cascade="all">
+        <list name="timeConditions" inverse="false" table="CAMPAIGN_TIMECONDITION" lazy="false" cascade="all">
             <key column="CAMPAING_ID"/>
+            <index column="idx"/>
             <many-to-many class="net.mad.ads.base.api.model.ads.condition.TimeCondition" column="CONDITION_ID"/>
-        </set>
-        <set name="dateConditions" inverse="false" table="CAMPAIGN_DATECONDITION" lazy="false" cascade="all">
+        </list>
+        <list name="dateConditions" inverse="false" table="CAMPAIGN_DATECONDITION" lazy="false" cascade="all">
             <key column="CAMPAING_ID"/>
+            <index column="idx"/>
             <many-to-many class="net.mad.ads.base.api.model.ads.condition.DateCondition" column="CONDITION_ID"/>
-        </set>
+        </list>
     </class>
 </hibernate-mapping>

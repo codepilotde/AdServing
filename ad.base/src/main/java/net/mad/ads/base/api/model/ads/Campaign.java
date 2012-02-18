@@ -17,7 +17,9 @@
  */
 package net.mad.ads.base.api.model.ads;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.mad.ads.base.api.model.ExtendedBaseModel;
@@ -39,11 +41,11 @@ public class Campaign extends ExtendedBaseModel {
 	/*
 	 * The times this campaign is valid
 	 */
-	private Set<TimeCondition> timeConditions = new HashSet<TimeCondition>();
+	private List<TimeCondition> timeConditions = new ArrayList<TimeCondition>();
 	/*
 	 * The dates this campaign is valid
 	 */
-	private Set<DateCondition> dateConditions = new HashSet<DateCondition>();
+	private List<DateCondition> dateConditions = new ArrayList<DateCondition>();
 
 	
 	public Campaign () {
@@ -54,7 +56,7 @@ public class Campaign extends ExtendedBaseModel {
 	/**
 	 * @return the timeConditions
 	 */
-	public Set<TimeCondition> getTimeConditions() {
+	public List<TimeCondition> getTimeConditions() {
 		return timeConditions;
 	}
 
@@ -62,7 +64,7 @@ public class Campaign extends ExtendedBaseModel {
 	/**
 	 * @param timeConditions the timeConditions to set
 	 */
-	public void setTimeConditions(Set<TimeCondition> timeConditions) {
+	public void setTimeConditions(List<TimeCondition> timeConditions) {
 		this.timeConditions = timeConditions;
 	}
 
@@ -70,7 +72,7 @@ public class Campaign extends ExtendedBaseModel {
 	/**
 	 * @return the dateConditions
 	 */
-	public Set<DateCondition> getDateConditions() {
+	public List<DateCondition> getDateConditions() {
 		return dateConditions;
 	}
 
@@ -78,7 +80,7 @@ public class Campaign extends ExtendedBaseModel {
 	/**
 	 * @param dateConditions the dateConditions to set
 	 */
-	public void setDateConditions(Set<DateCondition> dateConditions) {
+	public void setDateConditions(List<DateCondition> dateConditions) {
 		this.dateConditions = dateConditions;
 	}
 	

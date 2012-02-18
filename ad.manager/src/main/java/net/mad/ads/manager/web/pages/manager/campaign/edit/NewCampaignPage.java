@@ -101,7 +101,7 @@ public class NewCampaignPage extends BasePage {
 				setResponsePage(new EditCampaignPage(campaign));
 			} catch (ServiceException e) {
 				logger.error("", e);
-				error(getPage().getString("error.saving.site"));
+				error(getPage().getString("error.saving.campaign"));
 			}
 
 		}

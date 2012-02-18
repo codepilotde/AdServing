@@ -29,13 +29,13 @@
 
 	<br />
 	<br />
+	<form wicket:id="inputForm" class="inputForm">
+		<div class="column">
+			<div class="overview left">
+				<h3 class="title">
+					<wicket:message key="overview.campaign" />
+				</h3>
 
-	<div class="column">
-		<div class="overview left">
-			<h3 class="title">
-				<wicket:message key="overview.campaign" />
-			</h3>
-			<form wicket:id="inputForm" class="inputForm">
 				<table>
 					<tr>
 						<td><wicket:message key="inputForm.name" /></td>
@@ -51,39 +51,40 @@
 						<td><input type="submit" wicket:id="saveButton" value="save" /></td>
 					</tr>
 				</table>
-			</form>
-			<div wicket:id="feedback"></div>
-		</div>
+				<div wicket:id="feedback"></div>
+			</div>
 
-		<div class="overview right">
-			<h3 class="title">
-				<wicket:message key="overview.condition" />
-			</h3>
-			<div wicket:id="tabs">
-				<ul>
-					<li><a href="#tab1">Tab 1</a></li>
-					<li><a href="#tab2">Tab 2</a></li>
-				</ul>
-				<div id="tab1">
-					<h4>Time</h4>
-					<button wicket:id="addButton">Add</button>
-					<div wicket:id="timeConditions">
-						<span wicket:id="timeConditions">
-							<p>
-								<span wicket:id="from">1/1/2004</span><br /> <span
-									wicket:id="to">Comment text goes here.</span>
-							</p>
-						</span>
+			<div class="overview right">
+				<h3 class="title">
+					<wicket:message key="overview.condition" />
+				</h3>
+				<div wicket:id="tabs">
+					<ul>
+						<li><a href="#tab1"><wicket:message key="tab.date.title" /></a></li>
+						<li><a href="#tab2"><wicket:message key="tab.time.title" /></a></li>
+					</ul>
+					<div id="tab1">
+						<h4>Time</h4>
+						<button wicket:id="addTimeButton">Add</button>
+						<div wicket:id="timeConditions">
+							
+								<p>
+									<input wicket:id="from" type="text" size="2" /> <input
+										wicket:id="to" type="text" size="2" />
+									<button wicket:id="remove">Delete</button>
+								</p>
+							
+						</div>
+					</div>
+					<div id="tab2">
+						<h4>Tab 2</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Morbi facilisis porta nisi.</p>
 					</div>
 				</div>
-				<div id="tab2">
-					<h4>Tab 2</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Morbi facilisis porta nisi.</p>
-				</div>
 			</div>
-		</div>
 
-	</div>
+		</div>
+	</form>
 
 </wicket:extend>
